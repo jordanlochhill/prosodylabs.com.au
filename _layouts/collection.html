@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body class="page-top">
+    {% include sidebar-nav.html %}
+
+    <section id="{{ page.collection_name }}"
+        style="padding: 120px 0 80px 0; min-height: 100vh; display: flex; flex-direction: column;">
+        <div class="container" style="flex: 1;">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2 class="section-heading">{{ page.title }}</h2>
+                    <hr class="primary">
+                    <p
+                        style="font-size: 18px; margin-bottom: 60px; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        {{ page.description }}
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 60px;">
+                {{ content }}
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center" style="padding: 40px 0;">
+                    <a href="{{ '/' | relative_url }}" class="btn btn-primary btn-xl" style="margin-bottom: 20px;">
+                        <i class="fa fa-arrow-left"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include scripts.html %}
+
+    <style>
+        .collection-card {
+            transition: all 0.3s ease !important;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .collection-item .btn {
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .collection-item .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .collection-item .btn-outline {
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .collection-item .btn-outline:hover {
+            background: currentColor !important;
+            color: white !important;
+        }
+
+        .collection-item h3 a:hover {
+            color: #f05f40 !important;
+        }
+
+        .tech-badge:hover {
+            background: #e8f0fe !important;
+            color: #1976d2 !important;
+            transform: translateY(-1px);
+        }
+
+        .keyword-badge:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .collection-card {
+                margin-bottom: 25px !important;
+            }
+
+            .collection-image {
+                height: 180px !important;
+            }
+
+            .collection-info {
+                padding: 25px !important;
+            }
+
+            .collection-header h3 {
+                font-size: 20px !important;
+            }
+
+            .collection-actions {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 8px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section[id] {
+                padding: 100px 0 60px 0 !important;
+            }
+
+            .collection-info {
+                padding: 20px !important;
+            }
+
+            .collection-header h3 {
+                font-size: 18px !important;
+            }
+        }
+    </style>
+</body>
+
+</html>

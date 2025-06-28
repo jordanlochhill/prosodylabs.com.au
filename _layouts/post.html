@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include head.html %}
+
+<body class="page-top">
+    {% include nav.html %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <article class="post">
+                    <header class="post-header text-center">
+                        <h1 class="post-title">{{ page.title }}</h1>
+                        <p class="post-meta text-muted">{{ page.date | date_to_string }}</p>
+                        <hr class="primary">
+                    </header>
+
+                    <div class="post-content">
+                        {{ content }}
+                    </div>
+                </article>
+
+                <div class="text-center" style="margin-top: 50px;">
+                    <a href="/" class="btn btn-primary btn-xl">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer text-center" style="margin-top: 100px; padding: 30px 0; background-color: #f8f8f8;">
+        <div class="container">
+            <p class="text-muted">
+                <a href="https://prosodylabs.com.au">Prosody Labs</a>
+            </p>
+        </div>
+    </div>
+
+    {% include scripts.html %}
+</body>
+
+</html>

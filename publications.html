@@ -1,0 +1,337 @@
+---
+layout: collection
+title: "Publications"
+description: "Our research contributions to the field of human-centred AI"
+collection_name: "publications"
+---
+
+{% assign sorted_publications = site.publications | sort: 'publication_date' | reverse %}
+
+{% if sorted_publications.size > 0 %}
+<div class="collection-container">
+    <!-- Initial 4 cards -->
+    <div class="row" id="initial-publications">
+        {% for publication in sorted_publications limit:4 %}
+        <div class="col-lg-12 collection-item" style="margin-bottom: 35px;">
+            <div class="collection-card"
+                style="background: white; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 35px; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); position: relative;">
+
+                <div class="collection-header" style="margin-bottom: 25px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <h3
+                            style="margin: 0; color: #333; font-size: 26px; line-height: 1.3; flex: 1; padding-right: 20px;">
+                            <a href="{{ publication.url | relative_url }}"
+                                style="text-decoration: none; color: inherit; transition: color 0.3s ease;">
+                                {{ publication.title }}
+                            </a>
+                        </h3>
+                        {% if publication.status %}
+                        <span class="label"
+                            style="background-color: #28a745; color: white; font-size: 12px; padding: 8px 16px; border-radius: 20px; font-weight: 500; flex-shrink: 0;">
+                            {{ publication.status }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    {% if publication.authors %}
+                    <p style="color: #495057; font-size: 17px; margin-bottom: 12px; font-weight: 500;">
+                        {{ publication.authors | join: ', ' }}
+                    </p>
+                    {% endif %}
+
+                    {% if publication.journal or publication.conference or publication.venue %}
+                    <p style="color: #6c757d; font-style: italic; margin-bottom: 0; font-size: 15px;">
+                        {% if publication.journal %}
+                        <i class="fa fa-book" style="margin-right: 6px;"></i>{{ publication.journal }}
+                        {% elsif publication.conference %}
+                        <i class="fa fa-users" style="margin-right: 6px;"></i>{{ publication.conference }}
+                        {% elsif publication.venue %}
+                        <i class="fa fa-map-marker" style="margin-right: 6px;"></i>{{ publication.venue }}
+                        {% endif %}
+                        {% if publication.publication_date %} • {{ publication.publication_date | date: '%Y' }}{% endif
+                        %}
+                        {% if publication.volume %} • Vol. {{ publication.volume }}{% endif %}
+                    </p>
+                    {% endif %}
+                </div>
+
+                {% if publication.abstract %}
+                <div class="collection-abstract"
+                    style="margin: 25px 0; padding: 25px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #f05f40;">
+                    <h5 style="color: #495057; margin-bottom: 15px; font-size: 16px; font-weight: 600;">Abstract</h5>
+                    <p style="color: #6c757d; line-height: 1.7; margin: 0; font-size: 15px;">
+                        {{ publication.abstract | truncatewords: 50 }}
+                    </p>
+                </div>
+                {% endif %}
+
+                {% if publication.keywords %}
+                <div class="collection-keywords" style="margin: 25px 0;">
+                    <h6
+                        style="color: #495057; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Keywords</h6>
+                    <div>
+                        {% for keyword in publication.keywords limit:5 %}
+                        <span class="keyword-badge"
+                            style="display: inline-block; background: #e3f2fd; color: #1976d2; padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; font-weight: 500;">
+                            {{ keyword }}
+                        </span>
+                        {% endfor %}
+                        {% if publication.keywords.size > 5 %}
+                        <span class="keyword-badge"
+                            style="display: inline-block; background: #f5f5f5; color: #757575; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
+                            +{{ publication.keywords.size | minus: 5 }} more
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="collection-actions" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <a href="{{ publication.url | relative_url }}" class="btn btn-primary" style="flex-shrink: 0;">
+                        Read Full Paper <i class="fa fa-arrow-right"></i>
+                    </a>
+                    {% if publication.pdf_url %}
+                    <a href="{{ publication.pdf_url }}" class="btn btn-outline btn-default" target="_blank"
+                        style="border: 1px solid #dc3545; color: #dc3545; background: transparent; flex-shrink: 0;">
+                        <i class="fa fa-file-pdf-o"></i> PDF
+                    </a>
+                    {% endif %}
+                    {% if publication.doi %}
+                    <a href="https://doi.org/{{ publication.doi }}" class="btn btn-outline btn-default" target="_blank"
+                        style="border: 1px solid #17a2b8; color: #17a2b8; background: transparent; flex-shrink: 0;">
+                        <i class="fa fa-external-link"></i> DOI
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Expand button (only show if more than 4 publications) -->
+    {% if sorted_publications.size > 4 %}
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="col-lg-12 text-center">
+            <button id="expand-publications-btn" class="btn btn-outline btn-primary btn-lg"
+                style="border: 2px solid #f05f40; color: #f05f40; background: transparent; padding: 12px 30px; border-radius: 25px; font-weight: 500;">
+                <i class="fa fa-chevron-down"></i> Show {{ sorted_publications.size | minus: 4 }} More Publications
+            </button>
+        </div>
+    </div>
+
+    <!-- Additional publications (hidden initially) -->
+    <div id="additional-publications" style="display: none;">
+        <div class="scrollable-section"
+            style="max-height: 70vh; overflow-y: auto; padding-right: 10px; margin-bottom: 30px;">
+            <div class="row">
+                {% for publication in sorted_publications offset:4 %}
+                <div class="col-lg-12 collection-item" style="margin-bottom: 35px;">
+                    <div class="collection-card"
+                        style="background: white; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 35px; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); position: relative;">
+
+                        <div class="collection-header" style="margin-bottom: 25px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                                <h3
+                                    style="margin: 0; color: #333; font-size: 26px; line-height: 1.3; flex: 1; padding-right: 20px;">
+                                    <a href="{{ publication.url | relative_url }}"
+                                        style="text-decoration: none; color: inherit; transition: color 0.3s ease;">
+                                        {{ publication.title }}
+                                    </a>
+                                </h3>
+                                {% if publication.status %}
+                                <span class="label"
+                                    style="background-color: #28a745; color: white; font-size: 12px; padding: 8px 16px; border-radius: 20px; font-weight: 500; flex-shrink: 0;">
+                                    {{ publication.status }}
+                                </span>
+                                {% endif %}
+                            </div>
+
+                            {% if publication.authors %}
+                            <p style="color: #495057; font-size: 17px; margin-bottom: 12px; font-weight: 500;">
+                                {{ publication.authors | join: ', ' }}
+                            </p>
+                            {% endif %}
+
+                            {% if publication.journal or publication.conference or publication.venue %}
+                            <p style="color: #6c757d; font-style: italic; margin-bottom: 0; font-size: 15px;">
+                                {% if publication.journal %}
+                                <i class="fa fa-book" style="margin-right: 6px;"></i>{{ publication.journal }}
+                                {% elsif publication.conference %}
+                                <i class="fa fa-users" style="margin-right: 6px;"></i>{{ publication.conference }}
+                                {% elsif publication.venue %}
+                                <i class="fa fa-map-marker" style="margin-right: 6px;"></i>{{ publication.venue }}
+                                {% endif %}
+                                {% if publication.publication_date %} • {{ publication.publication_date | date: '%Y'
+                                }}{% endif %}
+                                {% if publication.volume %} • Vol. {{ publication.volume }}{% endif %}
+                            </p>
+                            {% endif %}
+                        </div>
+
+                        {% if publication.abstract %}
+                        <div class="collection-abstract"
+                            style="margin: 25px 0; padding: 25px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #f05f40;">
+                            <h5 style="color: #495057; margin-bottom: 15px; font-size: 16px; font-weight: 600;">Abstract
+                            </h5>
+                            <p style="color: #6c757d; line-height: 1.7; margin: 0; font-size: 15px;">
+                                {{ publication.abstract | truncatewords: 50 }}
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        {% if publication.keywords %}
+                        <div class="collection-keywords" style="margin: 25px 0;">
+                            <h6
+                                style="color: #495057; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                                Keywords</h6>
+                            <div>
+                                {% for keyword in publication.keywords limit:5 %}
+                                <span class="keyword-badge"
+                                    style="display: inline-block; background: #e3f2fd; color: #1976d2; padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; font-weight: 500;">
+                                    {{ keyword }}
+                                </span>
+                                {% endfor %}
+                                {% if publication.keywords.size > 5 %}
+                                <span class="keyword-badge"
+                                    style="display: inline-block; background: #f5f5f5; color: #757575; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
+                                    +{{ publication.keywords.size | minus: 5 }} more
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="collection-actions"
+                            style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                            <a href="{{ publication.url | relative_url }}" class="btn btn-primary"
+                                style="flex-shrink: 0;">
+                                Read Full Paper <i class="fa fa-arrow-right"></i>
+                            </a>
+                            {% if publication.pdf_url %}
+                            <a href="{{ publication.pdf_url }}" class="btn btn-outline btn-default" target="_blank"
+                                style="border: 1px solid #dc3545; color: #dc3545; background: transparent; flex-shrink: 0;">
+                                <i class="fa fa-file-pdf-o"></i> PDF
+                            </a>
+                            {% endif %}
+                            {% if publication.doi %}
+                            <a href="https://doi.org/{{ publication.doi }}" class="btn btn-outline btn-default"
+                                target="_blank"
+                                style="border: 1px solid #17a2b8; color: #17a2b8; background: transparent; flex-shrink: 0;">
+                                <i class="fa fa-external-link"></i> DOI
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Collapse button -->
+        <div class="row" style="margin-bottom: 40px;">
+            <div class="col-lg-12 text-center">
+                <button id="collapse-publications-btn" class="btn btn-outline btn-secondary"
+                    style="border: 1px solid #6c757d; color: #6c757d; background: transparent; padding: 10px 25px; border-radius: 20px;">
+                    <i class="fa fa-chevron-up"></i> Show Less
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const expandBtn = document.getElementById('expand-publications-btn');
+        const collapseBtn = document.getElementById('collapse-publications-btn');
+        const additionalSection = document.getElementById('additional-publications');
+
+        if (expandBtn) {
+            expandBtn.addEventListener('click', function () {
+                additionalSection.style.display = 'block';
+                expandBtn.style.display = 'none';
+
+                // Smooth scroll to the additional content
+                setTimeout(() => {
+                    additionalSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            });
+        }
+
+        if (collapseBtn) {
+            collapseBtn.addEventListener('click', function () {
+                additionalSection.style.display = 'none';
+                expandBtn.style.display = 'inline-block';
+
+                // Scroll back to the expand button
+                setTimeout(() => {
+                    expandBtn.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 100);
+            });
+        }
+    });
+</script>
+
+<style>
+    .scrollable-section {
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        background: #fafbfc;
+        padding: 20px;
+    }
+
+    .scrollable-section::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .scrollable-section::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    .scrollable-section::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+
+    .scrollable-section::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+
+    #expand-publications-btn:hover {
+        background: #f05f40 !important;
+        color: white !important;
+        transform: translateY(-2px);
+    }
+
+    #collapse-publications-btn:hover {
+        background: #6c757d !important;
+        color: white !important;
+    }
+</style>
+{% else %}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
+        <div style="padding: 60px 20px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #dee2e6;">
+            <i class="fa fa-file-text-o" style="font-size: 48px; color: #f05f40; margin-bottom: 20px;"></i>
+            <h4 style="color: #495057; margin-bottom: 15px;">We're Just Starting Out</h4>
+            <p style="font-size: 16px; color: #6c757d; margin-bottom: 25px; line-height: 1.6;">
+                We're just starting out—check back later or if you'd like to collaborate on an interesting idea, reach
+                out.
+            </p>
+            <a href="{{ '/' | relative_url }}#contact" class="btn btn-primary">
+                <i class="fa fa-envelope"></i> Let's Collaborate
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}

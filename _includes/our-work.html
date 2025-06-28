@@ -1,0 +1,146 @@
+<section class="bg-primary" id="our-work"
+    style="min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; background-image: url('{{ '/img/portfolio/6.jpg' | relative_url }}'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <!-- Background overlay -->
+    <div
+        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(82, 113, 196, 0.9) 0%, rgba(82, 113, 196, 0.7) 100%); z-index: 1;">
+    </div>
+
+    <!-- Cut-through project images -->
+    {% assign featured_projects = site.projects | limit: 6 %}
+    {% if featured_projects.size > 0 %}
+    {% for project in featured_projects %}
+    {% if project.hero_image %}
+    <div class="project-cutout" style="
+                position: absolute; 
+                width: 120px; 
+                height: 120px; 
+                border-radius: 50%; 
+                background-image: url('{{ project.hero_image | relative_url }}'); 
+                background-size: cover; 
+                background-position: center;
+                border: 3px solid rgba(255,255,255,0.3);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+                z-index: 2;
+                {% cycle 'top: 15%; right: 10%;', 'top: 60%; right: 20%;', 'top: 25%; left: 8%;', 'bottom: 20%; left: 15%;', 'bottom: 30%; right: 35%;', 'top: 40%; left: 25%;' %}
+            "></div>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <!-- Fallback cut-through images -->
+    <div class="project-cutout"
+        style="position: absolute; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; top: 15%; right: 10%; display: flex; align-items: center; justify-content: center;">
+        <i class="fa fa-graduation-cap" style="color: white; font-size: 32px;"></i>
+    </div>
+    <div class="project-cutout"
+        style="position: absolute; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; top: 60%; right: 20%; display: flex; align-items: center; justify-content: center;">
+        <i class="fa fa-magic" style="color: white; font-size: 32px;"></i>
+    </div>
+    <div class="project-cutout"
+        style="position: absolute; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; top: 25%; left: 8%; display: flex; align-items: center; justify-content: center;">
+        <i class="fa fa-hand-paper-o" style="color: white; font-size: 32px;"></i>
+    </div>
+    <div class="project-cutout"
+        style="position: absolute; width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; bottom: 20%; left: 15%; display: flex; align-items: center; justify-content: center;">
+        <i class="fa fa-lightbulb-o" style="color: white; font-size: 24px;"></i>
+    </div>
+    <div class="project-cutout"
+        style="position: absolute; width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; bottom: 30%; right: 35%; display: flex; align-items: center; justify-content: center;">
+        <i class="fa fa-cogs" style="color: white; font-size: 28px;"></i>
+    </div>
+    {% endif %}
+
+    <div class="container" style="position: relative; z-index: 3;">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading"
+                    style="color: white; margin-bottom: 30px; font-size: 48px; font-weight: 300;">Our Work</h2>
+                <hr class="light" style="width: 100px; margin: 30px auto;">
+                <p class="text-faded"
+                    style="font-size: 24px; line-height: 1.6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Pushing forward human-centred research and development projects in Artificial Intelligence
+                </p>
+                <a href="{{ '/projects.html' | relative_url }}" class="btn btn-default btn-xl"
+                    style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 15px 40px; font-size: 18px; backdrop-filter: blur(10px);">
+                    Explore Our Projects <i class="fa fa-arrow-right" style="margin-left: 10px;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .project-cutout {
+        transition: all 0.6s ease;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .project-cutout:nth-child(2n) {
+        animation-delay: -3s;
+    }
+
+    .project-cutout:nth-child(3n) {
+        animation-delay: -1.5s;
+    }
+
+    .project-cutout:nth-child(4n) {
+        animation-delay: -4.5s;
+    }
+
+    .project-cutout:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    #our-work .btn-default:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        #our-work {
+            min-height: 70vh !important;
+        }
+
+        .project-cutout {
+            width: 80px !important;
+            height: 80px !important;
+        }
+
+        .project-cutout i {
+            font-size: 20px !important;
+        }
+
+        #our-work h2 {
+            font-size: 36px !important;
+        }
+
+        #our-work p {
+            font-size: 18px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .project-cutout {
+            display: none;
+        }
+
+        #our-work {
+            min-height: 60vh !important;
+        }
+    }
+</style>
