@@ -1,0 +1,9 @@
+## Issues/Bug list: 
+1) Publications header is white and invisible. 
+2) Our Projects view back home button is visible which isn't consistent with the publication and blog pages
+
+
+
+## Features to be implemented:
+
+### Change the navbar colappser and expander to use the flask / prosody labs link as a 'button' instead of the current button.

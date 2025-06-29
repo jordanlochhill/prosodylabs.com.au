@@ -1,10 +1,10 @@
-<section id="projects-gallery" style="padding: 100px 0; background: #f8f9fa;">
+<section id="projects-gallery">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Our Projects</h2>
                 <hr class="primary">
-                <p style="font-size: 18px; margin-bottom: 60px; color: #666;">
+                <p class="project-description">
                     Explore our innovative AI projects and research initiatives
                 </p>
             </div>
@@ -15,31 +15,27 @@
         {% if all_projects.size > 0 %}
         <div class="row">
             {% for project in all_projects %}
-            <div class="col-lg-4 col-md-6 col-sm-6 project-gallery-item" style="margin-bottom: 30px;">
-                <div class="project-gallery-card"
-                    style="position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: all 0.3s ease; background: white;">
+            <div class="col-lg-4 col-md-6 col-sm-6 project-gallery-item">
+                <div class="project-gallery-card">
 
                     {% if project.hero_image %}
                     <div class="project-gallery-image"
-                        style="height: 250px; background-image: url('{{ project.hero_image | relative_url }}'); background-size: cover; background-position: center; position: relative;">
+                        style="background-image: url('{{ project.hero_image | relative_url }}');">
                         {% else %}
-                        <div class="project-gallery-image"
-                            style="height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: relative; display: flex; align-items: center; justify-content: center;">
-                            <i class="fa fa-lightbulb-o" style="color: white; font-size: 48px; opacity: 0.8;"></i>
+                        <div class="project-gallery-image placeholder">
+                            <i class="fa fa-lightbulb-o"></i>
                             {% endif %}
 
                             <!-- Overlay -->
-                            <div class="project-overlay"
-                                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%); opacity: 0; transition: opacity 0.3s ease;">
-                                <div style="position: absolute; bottom: 20px; left: 20px; right: 20px;">
-                                    <div style="margin-bottom: 15px;">
-                                        <a href="{{ project.url | relative_url }}" class="btn btn-primary btn-sm"
-                                            style="margin-right: 10px;">
+                            <div class="project-overlay">
+                                <div class="overlay-content">
+                                    <div class="overlay-actions">
+                                        <a href="{{ project.url | relative_url }}" class="btn btn-primary btn-sm">
                                             <i class="fa fa-info-circle"></i> Details
                                         </a>
                                         {% if project.demo_url %}
                                         <a href="{{ project.demo_url }}" class="btn btn-outline btn-default btn-sm"
-                                            style="border-color: white; color: white;" target="_blank">
+                                            target="_blank">
                                             <i class="fa fa-external-link"></i> Demo
                                         </a>
                                         {% endif %}
@@ -49,30 +45,27 @@
                         </div>
 
                         <!-- Project Info -->
-                        <div class="project-info" style="padding: 25px;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                                <h4 style="margin: 0; color: #333; font-size: 20px; line-height: 1.3;">
-                                    <a href="{{ project.url | relative_url }}"
-                                        style="color: inherit; text-decoration: none;">
+                        <div class="project-info">
+                            <div class="project-header">
+                                <h4>
+                                    <a href="{{ project.url | relative_url }}">
                                         {{ project.title }}
                                     </a>
                                 </h4>
                                 {% if project.status %}
-                                <span class="label"
-                                    style="background-color: {{ project.status == 'Active' ? '#5cb85c' : project.status == 'Beta' ? '#f0ad4e' : '#5bc0de' }}; font-size: 11px; flex-shrink: 0;">
+                                <span class="label status-{{ project.status | downcase }}">
                                     {{ project.status }}
                                 </span>
                                 {% endif %}
                             </div>
 
                             {% if project.subtitle %}
-                            <p style="color: #f05f40; font-style: italic; margin-bottom: 15px; font-size: 14px;">
+                            <p class="project-subtitle">
                                 {{ project.subtitle }}
                             </p>
                             {% endif %}
 
-                            <p style="color: #666; line-height: 1.5; margin-bottom: 20px; font-size: 14px;">
+                            <p class="project-description">
                                 {% if project.excerpt %}
                                 {{ project.excerpt | strip_html | truncatewords: 20 }}
                                 {% else %}
@@ -81,16 +74,14 @@
                             </p>
 
                             {% if project.tech_stack %}
-                            <div class="tech-stack" style="margin-bottom: 20px;">
+                            <div class="tech-stack">
                                 {% for tech in project.tech_stack limit:4 %}
-                                <span class="tech-badge"
-                                    style="display: inline-block; background: #f1f3f4; color: #666; padding: 4px 8px; border-radius: 12px; font-size: 11px; margin-right: 6px; margin-bottom: 6px;">
+                                <span class="tech-badge">
                                     {{ tech }}
                                 </span>
                                 {% endfor %}
                                 {% if project.tech_stack.size > 4 %}
-                                <span class="tech-badge"
-                                    style="display: inline-block; background: #e8eaed; color: #5f6368; padding: 4px 8px; border-radius: 12px; font-size: 11px;">
+                                <span class="tech-badge more-badge">
                                     +{{ project.tech_stack.size | minus: 4 }} more
                                 </span>
                                 {% endif %}
@@ -110,11 +101,10 @@
             {% else %}
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <div
-                        style="padding: 50px 20px; background: white; border-radius: 12px; border: 2px dashed #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <i class="fa fa-lightbulb-o" style="font-size: 48px; color: #f05f40; margin-bottom: 20px;"></i>
-                        <h4 style="color: #495057; margin-bottom: 15px;">We're Just Starting Out</h4>
-                        <p style="font-size: 16px; color: #6c757d; margin-bottom: 25px; line-height: 1.6;">
+                    <div class="project-empty-state">
+                        <i class="fa fa-lightbulb-o"></i>
+                        <h4>We're Just Starting Out</h4>
+                        <p>
                             We're just starting out—check back later or if you'd like to collaborate on an interesting
                             idea, reach out.
                         </p>
@@ -128,58 +118,12 @@
 
             <!-- View All Projects Button -->
             <div class="row">
-                <div class="col-lg-12 text-center" style="margin-top: 50px;">
+                <div class="col-lg-12 project-archive-btn">
                     <a href="{{ '/projects.html' | relative_url }}" class="btn btn-primary btn-xl">
                         View Project Archive <i class="fa fa-folder-open"></i>
                     </a>
                 </div>
             </div>
         </div>
+    </div>
 </section>
-
-<style>
-    .project-gallery-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .project-gallery-card:hover .project-overlay {
-        opacity: 1;
-    }
-
-    .project-gallery-item .btn-outline {
-        border: 1px solid #ddd;
-        color: #666;
-        background: transparent;
-        transition: all 0.3s ease;
-    }
-
-    .project-gallery-item .btn-outline:hover {
-        background: #f05f40;
-        border-color: #f05f40;
-        color: white;
-    }
-
-    .tech-badge {
-        transition: all 0.2s ease;
-    }
-
-    .tech-badge:hover {
-        background: #e8f0fe !important;
-        color: #1a73e8 !important;
-    }
-
-    @media (max-width: 768px) {
-        .project-gallery-image {
-            height: 200px !important;
-        }
-
-        .project-info {
-            padding: 20px !important;
-        }
-
-        .project-gallery-card {
-            margin-bottom: 25px;
-        }
-    }
-</style>

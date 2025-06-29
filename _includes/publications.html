@@ -2,60 +2,44 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading" style="color: white;">Publications</h2>
+                <h2 class="section-heading">Publications</h2>
                 <hr class="light">
-                <p class="text-faded">Our research contributions to the field of human-centred AI</p>
             </div>
         </div>
 
-        {% assign recent_publications = site.publications | sort: 'publication_date' | reverse | limit: 3 %}
+        {% assign recent_publications = site.publications | sort: 'date' | reverse | limit: 3 %}
 
         {% if recent_publications.size > 0 %}
-        <div class="row" style="margin-top: 50px;">
+        <div class="row">
             {% for publication in recent_publications %}
-            <div class="col-lg-4 col-md-6 publication-preview" style="margin-bottom: 30px;">
-                <div class="publication-card"
-                    style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 25px; height: 100%; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease;">
-
-                    <h4 style="color: white; margin-bottom: 15px; font-size: 18px; line-height: 1.3;">
-                        <a href="{{ publication.url | relative_url }}" style="color: inherit; text-decoration: none;">
-                            {{ publication.title | truncatewords: 8 }}
-                        </a>
+            <div class="col-lg-4 col-md-6 publication-preview">
+                <div class="publication-card">
+                    <h4>
+                        <a href="{{ publication.url | relative_url }}">{{ publication.title }}</a>
                     </h4>
-
                     {% if publication.authors %}
-                    <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin-bottom: 10px;">
-                        {{ publication.authors | slice: 0, 2 | join: ', ' }}{% if publication.authors.size > 2 %} et
-                        al.{% endif %}
+                    <p class="publication-authors">
+                        {{ publication.authors }}
                     </p>
                     {% endif %}
-
-                    {% if publication.journal or publication.conference %}
-                    <p style="color: rgba(255,255,255,0.7); font-style: italic; font-size: 13px; margin-bottom: 15px;">
-                        {% if publication.journal %}{{ publication.journal }}{% else %}{{ publication.conference }}{%
-                        endif %}
-                        {% if publication.publication_date %} • {{ publication.publication_date | date: '%Y' }}{% endif
-                        %}
+                    <p class="publication-venue">
+                        {% if publication.journal %}
+                        <i class="fa fa-book"></i> {{ publication.journal }}
+                        {% elsif publication.conference %}
+                        <i class="fa fa-users"></i> {{ publication.conference }}
+                        {% elsif publication.venue %}
+                        <i class="fa fa-map-marker"></i> {{ publication.venue }}
+                        {% endif %}
                     </p>
+                    {% if publication.excerpt %}
+                    <p class="publication-abstract">{{ publication.excerpt | strip_html | truncatewords: 20 }}</p>
                     {% endif %}
-
-                    {% if publication.abstract %}
-                    <p style="color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.4; margin-bottom: 15px;">
-                        {{ publication.abstract | truncatewords: 20 }}
-                    </p>
-                    {% endif %}
-
                     {% if publication.status %}
-                    <span class="label"
-                        style="background-color: #5cb85c; color: white; font-size: 11px; margin-bottom: 15px; display: inline-block;">
-                        {{ publication.status }}
-                    </span>
+                    <span class="label">{{ publication.status }}</span>
                     {% endif %}
-
-                    <div style="margin-top: auto;">
-                        <a href="{{ publication.url | relative_url }}" class="btn btn-outline"
-                            style="border: 2px solid #f05f40; color: #f05f40; background: rgba(0,0,0,0.3);">
-                            Read More
+                    <div class="publication-actions">
+                        <a href="{{ publication.url | relative_url }}" class="btn btn-outline btn-default">
+                            Read Paper <i class="fa fa-file-text"></i>
                         </a>
                     </div>
                 </div>
@@ -63,16 +47,15 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="row" style="margin-top: 50px;">
+        <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <div
-                    style="padding: 50px 20px; background: rgba(255,255,255,0.1); border-radius: 12px; border: 2px dashed rgba(255,255,255,0.3); backdrop-filter: blur(10px);">
-                    <i class="fa fa-file-text-o"
-                        style="font-size: 48px; color: white; margin-bottom: 20px; opacity: 0.9;"></i>
-                    <h4 style="color: white; margin-bottom: 15px;">We're Just Starting Out</h4>
-                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 25px; line-height: 1.6; font-size: 16px;">
-                        We're just starting out—check back later or if you'd like to collaborate on an interesting idea,
-                        reach out.
+                <div class="publications-empty-state">
+                    <i class="fa fa-book"></i>
+                    <h4>We're Just Starting Out</h4>
+                    <p>
+                        Our research is in its early stages. We're working on some exciting publications that will be
+                        available soon.
+                        Check back later or reach out if you'd like to collaborate on research.
                     </p>
                     <a href="#contact" class="btn btn-primary page-scroll">
                         <i class="fa fa-envelope"></i> Let's Collaborate
@@ -82,26 +65,13 @@
         </div>
         {% endif %}
 
+        <!-- View All Publications Button -->
         <div class="row">
-            <div class="col-lg-12 text-center" style="margin-top: 50px;">
+            <div class="col-lg-12 section-archive-btn">
                 <a href="{{ '/publications.html' | relative_url }}" class="btn btn-primary btn-xl">
-                    View All Publications <i class="fa fa-arrow-right"></i>
+                    View All Publications <i class="fa fa-graduation-cap"></i>
                 </a>
             </div>
         </div>
     </div>
-
-    <style>
-        .publication-preview .publication-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .publication-preview .btn-outline:hover {
-            background: #f05f40 !important;
-            border-color: #f05f40;
-            color: white !important;
-        }
-    </style>
 </section>

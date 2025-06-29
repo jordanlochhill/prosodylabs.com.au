@@ -1,146 +1,414 @@
-<section class="bg-primary" id="our-work"
-    style="min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; background-image: url('{{ '/img/portfolio/6.jpg' | relative_url }}'); background-size: cover; background-position: center; background-attachment: fixed;">
-    <!-- Background overlay -->
-    <div
-        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(82, 113, 196, 0.9) 0%, rgba(82, 113, 196, 0.7) 100%); z-index: 1;">
+<section class="bg-primary our-work-bg" id="our-work">
+    <div class="bg-overlay"></div>
+
+    <!-- Thermodynamic Floating Bubbles -->
+    <div class="bubble-container">
+        <a href="{{ '/courses.html' | relative_url }}" class="thermo-bubble grad-1 bubble-link" data-section="courses"
+            title="Explore Our Courses" aria-label="Navigate to our courses section">
+            <i class="fa fa-graduation-cap"></i>
+        </a>
+
+        <a href="{{ '/#projects-gallery' | relative_url }}" class="thermo-bubble grad-2 bubble-link"
+            data-section="projects" title="View Our Projects" aria-label="View our projects gallery">
+            <i class="fa fa-line-chart"></i>
+        </a>
+
+        <a href="{{ '/publications.html' | relative_url }}" class="thermo-bubble grad-3 bubble-link"
+            data-section="publications" title="Read Our Publications" aria-label="Read our research publications">
+            <i class="fa fa-lightbulb-o"></i>
+        </a>
+
+        <a href="{{ '/#blog' | relative_url }}" class="thermo-bubble grad-4 bubble-link" data-section="blog"
+            title="Read Our Blog" aria-label="Visit our blog">
+            <i class="fa fa-newspaper-o"></i>
+        </a>
+
+        <a href="{{ '/#contact' | relative_url }}" class="thermo-bubble grad-5 bubble-link" data-section="contact"
+            title="Get In Touch" aria-label="Go to contact information">
+            <i class="fa fa-envelope-o"></i>
+        </a>
     </div>
 
-    <!-- Cut-through project images -->
-    {% assign featured_projects = site.projects | limit: 6 %}
-    {% if featured_projects.size > 0 %}
-    {% for project in featured_projects %}
-    {% if project.hero_image %}
-    <div class="project-cutout" style="
-                position: absolute; 
-                width: 120px; 
-                height: 120px; 
-                border-radius: 50%; 
-                background-image: url('{{ project.hero_image | relative_url }}'); 
-                background-size: cover; 
-                background-position: center;
-                border: 3px solid rgba(255,255,255,0.3);
-                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-                z-index: 2;
-                {% cycle 'top: 15%; right: 10%;', 'top: 60%; right: 20%;', 'top: 25%; left: 8%;', 'bottom: 20%; left: 15%;', 'bottom: 30%; right: 35%;', 'top: 40%; left: 25%;' %}
-            "></div>
-    {% endif %}
-    {% endfor %}
-    {% else %}
-    <!-- Fallback cut-through images -->
-    <div class="project-cutout"
-        style="position: absolute; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; top: 15%; right: 10%; display: flex; align-items: center; justify-content: center;">
-        <i class="fa fa-graduation-cap" style="color: white; font-size: 32px;"></i>
-    </div>
-    <div class="project-cutout"
-        style="position: absolute; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; top: 60%; right: 20%; display: flex; align-items: center; justify-content: center;">
-        <i class="fa fa-magic" style="color: white; font-size: 32px;"></i>
-    </div>
-    <div class="project-cutout"
-        style="position: absolute; width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; top: 25%; left: 8%; display: flex; align-items: center; justify-content: center;">
-        <i class="fa fa-hand-paper-o" style="color: white; font-size: 32px;"></i>
-    </div>
-    <div class="project-cutout"
-        style="position: absolute; width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; bottom: 20%; left: 15%; display: flex; align-items: center; justify-content: center;">
-        <i class="fa fa-lightbulb-o" style="color: white; font-size: 24px;"></i>
-    </div>
-    <div class="project-cutout"
-        style="position: absolute; width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.3); z-index: 2; bottom: 30%; right: 35%; display: flex; align-items: center; justify-content: center;">
-        <i class="fa fa-cogs" style="color: white; font-size: 28px;"></i>
-    </div>
-    {% endif %}
+    <!-- Full Screen Expansion Overlay -->
+    <div class="expansion-overlay" id="expansionOverlay"></div>
 
-    <div class="container" style="position: relative; z-index: 3;">
+    <!-- Main Content -->
+    <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading"
-                    style="color: white; margin-bottom: 30px; font-size: 48px; font-weight: 300;">Our Work</h2>
-                <hr class="light" style="width: 100px; margin: 30px auto;">
-                <p class="text-faded"
-                    style="font-size: 24px; line-height: 1.6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Pushing forward human-centred research and development projects in Artificial Intelligence
+                <h2 class="section-heading">Our Work</h2>
+                <hr class="light">
+                <p class="text-faded">
+                    We explore the frontiers of artificial intelligence and machine learning,
+                    building tools that enhance human potential and solve real-world problems.
                 </p>
-                <a href="{{ '/projects.html' | relative_url }}" class="btn btn-default btn-xl"
-                    style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); color: white; padding: 15px 40px; font-size: 18px; backdrop-filter: blur(10px);">
-                    Explore Our Projects <i class="fa fa-arrow-right" style="margin-left: 10px;"></i>
+                <a href="#projects-gallery" class="btn btn-default btn-xl page-scroll">
+                    Explore Our Projects <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </div>
 </section>
 
-<style>
-    .project-cutout {
-        transition: all 0.6s ease;
-        animation: float 6s ease-in-out infinite;
-    }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bubbles = document.querySelectorAll('.thermo-bubble');
+        const container = document.querySelector('.bubble-container');
+        const ourWorkSection = document.getElementById('our-work');
+        const expansionOverlay = document.getElementById('expansionOverlay');
 
-    .project-cutout:nth-child(2n) {
-        animation-delay: -3s;
-    }
-
-    .project-cutout:nth-child(3n) {
-        animation-delay: -1.5s;
-    }
-
-    .project-cutout:nth-child(4n) {
-        animation-delay: -4.5s;
-    }
-
-    .project-cutout:hover {
-        transform: scale(1.1);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-        border-color: rgba(255, 255, 255, 0.6);
-    }
-
-    @keyframes float {
-
-        0%,
-        100% {
-            transform: translateY(0px);
+        // Early exit if elements not found
+        if (!bubbles.length || !ourWorkSection) {
+            console.error('Required elements not found');
+            return;
         }
 
-        50% {
-            transform: translateY(-10px);
-        }
-    }
+        // Thermodynamic motion variables
+        const bubbleStates = [];
+        let animationId;
+        let sectionBounds = {};
 
-    #our-work .btn-default:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.6);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    }
+        // Get section boundaries
+        function updateSectionBounds() {
+            const rect = ourWorkSection.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    @media (max-width: 768px) {
-        #our-work {
-            min-height: 70vh !important;
-        }
-
-        .project-cutout {
-            width: 80px !important;
-            height: 80px !important;
+            sectionBounds = {
+                left: 0, // Full width of section
+                right: rect.width,
+                top: rect.top + scrollTop,
+                bottom: rect.top + scrollTop + rect.height,
+                width: rect.width,
+                height: rect.height
+            };
         }
 
-        .project-cutout i {
-            font-size: 20px !important;
+        // Initialize bubble positions and velocities
+        function initializeBubbles() {
+            updateSectionBounds();
+
+            bubbles.forEach((bubble, index) => {
+                // Determine size based on screen size
+                let minSize, maxSize;
+                if (window.innerWidth <= 480) {
+                    minSize = 50;
+                    maxSize = 80;
+                } else if (window.innerWidth <= 768) {
+                    minSize = 60;
+                    maxSize = 100;
+                } else {
+                    minSize = 80;
+                    maxSize = 140;
+                }
+
+                const size = minSize + Math.random() * (maxSize - minSize);
+
+                // Random initial position within the Our Work section (relative to section, not page)
+                const margin = 20;
+                const x = margin + Math.random() * (sectionBounds.width - size - margin * 2);
+                const y = margin + Math.random() * (sectionBounds.height - size - margin * 2); // Remove sectionBounds.top
+
+                // Random velocity for thermodynamic motion (scaled by screen size)
+                const velocityScale = window.innerWidth > 768 ? 1 : 0.7;
+                const vx = (Math.random() - 0.5) * 2 * velocityScale;
+                const vy = (Math.random() - 0.5) * 2 * velocityScale;
+
+                bubble.style.position = 'absolute';
+                bubble.style.left = x + 'px';
+                bubble.style.top = y + 'px';
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.zIndex = '2';
+                bubble.style.display = 'flex'; // Ensure visibility
+
+                // Store state for animation
+                bubbleStates[index] = {
+                    x: x,
+                    y: y,
+                    vx: vx,
+                    vy: vy,
+                    size: size,
+                    element: bubble,
+                    originalGradient: getComputedStyle(bubble).background
+                };
+            });
         }
 
-        #our-work h2 {
-            font-size: 36px !important;
+        // Thermodynamic animation loop
+        function animateThermodynamic() {
+            updateSectionBounds(); // Update bounds in case of scroll/resize
+
+            bubbleStates.forEach((state, index) => {
+                // Update position
+                state.x += state.vx;
+                state.y += state.vy;
+
+                // Bounce off section walls with energy conservation and randomness (section-relative)
+                const damping = 0.8; // Energy loss on collision
+                if (state.x <= 0 || state.x >= sectionBounds.width - state.size) {
+                    state.vx = -state.vx * damping + (Math.random() - 0.5) * 0.3;
+                    state.x = Math.max(0, Math.min(sectionBounds.width - state.size, state.x));
+                }
+
+                if (state.y <= 0 || state.y >= sectionBounds.height - state.size) {
+                    state.vy = -state.vy * damping + (Math.random() - 0.5) * 0.3;
+                    state.y = Math.max(0, Math.min(sectionBounds.height - state.size, state.y));
+                }
+
+                // Add Brownian motion (thermal fluctuations)
+                const thermalForce = 0.08;
+                state.vx += (Math.random() - 0.5) * thermalForce;
+                state.vy += (Math.random() - 0.5) * thermalForce;
+
+                // Add inter-bubble repulsion (simplified)
+                bubbleStates.forEach((otherState, otherIndex) => {
+                    if (index !== otherIndex) {
+                        const dx = state.x - otherState.x;
+                        const dy = state.y - otherState.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const minDistance = (state.size + otherState.size) / 2 + 20;
+
+                        if (distance < minDistance && distance > 0) {
+                            const force = 0.02;
+                            const fx = (dx / distance) * force;
+                            const fy = (dy / distance) * force;
+                            state.vx += fx;
+                            state.vy += fy;
+                        }
+                    }
+                });
+
+                // Limit maximum velocity (temperature control)
+                const maxVel = window.innerWidth > 768 ? 2.5 : 1.8;
+                const currentSpeed = Math.sqrt(state.vx * state.vx + state.vy * state.vy);
+                if (currentSpeed > maxVel) {
+                    state.vx = (state.vx / currentSpeed) * maxVel;
+                    state.vy = (state.vy / currentSpeed) * maxVel;
+                }
+
+                // Apply air resistance (friction)
+                state.vx *= 0.999;
+                state.vy *= 0.999;
+
+                // Update DOM position (rounded for performance)
+                state.element.style.left = Math.round(state.x) + 'px';
+                state.element.style.top = Math.round(state.y) + 'px';
+            });
+
+            animationId = requestAnimationFrame(animateThermodynamic);
         }
 
-        #our-work p {
-            font-size: 18px !important;
-        }
-    }
+        // Full screen expansion effect
+        function expandToFullScreen(clickedBubble, href) {
+            // Stop thermodynamic animation
+            cancelAnimationFrame(animationId);
 
-    @media (max-width: 480px) {
-        .project-cutout {
-            display: none;
+            // Get bubble position and properties (account for absolute positioning)
+            const rect = clickedBubble.getBoundingClientRect();
+            const computedStyle = getComputedStyle(clickedBubble);
+            const gradient = computedStyle.background;
+
+            // Calculate required size to cover entire screen
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const maxDistance = Math.max(
+                Math.sqrt(centerX ** 2 + centerY ** 2),
+                Math.sqrt((window.innerWidth - centerX) ** 2 + centerY ** 2),
+                Math.sqrt(centerX ** 2 + (window.innerHeight - centerY) ** 2),
+                Math.sqrt((window.innerWidth - centerX) ** 2 + (window.innerHeight - centerY) ** 2)
+            );
+            const finalSize = maxDistance * 2.2; // Extra margin for smooth coverage
+
+            // Set initial overlay properties to match clicked bubble exactly
+            expansionOverlay.style.background = gradient;
+            expansionOverlay.style.left = rect.left + 'px';
+            expansionOverlay.style.top = rect.top + 'px';
+            expansionOverlay.style.width = rect.width + 'px';
+            expansionOverlay.style.height = rect.height + 'px';
+            expansionOverlay.style.borderRadius = '50%';
+            expansionOverlay.style.display = 'block';
+            expansionOverlay.style.zIndex = '9999';
+            expansionOverlay.style.transform = 'none';
+            expansionOverlay.style.transition = 'none';
+            expansionOverlay.style.position = 'fixed'; // Use fixed for full-screen overlay
+
+            // Hide original bubble and pause other bubbles
+            clickedBubble.style.opacity = '0';
+            bubbles.forEach(bubble => {
+                if (bubble !== clickedBubble) {
+                    bubble.style.opacity = '0.3';
+                    bubble.style.transition = 'opacity 0.3s ease';
+                }
+            });
+
+            // Start expansion animation
+            requestAnimationFrame(() => {
+                expansionOverlay.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                expansionOverlay.style.left = centerX + 'px';
+                expansionOverlay.style.top = centerY + 'px';
+                expansionOverlay.style.width = finalSize + 'px';
+                expansionOverlay.style.height = finalSize + 'px';
+                expansionOverlay.style.transform = 'translate(-50%, -50%)';
+                expansionOverlay.style.borderRadius = '50%';
+
+                // Add a subtle scale pulse effect
+                setTimeout(() => {
+                    expansionOverlay.style.transform = 'translate(-50%, -50%) scale(1.05)';
+                    setTimeout(() => {
+                        expansionOverlay.style.transform = 'translate(-50%, -50%) scale(1)';
+                    }, 100);
+                }, 300);
+            });
+
+            // Navigate after expansion completes
+            setTimeout(() => {
+                if (href.startsWith('#') || href.includes('/#')) {
+                    // Internal anchor link
+                    const targetId = href.split('#')[1];
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Fade out overlay
+                        expansionOverlay.style.transition = 'opacity 0.5s ease';
+                        expansionOverlay.style.opacity = '0';
+
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // Reset and restart after navigation
+                        setTimeout(() => {
+                            expansionOverlay.style.display = 'none';
+                            expansionOverlay.style.opacity = '1';
+                            expansionOverlay.style.transition = '';
+
+                            // Restore bubble visibility
+                            bubbles.forEach(bubble => {
+                                bubble.style.opacity = '1';
+                                bubble.style.transition = '';
+                            });
+
+                            // Restart thermodynamic animation
+                            initializeBubbles();
+                            animateThermodynamic();
+                        }, 1000);
+                    }
+                } else {
+                    // External page navigation - fade to white then navigate
+                    expansionOverlay.style.transition = 'all 0.3s ease';
+                    expansionOverlay.style.background = 'white';
+
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                }
+            }, 1100);
         }
 
-        #our-work {
-            min-height: 60vh !important;
+        // Handle bubble clicks
+        bubbles.forEach(bubble => {
+            bubble.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                expandToFullScreen(this, href);
+            });
+
+            // Enhanced hover effects with proper z-index management
+            bubble.addEventListener('mouseenter', function (event) {
+                // Check if we're hovering over a button - if so, don't interfere
+                if (event && event.clientX !== undefined && event.clientY !== undefined) {
+                    const buttonsUnderMouse = document.elementsFromPoint(event.clientX, event.clientY);
+                    const hasButton = buttonsUnderMouse.some(el =>
+                        el.tagName.toLowerCase() === 'button' ||
+                        el.classList.contains('btn') ||
+                        el.closest('.btn')
+                    );
+
+                    if (hasButton) {
+                        return; // Don't hover if there's a button
+                    }
+                }
+
+                // Apply hover effects
+                this.style.zIndex = '8';
+                this.style.transform = 'scale(1.2)';
+                this.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.6)';
+                this.style.opacity = '1';
+            });
+
+            bubble.addEventListener('mouseleave', function () {
+                this.style.zIndex = '2';
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+                this.style.opacity = '0.85';
+            });
+
+            // Accessibility
+            bubble.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+
+            // Ensure focusability
+            bubble.setAttribute('tabindex', '0');
+        });
+
+        // Add button protection - ensure buttons always take priority
+        document.addEventListener('mouseover', function (e) {
+            if (e.target.matches('.btn, .btn *, button, button *')) {
+                // Reset all bubble z-indexes when hovering over buttons
+                bubbles.forEach(bubble => {
+                    bubble.style.zIndex = '2';
+                    bubble.style.transform = 'scale(1)';
+                    bubble.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+                    bubble.style.opacity = '0.85';
+                });
+            }
+        });
+
+        // Initialize and start animation
+        setTimeout(() => {
+            updateSectionBounds();
+
+            if (sectionBounds.width <= 0 || sectionBounds.height <= 0) {
+                console.error('Invalid section dimensions:', sectionBounds);
+                // Fallback static positioning for debugging
+                bubbles.forEach((bubble, index) => {
+                    bubble.style.position = 'absolute';
+                    bubble.style.left = (50 + index * 120) + 'px';
+                    bubble.style.top = '50px';
+                    bubble.style.width = '100px';
+                    bubble.style.height = '100px';
+                    bubble.style.zIndex = '10';
+                    bubble.style.display = 'flex';
+                });
+                return;
+            }
+
+            initializeBubbles();
+            animateThermodynamic();
+        }, 500); // Increased delay to ensure DOM is ready
+
+        // Handle window resize and scroll
+        function handleResize() {
+            updateSectionBounds();
+            initializeBubbles();
         }
-    }
-</style>
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', updateSectionBounds);
+
+        // Pause animation when page is not visible (performance optimization)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationId);
+            } else {
+                animateThermodynamic();
+            }
+        });
+    });
+</script>

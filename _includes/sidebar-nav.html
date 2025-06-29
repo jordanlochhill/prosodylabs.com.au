@@ -26,7 +26,7 @@
 <!-- Sidebar Navigation -->
 <nav id="sidebarNav" class="sidebar-nav" role="navigation" aria-label="Main navigation">
     <div class="sidebar-content">
-        <!-- Navigation Menu -->
+        <!-- Regular Navigation Menu -->
         <ul class="sidebar-menu" role="menubar">
             <li class="menu-item" role="none">
                 <a href="{{ '/projects.html' | relative_url }}"
@@ -36,6 +36,17 @@
                         <i class="fa fa-code"></i>
                     </div>
                     <span class="menu-text">Projects</span>
+                </a>
+            </li>
+
+            <li class="menu-item" role="none">
+                <a href="{{ '/courses.html' | relative_url }}"
+                    class="menu-link {% if page.url contains 'courses' %}active{% endif %}" role="menuitem" {% if
+                    page.url contains 'courses' %}aria-current="page" {% endif %}>
+                    <div class="menu-icon" aria-hidden="true">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <span class="menu-text">Courses</span>
                 </a>
             </li>
 

@@ -38,6 +38,13 @@
                 </li>
                 <li>
                     {% if page.url == "/" %}
+                    <a class="page-scroll" href="#courses">Courses</a>
+                    {% else %}
+                    <a href="{{ '/courses.html' | relative_url }}">Courses</a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if page.url == "/" %}
                     <a class="page-scroll" href="#publications">Publications</a>
                     {% else %}
                     <a href="{{ '/publications.html' | relative_url }}">Publications</a>

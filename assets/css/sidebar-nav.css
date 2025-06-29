@@ -120,11 +120,11 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #6b7280;
+    color: #000000;
     gap: 1rem;
     transition: all 0.3s ease;
     text-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.8), 0 0 2rem rgba(255, 255, 255, 0.6);
-    filter: drop-shadow(0 1rem 2rem rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 1rem 2rem rgba(78, 64, 64, 0.2));
     font-size: 1.618rem;
     justify-content: flex-start;
 }
@@ -273,7 +273,7 @@
     display: flex;
     align-items: center;
     padding: 1rem 0;
-    color: #9ca3af;
+    color: #000000;
     text-decoration: none;
     border-radius: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

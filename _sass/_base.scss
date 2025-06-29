@@ -57,11 +57,11 @@ p {
 }
 
 section {
-    padding: 13rem 0;
+    padding: 2rem 0;
 }
 
 aside {
-    padding: 8rem 0;
+    padding: 1.5rem 0;
 }
 
 .no-padding {
@@ -77,14 +77,15 @@ aside {
     @include transition-all;
 
     .navbar-header .navbar-brand {
-        color: $theme-primary;
+        color: $theme-dark;
         @include sans-serif-font;
         font-weight: 700;
         text-transform: uppercase;
-
+        font-size: 1.6rem;
+        
         &:hover,
         &:focus {
-            color: darken($theme-primary, 10%);
+            color: darken($theme-dark, 10%);
         }
     }
 
@@ -95,7 +96,7 @@ aside {
             >a:focus {
                 text-transform: uppercase;
                 font-weight: 700;
-                font-size: 1.618rem;
+                font-size: 1.4rem;
                 color: $theme-dark;
 
                 &:hover {
@@ -145,12 +146,12 @@ aside {
             border-color: rgba($theme-dark, .5);
 
             .navbar-header .navbar-brand {
-                color: $theme-primary;
-                font-size: 2rem;
+                color: $theme-dark;
+                font-size: 1.4rem;
 
                 &:hover,
                 &:focus {
-                    color: darken($theme-primary, 10%);
+                    color: darken($theme-dark, 10%);
                 }
             }
 
@@ -181,7 +182,7 @@ header {
     .header-content {
         position: relative;
         text-align: center;
-        padding: 13rem 2rem 13rem;
+        padding: 8rem 2rem 8rem;
         width: 100%;
 
         .header-content-inner {
@@ -193,14 +194,14 @@ header {
             }
 
             hr {
-                margin: 5rem auto;
+                margin: 3rem auto;
             }
 
             p {
                 font-weight: 300;
                 color: rgba(white, .7);
                 font-size: 2rem;
-                margin-bottom: 8rem;
+                margin-bottom: 5rem;
             }
         }
     }
@@ -214,15 +215,15 @@ header {
             -webkit-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-            padding: 0 8rem;
+            padding: 0 5rem;
 
             .header-content-inner {
-                max-width: 100rem;
+                max-width: 80rem;
                 margin-left: auto;
                 margin-right: auto;
 
                 p {
-                    font-size: 3rem;
+                    font-size: 2.5rem;
                     max-width: 80%;
                     margin-left: auto;
                     margin-right: auto;
@@ -239,11 +240,11 @@ header {
 }
 
 .service-box {
-    max-width: 50rem;
-    margin: 8rem auto 0;
+    max-width: 40rem;
+    margin: 5rem auto 0;
 
     @media (min-width: 992px) {
-        margin: 3rem auto 0;
+        margin: 2rem auto 0;
     }
 
     p {
@@ -254,7 +255,7 @@ header {
 .portfolio-box {
     position: relative;
     display: block;
-    max-width: 80rem;
+    max-width: 60rem;
     margin: 0 auto;
 
     .portfolio-box-caption {
@@ -279,17 +280,17 @@ header {
             .project-category,
             .project-name {
                 @include sans-serif-font;
-                padding: 0 2rem;
+                padding: 0 1.5rem;
             }
 
             .project-category {
                 text-transform: uppercase;
                 font-weight: 600;
-                font-size: 1.618rem;
+                font-size: 1.25rem;
             }
 
             .project-name {
-                font-size: 3rem;
+                font-size: 2rem;
             }
         }
     }
@@ -304,11 +305,11 @@ header {
         .portfolio-box-caption {
             .portfolio-box-caption-content {
                 .project-category {
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                 }
 
                 .project-name {
-                    font-size: 5rem;
+                    font-size: 3rem;
                 }
             }
         }
@@ -317,7 +318,7 @@ header {
 
 .call-to-action {
     h2 {
-        margin: 0 auto 3rem;
+        margin: 0 auto 2rem;
     }
 }
 
@@ -333,7 +334,7 @@ header {
 
 // Button Styles
 .btn-default {
-    @include button-variant($theme-dark, white, white);
+    @include button-variant($theme-light, $theme-dark, $theme-primary);
 }
 
 .btn-primary {
@@ -343,19 +344,19 @@ header {
 .btn {
     @include sans-serif-font;
     border: none;
-    border-radius: 21rem;
+    border-radius: 2rem;
     font-weight: 700;
     text-transform: uppercase;
 }
 
 .btn-xl {
-    padding: 2rem 5rem;
+    padding: 1.5rem 3rem;
 }
 
 // Contact
 #contact .fa {
     color: $theme-dark;
-    font-size: 8em;
+    font-size: 4em;
 }
 
 // Extras

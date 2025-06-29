@@ -1,0 +1,459 @@
+// Projects Section Styles
+#projects-gallery {
+    padding: 50px 0;
+    background: #f8f9fa;
+
+    .section-heading {
+        margin-bottom: 1rem;
+    }
+
+    .project-description {
+        font-size: 16px;
+        margin-bottom: 40px;
+        color: #666;
+    }
+}
+
+.project-gallery-item {
+    margin-bottom: 25px;
+}
+
+.project-gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: white;
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+        .project-overlay {
+            opacity: 1;
+        }
+    }
+}
+
+.project-gallery-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    &.placeholder {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // Direct child selector - only targets i elements that are direct children
+        > i {
+            color: white;
+            font-size: 48px;
+            opacity: 0.8;
+        }
+    }
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    .overlay-content {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+
+        .overlay-actions {
+            margin-bottom: 15px;
+
+            .btn {
+                margin-right: 10px;
+            }
+
+            .btn-outline {
+                border-color: white;
+                color: white;
+            }
+        }
+    }
+}
+
+.project-info {
+    padding: 25px;
+
+    .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+
+        h4 {
+            margin: 0;
+            color: #333;
+            font-size: 20px;
+            line-height: 1.3;
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+
+        .label {
+            font-size: 11px;
+            flex-shrink: 0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+
+            &.status-active {
+                background-color: #5cb85c;
+                color: white;
+            }
+
+            &.status-beta {
+                background-color: #f0ad4e;
+                color: white;
+            }
+
+            &.status-default {
+                background-color: #5bc0de;
+                color: white;
+            }
+        }
+    }
+
+    .project-subtitle {
+        color: $theme-primary;
+        font-style: italic;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    .project-description {
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    .tech-stack {
+        margin-bottom: 20px;
+
+        .tech-badge {
+            display: inline-block;
+            background: #f1f3f4;
+            color: #666;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: #e8f0fe !important;
+                color: #1a73e8 !important;
+            }
+
+            &.more-badge {
+                background: #e8eaed;
+                color: #5f6368;
+            }
+        }
+    }
+
+    .project-actions {
+        .btn-outline {
+            border: 1px solid #ddd;
+            color: #666;
+            background: transparent;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: $theme-primary;
+                border-color: $theme-primary;
+                color: white;
+            }
+        }
+    }
+}
+
+.project-empty-state {
+    padding: 50px 20px;
+    background: white;
+    border-radius: 12px;
+    border: 2px dashed #dee2e6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    i {
+        font-size: 48px;
+        color: $theme-primary;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: #495057;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #6c757d;
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+}
+
+.project-archive-btn {
+    margin-top: 50px;
+    text-align: center;
+}
+
+// Collection pages (projects.html, publications.html)
+.collection-item {
+    margin-bottom: 35px;
+
+    .collection-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        padding: 35px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .collection-header {
+        margin-bottom: 25px;
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+
+            h3 {
+                margin: 0;
+                color: #333;
+                font-size: 26px;
+                line-height: 1.3;
+                flex: 1;
+                padding-right: 20px;
+
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                    transition: color 0.3s ease;
+                }
+            }
+
+            .status-badge {
+                background-color: #28a745;
+                color: white;
+                font-size: 12px;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-weight: 500;
+                flex-shrink: 0;
+            }
+        }
+
+        .collection-meta {
+            color: #495057;
+            font-size: 17px;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .collection-subtitle {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 0;
+            font-size: 15px;
+
+            i {
+                margin-right: 6px;
+            }
+        }
+    }
+
+    .collection-overview {
+        margin: 25px 0;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid $theme-primary;
+
+        h5 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #6c757d;
+            line-height: 1.7;
+            margin: 0;
+            font-size: 15px;
+        }
+    }
+
+    .collection-keywords {
+        margin: 25px 0;
+
+        .keywords-label {
+            color: #495057;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .keyword-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-weight: 500;
+
+            &.primary {
+                background: #e8f5e8;
+                color: #2e7d32;
+            }
+
+            &.secondary {
+                background: #f5f5f5;
+                color: #757575;
+            }
+
+            &.publication {
+                background: #e3f2fd;
+                color: #1976d2;
+            }
+        }
+    }
+
+    .collection-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        .btn {
+            flex-shrink: 0;
+
+            &.btn-outline {
+                background: transparent;
+
+                &.btn-info {
+                    border: 1px solid #17a2b8;
+                    color: #17a2b8;
+                }
+
+                &.btn-secondary {
+                    border: 1px solid #6c757d;
+                    color: #6c757d;
+                }
+
+                &.btn-danger {
+                    border: 1px solid #dc3545;
+                    color: #dc3545;
+                }
+            }
+        }
+
+        .meta-info {
+            margin-left: auto;
+            color: #6c757d;
+            font-size: 13px;
+
+            i {
+                margin-right: 4px;
+            }
+        }
+    }
+}
+
+.load-more-section {
+    margin-bottom: 40px;
+    text-align: center;
+
+    .btn-outline {
+        border: 2px solid $theme-primary;
+        color: $theme-primary;
+        background: transparent;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: 500;
+    }
+}
+
+#additional-projects,
+#additional-publications {
+    display: none;
+
+    .scrollable-content {
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-right: 10px;
+        margin-bottom: 30px;
+    }
+
+    .load-less-section {
+        margin-bottom: 40px;
+        text-align: center;
+
+        .btn-outline {
+            border: 1px solid #6c757d;
+            color: #6c757d;
+            background: transparent;
+            padding: 10px 25px;
+            border-radius: 20px;
+        }
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .project-gallery-image {
+        height: 200px !important;
+    }
+
+    .project-info {
+        padding: 20px !important;
+    }
+
+    .project-gallery-card {
+        margin-bottom: 25px;
+    }
+
+    .collection-item .collection-card {
+        padding: 25px;
+    }
+
+    .collection-item .collection-header .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+
+        h3 {
+            padding-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+}

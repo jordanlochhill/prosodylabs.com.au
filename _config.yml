@@ -43,6 +43,9 @@ collections:
   blog:
     output: true
     permalink: /blog/:name/
+  courses:
+    output: true
+    permalink: /courses/:name/
 
 plugins:
   - jekyll-feed

@@ -1,31 +1,28 @@
 <section id="contact" class="contact-section">
-    <div class="container">
+    <div class="contact-container">
         <!-- Header Section -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center">
-                <h2 class="section-heading mb-4">Let's Get In Touch!</h2>
-                <hr class="primary mx-auto mb-4" style="width: 80px;">
-                <p class="lead mb-4">Ready to innovate together? Whether you're a researcher seeking cutting-edge
-                    collaboration, a
-                    developer looking to join groundbreaking projects, or an investor interested in transformative
-                    opportunities, we'd love to connect.</p>
-                <p class="text-muted">Based in Australia with a global perspective—we partner with visionaries worldwide
-                    to turn ambitious
-                    ideas into reality.</p>
-            </div>
+        <div class="contact-header">
+            <h2 class="section-heading">Let's Get In Touch!</h2>
+            <hr class="primary">
+            <p class="lead">Ready to innovate together? Whether you're a researcher seeking cutting-edge
+                collaboration, a developer looking to join groundbreaking projects, or an investor interested in
+                transformative
+                opportunities, we'd love to connect.</p>
+            <p class="text-muted">Based in Australia with a global perspective—we partner with visionaries worldwide
+                to turn ambitious ideas into reality.</p>
         </div>
 
         <!-- Contact Methods Grid -->
-        <div class="row justify-content-center">
+        <div class="contact-grid">
             <!-- Email Contact -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="contact-item text-center h-100">
-                    <div class="contact-icon mb-3">
-                        <a href="mailto:{{ site.email }}" class="contact-link">
-                            <i class="fa fa-envelope-o fa-2x"></i>
-                        </a>
-                    </div>
-                    <h5 class="contact-title">Email Us</h5>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <a href="mailto:{{ site.email }}" class="contact-link">
+                        <i class="fa fa-envelope-o"></i>
+                    </a>
+                </div>
+                <h5 class="contact-title">Email Us</h5>
+                <div class="contact-content">
                     <p class="contact-text">
                         <a href="mailto:{{ site.email }}" class="contact-detail">{{ site.email }}</a>
                     </p>
@@ -34,15 +31,15 @@
             </div>
 
             <!-- GitHub -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="contact-item text-center h-100">
-                    <div class="contact-icon mb-3">
-                        <a href="https://github.com/{{ site.github_username }}" class="contact-link" target="_blank"
-                            rel="noopener">
-                            <i class="fa fa-github fa-2x"></i>
-                        </a>
-                    </div>
-                    <h5 class="contact-title">Open Source</h5>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <a href="https://github.com/{{ site.github_username }}" class="contact-link" target="_blank"
+                        rel="noopener">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>
+                <h5 class="contact-title">Open Source</h5>
+                <div class="contact-content">
                     <p class="contact-text">
                         <a href="https://github.com/{{ site.github_username }}" class="contact-detail" target="_blank"
                             rel="noopener">
@@ -54,15 +51,15 @@
             </div>
 
             <!-- Twitter -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="contact-item text-center h-100">
-                    <div class="contact-icon mb-3">
-                        <a href="https://twitter.com/{{ site.twitter_username }}" class="contact-link" target="_blank"
-                            rel="noopener">
-                            <i class="fa fa-twitter fa-2x"></i>
-                        </a>
-                    </div>
-                    <h5 class="contact-title">Follow Us</h5>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <a href="https://twitter.com/{{ site.twitter_username }}" class="contact-link" target="_blank"
+                        rel="noopener">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </div>
+                <h5 class="contact-title">Follow Us</h5>
+                <div class="contact-content">
                     <p class="contact-text">
                         <a href="https://twitter.com/{{ site.twitter_username }}" class="contact-detail" target="_blank"
                             rel="noopener">
@@ -74,15 +71,15 @@
             </div>
 
             <!-- LinkedIn -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="contact-item text-center h-100">
-                    <div class="contact-icon mb-3">
-                        <a href="https://linkedin.com/company/{{ site.linkedin_username | default: 'prosody-labs' }}"
-                            class="contact-link" target="_blank" rel="noopener">
-                            <i class="fa fa-linkedin fa-2x"></i>
-                        </a>
-                    </div>
-                    <h5 class="contact-title">Connect</h5>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <a href="https://linkedin.com/company/{{ site.linkedin_username | default: 'prosody-labs' }}"
+                        class="contact-link" target="_blank" rel="noopener">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+                <h5 class="contact-title">Connect</h5>
+                <div class="contact-content">
                     <p class="contact-text">
                         <a href="https://linkedin.com/company/{{ site.linkedin_username | default: 'prosody-labs' }}"
                             class="contact-detail" target="_blank" rel="noopener">
@@ -92,180 +89,19 @@
                     <small class="text-muted">Professional network</small>
                 </div>
             </div>
-        </div>
 
-        <!-- Call to Action -->
-        <div class="row justify-content-center mt-5">
-            <div class="col-lg-8 text-center">
-                <div class="cta-box p-4">
-                    <h4 class="mb-3">Ready to Start a Conversation?</h4>
-                    <p class="mb-4">Whether you have a specific project in mind or just want to explore possibilities,
+
+            <!-- Call to Action 
+            <div class="contact-cta">
+                <div class="cta-box">
+                    <h4>Ready to Start a Conversation?</h4>
+                    <p>Whether you have a specific project in mind or just want to explore possibilities,
                         we're here to listen and collaborate.</p>
                     <a href="mailto:{{ site.email }}?subject=Collaboration Inquiry" class="btn btn-primary btn-lg">
-                        <i class="fa fa-paper-plane mr-2"></i>
+                        <i class="fa fa-paper-plane"></i>
                         Start a Conversation
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
-    </div>
 </section>
-
-<style>
-    .contact-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        padding: 80px 0;
-        position: relative;
-    }
-
-    .contact-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-        pointer-events: none;
-    }
-
-    .contact-item {
-        background: white;
-        border-radius: 12px;
-        padding: 2rem 1.5rem;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .contact-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #f05f40, #ff8a65);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-    }
-
-    .contact-item:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-
-    .contact-item:hover::before {
-        transform: scaleX(1);
-    }
-
-    .contact-icon {
-        position: relative;
-    }
-
-    .contact-link {
-        color: #6c757d;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        display: inline-block;
-    }
-
-    .contact-link:hover {
-        color: #f05f40;
-        text-decoration: none;
-        transform: scale(1.1);
-    }
-
-    .contact-title {
-        color: #343a40;
-        font-weight: 600;
-        margin-bottom: 0.75rem;
-        font-size: 1.1rem;
-    }
-
-    .contact-text {
-        margin-bottom: 0.5rem;
-    }
-
-    .contact-detail {
-        color: #495057;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-
-    .contact-detail:hover {
-        color: #f05f40;
-        text-decoration: none;
-    }
-
-    .cta-box {
-        background: white;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .cta-box::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #f05f40, #ff8a65, #42a5f5);
-    }
-
-    .btn-primary {
-        background: linear-gradient(45deg, #f05f40, #ff6f47);
-        border: none;
-        border-radius: 25px;
-        padding: 12px 30px;
-        font-weight: 600;
-        text-transform: none;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(240, 95, 64, 0.3);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(240, 95, 64, 0.4);
-        background: linear-gradient(45deg, #e54e30, #f05f40);
-    }
-
-    .section-heading {
-        color: #343a40;
-        font-weight: 700;
-        font-size: 2.5rem;
-    }
-
-    .primary {
-        border: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #f05f40, #ff8a65);
-        border-radius: 2px;
-    }
-
-    @media (max-width: 768px) {
-        .contact-section {
-            padding: 60px 0;
-        }
-
-        .section-heading {
-            font-size: 2rem;
-        }
-
-        .contact-item {
-            margin-bottom: 1rem;
-        }
-
-        .cta-box {
-            margin: 0 1rem;
-        }
-    }
-</style>

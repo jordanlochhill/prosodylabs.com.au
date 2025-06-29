@@ -1,0 +1,14 @@
+{
+    "overrides": [
+        {
+            "files": [
+                "*.scss",
+                "*.sass"
+            ],
+            "options": {
+                "parser": "scss"
+            }
+        }
+    ],
+    "ignorePattern": "^---\\s*$"
+}

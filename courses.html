@@ -1,0 +1,480 @@
+---
+layout: collection
+title: "Our Courses"
+description: "Professional training programs to enhance your AI productivity skills"
+collection_name: "courses"
+---
+
+<!-- Search and Filter Section -->
+<div class="row" style="margin-bottom: 40px;">
+    <div class="col-lg-12">
+        <div
+            style="background: white; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);">
+            <!-- Search Bar -->
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-lg-8 col-md-12">
+                    <div style="position: relative;">
+                        <input type="text" id="courseSearch"
+                            placeholder="Search courses by title, description, or technology..."
+                            style="width: 100%; padding: 15px 20px 15px 50px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; transition: all 0.3s ease; background: #f8fafc;">
+                        <i class="fa fa-search"
+                            style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #6b7280; font-size: 16px;"></i>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12" style="margin-top: 15px;">
+                    <button id="clearSearch"
+                        style="background: #f3f4f6; color: #6b7280; border: 2px solid #e5e7eb; padding: 15px 20px; border-radius: 12px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; width: 100%;">
+                        <i class="fa fa-times" style="margin-right: 8px;"></i>Clear Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Tags -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                        <span style="color: #6b7280; font-size: 14px; font-weight: 500; margin-right: 10px;">Filter
+                            by:</span>
+                        <button class="filter-tag" data-filter="all"
+                            style="background: #4f46e5; color: white; padding: 8px 16px; border: none; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">
+                            All Courses
+                        </button>
+                        <button class="filter-tag" data-filter="ai-tools"
+                            style="background: #f3f4f6; color: #6b7280; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">
+                            AI Tools
+                        </button>
+                        <button class="filter-tag" data-filter="productivity"
+                            style="background: #f3f4f6; color: #6b7280; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">
+                            Productivity
+                        </button>
+                        <button class="filter-tag" data-filter="technical"
+                            style="background: #f3f4f6; color: #6b7280; padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">
+                            Technical Skills
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search Results Info -->
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-lg-12">
+        <div id="searchResults" style="color: #6b7280; font-size: 14px; padding: 0 15px;">
+            <span id="resultCount">{{ site.courses.size | default: 0 }}</span> courses available
+        </div>
+    </div>
+</div>
+
+{% if site.courses.size > 0 %}
+<div class="collection-container">
+    <!-- Course Cards -->
+    <div class="row" id="courses-list">
+        {% for course in site.courses %}
+        <div class="col-lg-6 collection-item course-card-container" style="margin-bottom: 35px;"
+            data-course='{{ course | jsonify | escape }}' data-tags="{{ course.tech_stack | join: ',' | downcase }}"
+            data-category="{{ course.target_audience | downcase }}" data-title="{{ course.title | downcase }}"
+            data-description="{{ course.excerpt | strip_html | downcase }}">
+            <div class="collection-card course-card"
+                style="background: white; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 35px; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); position: relative; height: 100%; display: flex; flex-direction: column;">
+
+                <!-- Course Header -->
+                <div class="collection-header" style="margin-bottom: 25px;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <h3
+                            style="margin: 0; color: #333; font-size: 24px; line-height: 1.3; flex: 1; padding-right: 20px;">
+                            <a href="{{ course.url | relative_url }}"
+                                style="text-decoration: none; color: inherit; transition: color 0.3s ease;">
+                                {{ course.title }}
+                            </a>
+                        </h3>
+                        {% if course.status %}
+                        <span class="label"
+                            style="background-color: #4f46e5; color: white; font-size: 12px; padding: 8px 16px; border-radius: 20px; font-weight: 500; flex-shrink: 0;">
+                            {{ course.status }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Course Meta Info -->
+                    <div
+                        style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; color: #495057; font-size: 14px;">
+                        {% if course.price %}
+                        <div
+                            style="display: flex; align-items: center; gap: 6px; background: #fef3c7; padding: 6px 12px; border-radius: 20px;">
+                            <i class="fa fa-dollar" style="color: #d97706;"></i>
+                            <span style="font-weight: 500; color: #92400e;">${{ course.price }} {{ course.currency |
+                                default: 'AUD' }}</span>
+                        </div>
+                        {% endif %}
+                        {% if course.duration %}
+                        <div
+                            style="display: flex; align-items: center; gap: 6px; background: #dcfce7; padding: 6px 12px; border-radius: 20px;">
+                            <i class="fa fa-clock-o" style="color: #059669;"></i>
+                            <span style="color: #065f46; font-weight: 500;">{{ course.duration }}</span>
+                        </div>
+                        {% endif %}
+                        {% if course.max_participants %}
+                        <div
+                            style="display: flex; align-items: center; gap: 6px; background: #fee2e2; padding: 6px 12px; border-radius: 20px;">
+                            <i class="fa fa-users" style="color: #dc2626;"></i>
+                            <span style="color: #991b1b; font-weight: 500;">Max {{ course.max_participants }}
+                                people</span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    {% if course.subtitle %}
+                    <p style="color: #6c757d; font-style: italic; margin-bottom: 0; font-size: 15px; line-height: 1.4;">
+                        <i class="fa fa-graduation-cap" style="margin-right: 6px; color: #4f46e5;"></i>{{
+                        course.subtitle }}
+                    </p>
+                    {% endif %}
+                </div>
+
+                <!-- Course Description -->
+                {% if course.excerpt or course.content %}
+                <div class="collection-abstract"
+                    style="margin: 25px 0; padding: 25px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #4f46e5; flex-grow: 1;">
+                    <h5 style="color: #1e40af; margin-bottom: 15px; font-size: 16px; font-weight: 600;">Course Overview
+                    </h5>
+                    <p style="color: #1e3a8a; line-height: 1.6; margin: 0; font-size: 15px;">
+                        {% if course.excerpt %}
+                        {{ course.excerpt | strip_html | truncatewords: 30 }}
+                        {% else %}
+                        {{ course.content | strip_html | truncatewords: 30 }}
+                        {% endif %}
+                    </p>
+                </div>
+                {% endif %}
+
+                <!-- Learning Outcomes Preview -->
+                {% if course.learning_outcomes %}
+                <div class="collection-keywords" style="margin: 25px 0;">
+                    <h6
+                        style="color: #495057; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Key Learning Outcomes
+                    </h6>
+                    <div>
+                        {% for outcome in course.learning_outcomes limit:3 %}
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 8px;">
+                            <i class="fa fa-check"
+                                style="color: #10b981; margin-right: 8px; margin-top: 2px; font-size: 12px;"></i>
+                            <span style="font-size: 13px; color: #4b5563; line-height: 1.4;">{{ outcome }}</span>
+                        </div>
+                        {% endfor %}
+                        {% if course.learning_outcomes.size > 3 %}
+                        <p style="font-size: 12px; color: #9ca3af; margin-top: 8px; margin-bottom: 0;">
+                            +{{ course.learning_outcomes.size | minus: 3 }} more learning outcomes
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Tech Stack -->
+                {% if course.tech_stack %}
+                <div class="collection-keywords" style="margin: 25px 0;">
+                    <h6
+                        style="color: #495057; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Tools & Technologies
+                    </h6>
+                    <div>
+                        {% for tech in course.tech_stack limit:5 %}
+                        <span class="keyword-badge"
+                            style="display: inline-block; background: #ede9fe; color: #6d28d9; padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; font-weight: 500;">
+                            {{ tech }}
+                        </span>
+                        {% endfor %}
+                        {% if course.tech_stack.size > 5 %}
+                        <span class="keyword-badge"
+                            style="display: inline-block; background: #f5f5f5; color: #757575; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
+                            +{{ course.tech_stack.size | minus: 5 }} more
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Action Buttons -->
+                <div class="collection-actions"
+                    style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: auto; padding-top: 20px;">
+                    <a href="{{ course.url | relative_url }}" class="view-details-btn"
+                        style="flex: 1; text-align: center;">
+                        View Details <i class="fa fa-arrow-right"></i>
+                    </a>
+                    <div style="display: flex; gap: 8px; flex: 1;">
+                        <a href="mailto:info@prosodylabs.com.au?subject=Course Enrollment: {{ course.title }}"
+                            class="enroll-btn" style="flex: 1; text-align: center;">
+                            <i class="fa fa-check-circle"></i> Enroll
+                        </a>
+                        <a href="mailto:info@prosodylabs.com.au?subject=Course Interest: {{ course.title }}"
+                            class="interest-btn" style="flex: 1; text-align: center;">
+                            <i class="fa fa-bell"></i> Interest
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- No Results Message -->
+<div id="noResults" class="row" style="display: none; margin-top: 40px;">
+    <div class="col-lg-12 text-center" style="padding: 60px 20px;">
+        <i class="fa fa-search" style="font-size: 64px; color: #d1d5db; margin-bottom: 20px;"></i>
+        <h3 style="color: #6b7280; margin-bottom: 15px;">No courses found</h3>
+        <p style="color: #9ca3af; margin-bottom: 30px;">Try adjusting your search terms or filters to find what you're
+            looking for.</p>
+        <button id="showAllCourses" class="btn btn-primary">
+            <i class="fa fa-list"></i> Show All Courses
+        </button>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="row" style="margin-top: 60px; margin-bottom: 40px;">
+    <div class="col-lg-12">
+        <div
+            style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white; padding: 50px; border-radius: 16px; text-align: center;">
+            <h3 style="color: white; margin-bottom: 20px; font-size: 28px; font-weight: 300;">
+                Ready to Level Up Your AI Skills?
+            </h3>
+            <p
+                style="margin-bottom: 30px; font-size: 16px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Our intensive courses are designed for busy professionals who want to master AI productivity tools
+                without extensive technical backgrounds.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:info@prosodylabs.com.au?subject=Custom Course Inquiry" class="cta-primary"
+                    style="display: inline-flex; align-items: center; gap: 10px; background: white; color: #4f46e5; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fa fa-users"></i>
+                    <span>Corporate Training</span>
+                </a>
+                <a href="mailto:info@prosodylabs.com.au?subject=Course Questions" class="cta-secondary"
+                    style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);">
+                    <i class="fa fa-question-circle"></i>
+                    <span>Ask Questions</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<!-- Empty State -->
+<div class="row">
+    <div class="col-lg-12 text-center" style="padding: 80px 20px;">
+        <i class="fa fa-graduation-cap" style="font-size: 64px; color: #e5e7eb; margin-bottom: 20px;"></i>
+        <h3 style="color: #6b7280; margin-bottom: 15px;">Courses Coming Soon</h3>
+        <p style="color: #9ca3af; margin-bottom: 30px;">We're developing exciting new courses to help you master AI
+            productivity tools.</p>
+        <a href="mailto:info@prosodylabs.com.au?subject=Course Interest" class="btn btn-primary">
+            <i class="fa fa-bell"></i> Get Notified When Available
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get all course cards and search elements
+        const courseCards = document.querySelectorAll('.course-card-container');
+        const searchInput = document.getElementById('courseSearch');
+        const clearSearchBtn = document.getElementById('clearSearch');
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const resultCount = document.getElementById('resultCount');
+        const noResults = document.getElementById('noResults');
+        const showAllBtn = document.getElementById('showAllCourses');
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        // Search functionality
+        searchInput.addEventListener('input', function (e) {
+            searchTerm = e.target.value.toLowerCase();
+            filterCourses();
+        });
+
+        // Clear search
+        clearSearchBtn.addEventListener('click', function () {
+            searchInput.value = '';
+            searchTerm = '';
+            currentFilter = 'all';
+
+            // Reset filter buttons
+            filterTags.forEach(tag => {
+                tag.style.background = tag.dataset.filter === 'all' ? '#4f46e5' : '#f3f4f6';
+                tag.style.color = tag.dataset.filter === 'all' ? 'white' : '#6b7280';
+                tag.style.border = tag.dataset.filter === 'all' ? 'none' : '1px solid #e5e7eb';
+            });
+
+            filterCourses();
+        });
+
+        // Filter tags
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function () {
+                currentFilter = this.dataset.filter;
+
+                // Update button styles
+                filterTags.forEach(t => {
+                    t.style.background = '#f3f4f6';
+                    t.style.color = '#6b7280';
+                    t.style.border = '1px solid #e5e7eb';
+                });
+
+                this.style.background = '#4f46e5';
+                this.style.color = 'white';
+                this.style.border = 'none';
+
+                filterCourses();
+            });
+        });
+
+        // Show all courses button
+        showAllBtn.addEventListener('click', function () {
+            searchInput.value = '';
+            searchTerm = '';
+            currentFilter = 'all';
+
+            // Reset filter buttons
+            filterTags.forEach(tag => {
+                tag.style.background = tag.dataset.filter === 'all' ? '#4f46e5' : '#f3f4f6';
+                tag.style.color = tag.dataset.filter === 'all' ? 'white' : '#6b7280';
+                tag.style.border = tag.dataset.filter === 'all' ? 'none' : '1px solid #e5e7eb';
+            });
+
+            filterCourses();
+        });
+
+        // Filter courses function
+        function filterCourses() {
+            let visibleCount = 0;
+
+            courseCards.forEach(card => {
+                const title = card.dataset.title || '';
+                const description = card.dataset.description || '';
+                const tags = card.dataset.tags || '';
+                const category = card.dataset.category || '';
+
+                let showCard = true;
+
+                // Apply search filter
+                if (searchTerm) {
+                    const searchableText = `${title} ${description} ${tags} ${category}`;
+                    showCard = searchableText.includes(searchTerm);
+                }
+
+                // Apply category filter
+                if (showCard && currentFilter !== 'all') {
+                    switch (currentFilter) {
+                        case 'ai-tools':
+                            showCard = tags.includes('ai') || tags.includes('claude') || tags.includes('chatgpt') || tags.includes('cursor');
+                            break;
+                        case 'productivity':
+                            showCard = tags.includes('productivity') || category.includes('professional') || tags.includes('markdown');
+                            break;
+                        case 'technical':
+                            showCard = category.includes('technical') || tags.includes('github') || tags.includes('prompting');
+                            break;
+                    }
+                }
+
+                // Show/hide card
+                if (showCard) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update result count
+            resultCount.textContent = visibleCount;
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Search input styling
+        searchInput.addEventListener('focus', function () {
+            this.style.borderColor = '#4f46e5';
+            this.style.boxShadow = '0 0 0 3px rgba(79, 70, 229, 0.1)';
+        });
+
+        searchInput.addEventListener('blur', function () {
+            this.style.borderColor = '#e2e8f0';
+            this.style.boxShadow = 'none';
+        });
+    });
+</script>
+
+<style>
+    /* Enhanced course card styles */
+    .course-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .course-card h3 a:hover {
+        color: #4f46e5 !important;
+    }
+
+    /* Search input enhancements */
+    #courseSearch:focus {
+        outline: none !important;
+        border-color: #4f46e5 !important;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .course-card-container {
+            margin-bottom: 25px !important;
+        }
+
+        .collection-actions {
+            flex-direction: column !important;
+        }
+
+        .collection-actions>a,
+        .collection-actions>div {
+            flex: none !important;
+            width: 100% !important;
+        }
+
+        .filter-tag {
+            margin-bottom: 8px !important;
+        }
+
+        /* Reduce hover effects on mobile for better touch experience */
+        @media (hover: none) {
+            .course-card:hover {
+                transform: none !important;
+            }
+        }
+    }
+
+    /* Animation for smooth color transitions */
+    @keyframes colorTransition {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.02);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
