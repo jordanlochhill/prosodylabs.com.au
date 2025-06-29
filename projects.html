@@ -10,30 +10,24 @@ collection_name: "projects"
     <!-- Initial 4 cards -->
     <div class="row" id="initial-projects">
         {% for project in site.projects limit:4 %}
-        <div class="col-lg-12 collection-item" style="margin-bottom: 35px;">
-            <div class="collection-card"
-                style="background: white; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 35px; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); position: relative;">
-
-                <div class="collection-header" style="margin-bottom: 25px;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                        <h3
-                            style="margin: 0; color: #333; font-size: 26px; line-height: 1.3; flex: 1; padding-right: 20px;">
-                            <a href="{{ project.url | relative_url }}"
-                                style="text-decoration: none; color: inherit; transition: color 0.3s ease;">
+        <div class="col-lg-12 collection-item project-card-container">
+            <div class="collection-card project-card">
+                <div class="card-header">
+                    <div class="card-header-top">
+                        <h3 class="card-title">
+                            <a href="{{ project.url | relative_url }}">
                                 {{ project.title }}
                             </a>
                         </h3>
                         {% if project.status %}
-                        <span class="label"
-                            style="background-color: #28a745; color: white; font-size: 12px; padding: 8px 16px; border-radius: 20px; font-weight: 500; flex-shrink: 0;">
+                        <span class="card-status-label">
                             {{ project.status }}
                         </span>
                         {% endif %}
                     </div>
 
                     {% if project.start_date or project.team %}
-                    <p style="color: #495057; font-size: 17px; margin-bottom: 12px; font-weight: 500;">
+                    <p class="card-meta-info">
                         {% if project.team %}{{ project.team | join: ', ' }}{% endif %}
                         {% if project.team and project.start_date %} • {% endif %}
                         {% if project.start_date %}{{ project.start_date | date: '%Y' }}{% endif %}
@@ -43,17 +37,16 @@ collection_name: "projects"
                     {% endif %}
 
                     {% if project.subtitle %}
-                    <p style="color: #6c757d; font-style: italic; margin-bottom: 0; font-size: 15px;">
-                        <i class="fa fa-lightbulb-o" style="margin-right: 6px;"></i>{{ project.subtitle }}
+                    <p class="card-subtitle">
+                        <i class="fa fa-lightbulb-o"></i>{{ project.subtitle }}
                     </p>
                     {% endif %}
                 </div>
 
                 {% if project.excerpt or project.content %}
-                <div class="collection-abstract"
-                    style="margin: 25px 0; padding: 25px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #f05f40;">
-                    <h5 style="color: #495057; margin-bottom: 15px; font-size: 16px; font-weight: 600;">Overview</h5>
-                    <p style="color: #6c757d; line-height: 1.7; margin: 0; font-size: 15px;">
+                <div class="card-abstract">
+                    <h5 class="abstract-title">Overview</h5>
+                    <p class="abstract-text">
                         {% if project.excerpt %}
                         {{ project.excerpt | strip_html | truncatewords: 50 }}
                         {% else %}
@@ -64,46 +57,38 @@ collection_name: "projects"
                 {% endif %}
 
                 {% if project.tech_stack %}
-                <div class="collection-keywords" style="margin: 25px 0;">
-                    <h6
-                        style="color: #495057; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
-                        Technology Stack</h6>
+                <div class="card-keywords-section">
+                    <h6 class="keywords-title">Technology Stack</h6>
                     <div>
                         {% for tech in project.tech_stack limit:5 %}
-                        <span class="keyword-badge"
-                            style="display: inline-block; background: #e8f5e8; color: #2e7d32; padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; font-weight: 500;">
-                            {{ tech }}
-                        </span>
+                        <span class="keyword-badge">{{ tech }}</span>
                         {% endfor %}
                         {% if project.tech_stack.size > 5 %}
-                        <span class="keyword-badge"
-                            style="display: inline-block; background: #f5f5f5; color: #757575; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
-                            +{{ project.tech_stack.size | minus: 5 }} more
-                        </span>
+                        <span class="keyword-badge more">+{{ project.tech_stack.size | minus: 5 }} more</span>
                         {% endif %}
                     </div>
                 </div>
                 {% endif %}
 
-                <div class="collection-actions" style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                    <a href="{{ project.url | relative_url }}" class="btn btn-primary" style="flex-shrink: 0;">
-                        View Project <i class="fa fa-arrow-right"></i>
-                    </a>
-                    {% if project.demo_url %}
-                    <a href="{{ project.demo_url }}" class="btn btn-outline btn-default" target="_blank"
-                        style="border: 1px solid #17a2b8; color: #17a2b8; background: transparent; flex-shrink: 0;">
-                        <i class="fa fa-external-link"></i> Live Demo
-                    </a>
-                    {% endif %}
-                    {% if project.github_url %}
-                    <a href="{{ project.github_url }}" class="btn btn-outline btn-default" target="_blank"
-                        style="border: 1px solid #6c757d; color: #6c757d; background: transparent; flex-shrink: 0;">
-                        <i class="fa fa-github"></i> Source Code
-                    </a>
-                    {% endif %}
+                <div class="card-actions">
+                    <div class="action-button-group">
+                        <a href="{{ project.url | relative_url }}" class="btn-card-action btn-details">
+                            View Project <i class="fa fa-arrow-right"></i>
+                        </a>
+                        {% if project.demo_url %}
+                        <a href="{{ project.demo_url }}" class="btn btn-outline btn-demo" target="_blank">
+                            <i class="fa fa-external-link"></i> Live Demo
+                        </a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-outline btn-github" target="_blank">
+                            <i class="fa fa-github"></i> Source Code
+                        </a>
+                        {% endif %}
+                    </div>
                     {% if project.categories %}
-                    <div style="margin-left: auto; color: #6c757d; font-size: 13px;">
-                        <i class="fa fa-folder-o" style="margin-right: 4px;"></i>
+                    <div class="project-tags">
+                        <i class="fa fa-folder-o"></i>
                         {{ project.categories | slice: 0, 3 | join: ', ' }}
                         {% if project.categories.size > 3 %}...{% endif %}
                     </div>
@@ -116,45 +101,37 @@ collection_name: "projects"
 
     <!-- Expand button (only show if more than 4 projects) -->
     {% if site.projects.size > 4 %}
-    <div class="row" style="margin-bottom: 40px;">
+    <div class="row expand-section">
         <div class="col-lg-12 text-center">
-            <button id="expand-projects-btn" class="btn btn-outline btn-primary btn-lg"
-                style="border: 2px solid #f05f40; color: #f05f40; background: transparent; padding: 12px 30px; border-radius: 25px; font-weight: 500;">
+            <button id="expand-projects-btn" class="btn btn-outline btn-primary btn-lg">
                 <i class="fa fa-chevron-down"></i> Show {{ site.projects.size | minus: 4 }} More Projects
             </button>
         </div>
     </div>
 
     <!-- Additional projects (hidden initially) -->
-    <div id="additional-projects" style="display: none;">
-        <div class="scrollable-section"
-            style="max-height: 70vh; overflow-y: auto; padding-right: 10px; margin-bottom: 30px;">
+    <div id="additional-projects">
+        <div class="scrollable-section">
             <div class="row">
                 {% for project in site.projects offset:4 %}
-                <div class="col-lg-12 collection-item" style="margin-bottom: 35px;">
-                    <div class="collection-card"
-                        style="background: white; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); padding: 35px; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); position: relative;">
-
-                        <div class="collection-header" style="margin-bottom: 25px;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                                <h3
-                                    style="margin: 0; color: #333; font-size: 26px; line-height: 1.3; flex: 1; padding-right: 20px;">
-                                    <a href="{{ project.url | relative_url }}"
-                                        style="text-decoration: none; color: inherit; transition: color 0.3s ease;">
+                <div class="col-lg-12 collection-item project-card-container">
+                    <div class="collection-card project-card">
+                        <div class="card-header">
+                            <div class="card-header-top">
+                                <h3 class="card-title">
+                                    <a href="{{ project.url | relative_url }}">
                                         {{ project.title }}
                                     </a>
                                 </h3>
                                 {% if project.status %}
-                                <span class="label"
-                                    style="background-color: #28a745; color: white; font-size: 12px; padding: 8px 16px; border-radius: 20px; font-weight: 500; flex-shrink: 0;">
+                                <span class="card-status-label">
                                     {{ project.status }}
                                 </span>
                                 {% endif %}
                             </div>
 
                             {% if project.start_date or project.team %}
-                            <p style="color: #495057; font-size: 17px; margin-bottom: 12px; font-weight: 500;">
+                            <p class="card-meta-info">
                                 {% if project.team %}{{ project.team | join: ', ' }}{% endif %}
                                 {% if project.team and project.start_date %} • {% endif %}
                                 {% if project.start_date %}{{ project.start_date | date: '%Y' }}{% endif %}
@@ -164,18 +141,16 @@ collection_name: "projects"
                             {% endif %}
 
                             {% if project.subtitle %}
-                            <p style="color: #6c757d; font-style: italic; margin-bottom: 0; font-size: 15px;">
-                                <i class="fa fa-lightbulb-o" style="margin-right: 6px;"></i>{{ project.subtitle }}
+                            <p class="card-subtitle">
+                                <i class="fa fa-lightbulb-o"></i>{{ project.subtitle }}
                             </p>
                             {% endif %}
                         </div>
 
                         {% if project.excerpt or project.content %}
-                        <div class="collection-abstract"
-                            style="margin: 25px 0; padding: 25px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #f05f40;">
-                            <h5 style="color: #495057; margin-bottom: 15px; font-size: 16px; font-weight: 600;">Overview
-                            </h5>
-                            <p style="color: #6c757d; line-height: 1.7; margin: 0; font-size: 15px;">
+                        <div class="card-abstract">
+                            <h5 class="abstract-title">Overview</h5>
+                            <p class="abstract-text">
                                 {% if project.excerpt %}
                                 {{ project.excerpt | strip_html | truncatewords: 50 }}
                                 {% else %}
@@ -186,47 +161,38 @@ collection_name: "projects"
                         {% endif %}
 
                         {% if project.tech_stack %}
-                        <div class="collection-keywords" style="margin: 25px 0;">
-                            <h6
-                                style="color: #495057; margin-bottom: 12px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
-                                Technology Stack</h6>
+                        <div class="card-keywords-section">
+                            <h6 class="keywords-title">Technology Stack</h6>
                             <div>
                                 {% for tech in project.tech_stack limit:5 %}
-                                <span class="keyword-badge"
-                                    style="display: inline-block; background: #e8f5e8; color: #2e7d32; padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; font-weight: 500;">
-                                    {{ tech }}
-                                </span>
+                                <span class="keyword-badge">{{ tech }}</span>
                                 {% endfor %}
                                 {% if project.tech_stack.size > 5 %}
-                                <span class="keyword-badge"
-                                    style="display: inline-block; background: #f5f5f5; color: #757575; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;">
-                                    +{{ project.tech_stack.size | minus: 5 }} more
-                                </span>
+                                <span class="keyword-badge more">+{{ project.tech_stack.size | minus: 5 }} more</span>
                                 {% endif %}
                             </div>
                         </div>
                         {% endif %}
 
-                        <div class="collection-actions"
-                            style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                            <a href="{{ project.url | relative_url }}" class="btn btn-primary" style="flex-shrink: 0;">
-                                View Project <i class="fa fa-arrow-right"></i>
-                            </a>
-                            {% if project.demo_url %}
-                            <a href="{{ project.demo_url }}" class="btn btn-outline btn-default" target="_blank"
-                                style="border: 1px solid #17a2b8; color: #17a2b8; background: transparent; flex-shrink: 0;">
-                                <i class="fa fa-external-link"></i> Live Demo
-                            </a>
-                            {% endif %}
-                            {% if project.github_url %}
-                            <a href="{{ project.github_url }}" class="btn btn-outline btn-default" target="_blank"
-                                style="border: 1px solid #6c757d; color: #6c757d; background: transparent; flex-shrink: 0;">
-                                <i class="fa fa-github"></i> Source Code
-                            </a>
-                            {% endif %}
+                        <div class="card-actions">
+                            <div class="action-button-group">
+                                <a href="{{ project.url | relative_url }}" class="btn-card-action btn-details">
+                                    View Project <i class="fa fa-arrow-right"></i>
+                                </a>
+                                {% if project.demo_url %}
+                                <a href="{{ project.demo_url }}" class="btn btn-outline btn-demo" target="_blank">
+                                    <i class="fa fa-external-link"></i> Live Demo
+                                </a>
+                                {% endif %}
+                                {% if project.github_url %}
+                                <a href="{{ project.github_url }}" class="btn btn-outline btn-github" target="_blank">
+                                    <i class="fa fa-github"></i> Source Code
+                                </a>
+                                {% endif %}
+                            </div>
                             {% if project.categories %}
-                            <div style="margin-left: auto; color: #6c757d; font-size: 13px;">
-                                <i class="fa fa-folder-o" style="margin-right: 4px;"></i>
+                            <div class="project-tags">
+                                <i class="fa fa-folder-o"></i>
                                 {{ project.categories | slice: 0, 3 | join: ', ' }}
                                 {% if project.categories.size > 3 %}...{% endif %}
                             </div>
@@ -239,10 +205,9 @@ collection_name: "projects"
         </div>
 
         <!-- Collapse button -->
-        <div class="row" style="margin-bottom: 40px;">
+        <div class="row collapse-section">
             <div class="col-lg-12 text-center">
-                <button id="collapse-projects-btn" class="btn btn-outline btn-secondary"
-                    style="border: 1px solid #6c757d; color: #6c757d; background: transparent; padding: 10px 25px; border-radius: 20px;">
+                <button id="collapse-projects-btn" class="btn btn-outline btn-secondary">
                     <i class="fa fa-chevron-up"></i> Show Less
                 </button>
             </div>
@@ -252,19 +217,20 @@ collection_name: "projects"
 </div>
 
 <script>
+    // Projects expand/collapse functionality
     document.addEventListener('DOMContentLoaded', function () {
         const expandBtn = document.getElementById('expand-projects-btn');
         const collapseBtn = document.getElementById('collapse-projects-btn');
-        const additionalSection = document.getElementById('additional-projects');
+        const additionalProjects = document.getElementById('additional-projects');
 
         if (expandBtn) {
             expandBtn.addEventListener('click', function () {
-                additionalSection.style.display = 'block';
-                expandBtn.style.display = 'none';
+                additionalProjects.style.display = 'block';
+                expandBtn.parentElement.parentElement.style.display = 'none';
 
-                // Smooth scroll to the additional content
+                // Smooth scroll to additional content
                 setTimeout(() => {
-                    additionalSection.scrollIntoView({
+                    additionalProjects.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
@@ -274,71 +240,33 @@ collection_name: "projects"
 
         if (collapseBtn) {
             collapseBtn.addEventListener('click', function () {
-                additionalSection.style.display = 'none';
-                expandBtn.style.display = 'inline-block';
+                additionalProjects.style.display = 'none';
+                expandBtn.parentElement.parentElement.style.display = 'block';
 
-                // Scroll back to the expand button
+                // Scroll back to the expand button area
                 setTimeout(() => {
-                    expandBtn.scrollIntoView({
+                    document.getElementById('initial-projects').scrollIntoView({
                         behavior: 'smooth',
-                        block: 'center'
+                        block: 'end'
                     });
                 }, 100);
             });
         }
     });
 </script>
-
-<style>
-    .scrollable-section {
-        border: 1px solid #e9ecef;
-        border-radius: 12px;
-        background: #fafbfc;
-        padding: 20px;
-    }
-
-    .scrollable-section::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .scrollable-section::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-    }
-
-    .scrollable-section::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-        border-radius: 4px;
-    }
-
-    .scrollable-section::-webkit-scrollbar-thumb:hover {
-        background: #a8a8a8;
-    }
-
-    #expand-projects-btn:hover {
-        background: #f05f40 !important;
-        color: white !important;
-        transform: translateY(-2px);
-    }
-
-    #collapse-projects-btn:hover {
-        background: #6c757d !important;
-        color: white !important;
-    }
-</style>
 {% else %}
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2 text-center">
-        <div style="padding: 60px 20px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #dee2e6;">
-            <i class="fa fa-lightbulb-o" style="font-size: 48px; color: #f05f40; margin-bottom: 20px;"></i>
-            <h4 style="color: #495057; margin-bottom: 15px;">We're Just Starting Out</h4>
-            <p style="font-size: 16px; color: #6c757d; margin-bottom: 25px; line-height: 1.6;">
-                We're just starting out—check back later or if you'd like to collaborate on an interesting idea, reach
-                out.
-            </p>
-            <a href="{{ '/' | relative_url }}#contact" class="btn btn-primary">
-                <i class="fa fa-envelope"></i> Let's Collaborate
-            </a>
+<div class="collection-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="noResults">
+                <div class="no-results-content">
+                    <div class="icon">
+                        <i class="fa fa-folder-open"></i>
+                    </div>
+                    <h3>No Projects Found</h3>
+                    <p>We haven't published any projects yet. Check back soon for exciting updates!</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

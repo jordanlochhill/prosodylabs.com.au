@@ -1,0 +1,64 @@
+<!-- Modern Collection Page Sidebar -->
+<div class="collection-sidebar">
+    <!-- Back to Home -->
+    <div class="sidebar-section">
+        <a href="{{ '/' | relative_url }}" class="sidebar-home-link">
+            <i class="fas fa-home"></i>
+            <span>Back to Home</span>
+        </a>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-section">
+        <h5 class="sidebar-title">Navigation</h5>
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-item">
+                <a href="{{ '/courses.html' | relative_url }}"
+                    class="sidebar-link {% if page.url contains 'courses' %}active{% endif %}">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Courses</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="{{ '/publications.html' | relative_url }}"
+                    class="sidebar-link {% if page.url contains 'publications' %}active{% endif %}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Publications</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="{{ '/blog.html' | relative_url }}"
+                    class="sidebar-link {% if page.url contains 'blog' %}active{% endif %}">
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="{{ '/projects.html' | relative_url }}"
+                    class="sidebar-link {% if page.url contains 'projects' %}active{% endif %}">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Quick Links -->
+    <div class="sidebar-section">
+        <h5 class="sidebar-title">Quick Links</h5>
+        <ul class="sidebar-quick-links">
+            <li>
+                <a href="{{ '/' | relative_url }}#our-work" class="sidebar-quick-link">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Our Work</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ '/' | relative_url }}#contact" class="sidebar-quick-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

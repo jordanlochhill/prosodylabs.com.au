@@ -1,49 +1,358 @@
 ---
 ---
 
-
 @charset "utf-8";
 
-// Variables
+// PROSODY LABS - UNIFIED DESIGN SYSTEM
+// Professional design system following industry standards
 
+// === DESIGN TOKENS ===
+// Based on 8px grid system and modular scale
 
-$theme-primary: #F05F40;
-$theme-light: #f8f9fa;
-$theme-dark: #222;
+// Brand Colors
+$primary-50:   #eff6ff;
+$primary-100:  #dbeafe;
+$primary-200:  #bfdbfe;
+$primary-300:  #93c5fd;
+$primary-400:  #60a5fa;
+$primary-500:  #3b82f6;  // Main brand color
+$primary-600:  #2563eb;
+$primary-700:  #1d4ed8;
+$primary-800:  #1e40af;
+$primary-900:  #1e3a8a;
 
-// Import partials from `sass_dir` (defaults to `_sass`)
-@import "mixins",
-"base",
-"contact",
-"projects",
-"hero-sections";
+// Accent Colors
+$accent-50:    #fef2f2;
+$accent-100:   #fee2e2;
+$accent-200:   #fecaca;
+$accent-300:   #fca5a5;
+$accent-400:   #f87171;
+$accent-500:   #ef4444;
+$accent-600:   #dc2626;  // Secondary accent
+$accent-700:   #b91c1c;
+$accent-800:   #991b1b;
+$accent-900:   #7f1d1d;
 
-// Example Defaults
-// $base-font-family: Helvetica, Arial, sans-serif;
-// $base-font-size:   16px;
-// $small-font-size:  $base-font-size * 0.875;
-// $base-line-height: 1.5;
+// Prosody Orange (legacy support)
+$prosody-orange: #F05F40;
 
-// $spacing-unit:     30px;
+// Neutral Colors (Systematic Gray Scale)
+$neutral-0:    #ffffff;
+$neutral-50:   #f9fafb;
+$neutral-100:  #f3f4f6;
+$neutral-200:  #e5e7eb;
+$neutral-300:  #d1d5db;
+$neutral-400:  #9ca3af;
+$neutral-500:  #6b7280;
+$neutral-600:  #4b5563;
+$neutral-700:  #374151;
+$neutral-800:  #1f2937;
+$neutral-900:  #111827;
 
-// $text-color:       #111;
-// $background-color: #fdfdfd;
-// $brand-color:      #2a7ae2;
+// Semantic Colors
+$success-50:   #ecfdf5;
+$success-500:  #10b981;
+$success-600:  #059669;
 
-// $grey-color:       #828282;
-// $grey-color-light: lighten($grey-color, 40%);
-// $grey-color-dark:  darken($grey-color, 25%);
+$warning-50:   #fffbeb;
+$warning-500:  #f59e0b;
+$warning-600:  #d97706;
 
-// // Width of the content area
-// $content-width:    800px;
+$error-50:     #fef2f2;
+$error-500:    #ef4444;
+$error-600:    #dc2626;
 
-// $on-palm:          600px;
-// $on-laptop:        800px;
+$info-50:      #eff6ff;
+$info-500:     #3b82f6;
+$info-600:     #2563eb;
 
-// Using media queries with like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
+// === TYPOGRAPHY SYSTEM ===
+// Based on modular scale (1.250 - Major Third)
+
+// Font Families
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-serif: 'Merriweather', Georgia, serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+// Font Sizes (rem-based for accessibility) - Updated for better readability
+$text-xs:    0.875rem;  // 14px (increased from 12px)
+$text-sm:    1rem;      // 16px (increased from 14px)
+$text-base:  1.25rem;   // 20px (increased from 18px)
+$text-lg:    1.375rem;  // 22px (increased from 20px)
+$text-xl:    1.625rem;  // 26px (increased from 24px)
+$text-2xl:   2rem;      // 32px (increased from 30px)
+$text-3xl:   2.5rem;    // 40px (increased from 36px)
+$text-4xl:   3rem;      // 48px (increased from 44px)
+$text-5xl:   3.75rem;   // 60px (increased from 56px)
+$text-6xl:   4.5rem;    // 72px (increased from 68px)
+$text-7xl:   5.5rem;    // 88px (increased from 80px)
+
+// Font Weights
+$font-thin:       100;
+$font-extralight: 200;
+$font-light:      300;
+$font-normal:     400;
+$font-medium:     500;
+$font-semibold:   600;
+$font-bold:       700;
+$font-extrabold:  800;
+$font-black:      900;
+
+// Line Heights
+$leading-none:    1;
+$leading-tight:   1.25;
+$leading-snug:    1.375;
+$leading-normal:  1.5;
+$leading-relaxed: 1.625;
+$leading-loose:   2;
+
+// === SPACING SYSTEM ===
+// 8px base unit for consistent spacing
+
+$space-0:    0;
+$space-1:    0.25rem;   // 4px
+$space-2:    0.5rem;    // 8px
+$space-3:    0.75rem;   // 12px
+$space-4:    1rem;      // 16px
+$space-5:    1.25rem;   // 20px
+$space-6:    1.5rem;    // 24px
+$space-8:    2rem;      // 32px
+$space-10:   2.5rem;    // 40px
+$space-12:   3rem;      // 48px
+$space-16:   4rem;      // 64px
+$space-20:   5rem;      // 80px
+$space-24:   6rem;      // 96px
+$space-32:   8rem;      // 128px
+$space-40:   10rem;     // 160px
+$space-48:   12rem;     // 192px
+$space-56:   14rem;     // 224px
+$space-64:   16rem;     // 256px
+
+// === LAYOUT SYSTEM ===
+
+// Breakpoints
+$screen-sm:  640px;
+$screen-md:  768px;
+$screen-lg:  1024px;
+$screen-xl:  1280px;
+$screen-2xl: 1536px;
+
+// Container Sizes
+$container-sm:  640px;
+$container-md:  768px;
+$container-lg:  1024px;
+$container-xl:  1280px;
+$container-2xl: 1536px;
+
+// Border Radius
+$radius-none: 0;
+$radius-sm:   0.125rem;  // 2px
+$radius-base: 0.25rem;   // 4px
+$radius-md:   0.375rem;  // 6px
+$radius-lg:   0.5rem;    // 8px
+$radius-xl:   0.75rem;   // 12px
+$radius-2xl:  1rem;      // 16px
+$radius-3xl:  1.5rem;    // 24px
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+$shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+$shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+$shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+$shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+// Z-Index Scale
+$z-0:     0;
+$z-10:    10;
+$z-20:    20;
+$z-30:    30;
+$z-40:    40;
+$z-50:    50;
+$z-auto:  auto;
+
+// === LEGACY SUPPORT ===
+// Maintaining backward compatibility
+
+$theme-primary: $primary-500;
+$theme-light:   $neutral-50;
+$theme-dark:    $neutral-800;
+
+// === ANIMATION SYSTEM ===
+
+$duration-75:   75ms;
+$duration-100:  100ms;
+$duration-150:  150ms;
+$duration-200:  200ms;
+$duration-300:  300ms;
+$duration-500:  500ms;
+$duration-700:  700ms;
+$duration-1000: 1000ms;
+
+$ease-linear:     linear;
+$ease-in:         cubic-bezier(0.4, 0, 1, 1);
+$ease-out:        cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+
+// === COMPONENT TOKENS ===
+
+// Buttons
+$btn-padding-sm:  #{$space-2} #{$space-3};
+$btn-padding-md:  #{$space-3} #{$space-4};
+$btn-padding-lg:  #{$space-4} #{$space-6};
+$btn-padding-xl:  #{$space-5} #{$space-8};
+
+// Cards
+$card-padding:    $space-6;
+$card-radius:     $radius-xl;
+$card-shadow:     $shadow-lg;
+
+// Forms
+$input-padding:   #{$space-3} #{$space-4};
+$input-radius:    $radius-lg;
+$input-border:    1px solid #{$neutral-300};
+
+// === GLOBAL BASE STYLES ===
+
+// Modern CSS Reset
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: $leading-normal;
+  -webkit-font-smoothing: antialiased;
+  font-family: $font-sans;
+  font-size: $text-base;
+  color: $neutral-700;
+  background-color: $neutral-0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+// Typography Scale
+h1 { 
+  font-size: $text-5xl; 
+  font-weight: $font-bold; 
+  line-height: $leading-tight; 
+  color: $neutral-900;
+  margin-bottom: $space-6;
+  font-family: $font-sans;
+}
+
+h2 { 
+  font-size: $text-4xl; 
+  font-weight: $font-semibold; 
+  line-height: $leading-tight; 
+  color: $neutral-900;
+  margin-bottom: $space-5;
+  font-family: $font-sans;
+}
+
+h3 { 
+  font-size: $text-3xl; 
+  font-weight: $font-semibold; 
+  line-height: $leading-snug; 
+  color: $neutral-800;
+  margin-bottom: $space-4;
+  font-family: $font-sans;
+}
+
+h4 { 
+  font-size: $text-2xl; 
+  font-weight: $font-medium; 
+  line-height: $leading-snug; 
+  color: $neutral-800;
+  margin-bottom: $space-4;
+  font-family: $font-sans;
+}
+
+h5 { 
+  font-size: $text-xl; 
+  font-weight: $font-medium; 
+  line-height: $leading-snug; 
+  color: $neutral-700;
+  margin-bottom: $space-3;
+  font-family: $font-sans;
+}
+
+h6 { 
+  font-size: $text-lg; 
+  font-weight: $font-medium; 
+  line-height: $leading-normal; 
+  color: $neutral-700;
+  margin-bottom: $space-3;
+  font-family: $font-sans;
+}
+
+p {
+  font-size: $text-base;  // Now 18px instead of 16px
+  line-height: $leading-relaxed;
+  margin-bottom: $space-4;
+  color: $neutral-600;
+}
+
+.lead {
+  font-size: $text-xl;  // Now 24px instead of 20px
+  line-height: $leading-relaxed;
+  font-weight: $font-light;
+  color: $neutral-600;
+}
+
+// Links
+a {
+  color: $primary-600;
+  text-decoration: none;
+  transition: color $duration-200 $ease-out;
+  
+  &:hover {
+    color: $primary-700;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    outline: 2px solid $primary-500;
+    outline-offset: 2px;
+  }
+}
+
+// Utility Classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-sans { font-family: $font-sans; }
+.font-serif { font-family: $font-serif; }
+.font-mono { font-family: $font-mono; }
+
+.text-primary { color: $primary-600; }
+.text-secondary { color: $neutral-600; }
+.text-muted { color: $neutral-500; }
+.text-white { color: $neutral-0; }
+
+.bg-primary { background-color: $primary-600; }
+.bg-secondary { background-color: $neutral-100; }
+.bg-white { background-color: $neutral-0; }
+
+// Import component styles
+@import "mixins", "base", "buttons", "contact", "projects", "hero-sections", "layouts", "collection";

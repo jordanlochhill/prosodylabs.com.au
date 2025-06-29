@@ -1,0 +1,974 @@
+// Layout-specific styles
+// Moving all inline styles from _layouts to proper SCSS
+
+// === COMMON LAYOUT ELEMENTS ===
+
+// Post layout styles
+.post-navigation {
+    margin-top: 50px;
+}
+
+.site-footer {
+    margin-top: 100px;
+    padding: 30px 0;
+    background-color: #f8f8f8;
+}
+
+// === HERO SECTIONS FOR DIFFERENT LAYOUTS ===
+
+// Common hero section base
+.layout-hero {
+    padding: 120px 0 80px 0;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+    
+    .hero-bg-image {
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    
+    .hero-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.1;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .hero-category {
+        margin-bottom: 20px;
+        
+        .category-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+    }
+    
+    .hero-title {
+        color: white;
+        font-size: 48px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .hero-subtitle {
+        color: rgba(255,255,255,0.9);
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 40px;
+        line-height: 1.4;
+        text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    }
+    
+    .hero-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: rgba(255,255,255,0.8);
+        font-size: 16px;
+        flex-wrap: wrap;
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            
+            i {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+// Blog layout hero
+.blog-hero {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+// Project layout hero
+.project-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+// Publication layout hero
+.publication-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+    
+    .hero-authors {
+        color: rgba(255,255,255,0.9);
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+    
+    .hero-venue {
+        color: rgba(255,255,255,0.8);
+        font-size: 18px;
+        font-style: italic;
+        margin-bottom: 30px;
+        
+        i {
+            margin-right: 8px;
+            opacity: 0.8;
+        }
+    }
+    
+    .hero-title {
+        font-size: 42px;
+    }
+}
+
+// Course layout hero
+.course-hero {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    padding: 120px 0 80px 0;
+    margin-top: 0;
+    
+    .course-icon-container {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        background: rgba(255,255,255,0.15);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        margin-bottom: 30px;
+        
+        i {
+            font-size: 48px;
+            color: white;
+        }
+    }
+    
+    .course-category {
+        margin-bottom: 20px;
+        
+        .category-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+    }
+    
+    .course-meta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        color: rgba(255,255,255,0.8);
+        font-size: 16px;
+        flex-wrap: wrap;
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            
+            i {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+// Collection layout
+.collection-layout {
+    padding: 120px 0 80px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    .container {
+        flex: 1;
+    }
+    
+    .collection-description {
+        font-size: 18px;
+        margin-bottom: 60px;
+        color: #666;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .collection-empty {
+        margin-bottom: 60px;
+        
+        .empty-section {
+            padding: 40px 0;
+            
+            .btn {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+// === CONTENT SECTIONS ===
+
+// Main content areas
+.layout-content {
+    padding: 80px 0;
+    background: white;
+    
+    .article-body {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #374151;
+    }
+}
+
+// Blog content
+.blog-content {
+    padding: 80px 0;
+    background: white;
+    
+    .featured-image {
+        margin-bottom: 60px;
+        text-align: center;
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .caption {
+            margin-top: 15px;
+            color: #6b7280;
+            font-style: italic;
+            font-size: 16px;
+        }
+    }
+}
+
+// Project content
+.project-content {
+    padding: 80px 0;
+    background: white;
+    
+    .project-image {
+        margin-bottom: 60px;
+        text-align: center;
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+    }
+}
+
+// Publication content
+.publication-content {
+    padding: 80px 0;
+    background: white;
+}
+
+// Course content
+.course-content {
+    padding: 80px 0;
+    background: white;
+}
+
+// === INFORMATION BOXES ===
+
+// Abstract/summary boxes
+.abstract-section {
+    padding: 80px 0;
+    background: #f8fafc;
+    
+    .abstract-box {
+        background: white;
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        border-left: 6px solid #f05f40;
+        
+        h3 {
+            color: #1f2937;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            
+            i {
+                color: #f05f40;
+            }
+        }
+        
+        p {
+            color: #4b5563;
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 0;
+        }
+    }
+}
+
+// Info boxes for different content types
+.info-box {
+    margin: 60px 0;
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 4px solid;
+    
+    h3 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    // Tags info box
+    &.tags-box {
+        background: #f8fafc;
+        border-left-color: #10b981;
+        
+        h3 {
+            color: #374151;
+            
+            i {
+                color: #10b981;
+            }
+        }
+        
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            
+            .tag {
+                background: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+                color: #6b7280;
+                border: 1px solid #e5e7eb;
+                font-weight: 500;
+            }
+        }
+    }
+    
+    // Technology stack box
+    &.tech-box {
+        background: #f9fafb;
+        border-left-color: #f05f40;
+        
+        h3 {
+            color: #374151;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            
+            .tech-tag {
+                background: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+                color: #6b7280;
+                border: 1px solid #e5e7eb;
+                font-weight: 500;
+            }
+        }
+    }
+    
+    // Learning outcomes box
+    &.outcomes-box {
+        background: #f0f9ff;
+        border-left-color: #0ea5e9;
+        
+        h3 {
+            color: #0ea5e9;
+            
+            i {
+                margin-right: 8px;
+            }
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            
+            li {
+                padding: 8px 0;
+                color: #1e40af;
+                display: flex;
+                align-items: flex-start;
+                
+                i {
+                    margin-right: 12px;
+                    margin-top: 4px;
+                    color: #10b981;
+                }
+            }
+        }
+    }
+    
+    // Prerequisites box
+    &.prerequisites-box {
+        background: #fef3c7;
+        border-left-color: #f59e0b;
+        
+        h3 {
+            color: #d97706;
+            
+            i {
+                margin-right: 8px;
+            }
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            
+            li {
+                padding: 8px 0;
+                color: #92400e;
+                display: flex;
+                align-items: flex-start;
+                
+                i {
+                    margin-right: 12px;
+                    margin-top: 4px;
+                    color: #d97706;
+                }
+            }
+        }
+    }
+    
+    // Tools box
+    &.tools-box {
+        background: #f9fafb;
+        border-left-color: #6b7280;
+        
+        h3 {
+            color: #374151;
+        }
+        
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            
+            .tool-tag {
+                background: white;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 14px;
+                color: #6b7280;
+                border: 1px solid #e5e7eb;
+                font-weight: 500;
+            }
+        }
+    }
+    
+    // Publication tags box
+    &.pub-tags-box {
+        background: #f8fafc;
+        border-left-color: #3b82f6;
+        
+        h3 {
+            color: #374151;
+            
+            i {
+                color: #3b82f6;
+            }
+        }
+    }
+}
+
+// === COURSE DETAILS GRID ===
+.course-details {
+    padding: 60px 0;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+    
+    .detail-card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-left: 4px solid;
+        
+        h4 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .price-note {
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+        
+        .payment-required {
+            color: #dc2626;
+            font-size: 14px;
+            font-weight: 500;
+            
+            i {
+                margin-right: 4px;
+            }
+        }
+        
+        .format-details {
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .format-description {
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+        
+        .location {
+            color: #6b7280;
+            font-size: 14px;
+            
+            i {
+                margin-right: 4px;
+            }
+        }
+        
+        .capacity {
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .capacity-note {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        // Card type colors
+        &.pricing-card {
+            border-left-color: #4f46e5;
+            
+            h4 {
+                color: #4f46e5;
+            }
+        }
+        
+        &.format-card {
+            border-left-color: #059669;
+            
+            h4 {
+                color: #059669;
+            }
+        }
+        
+        &.capacity-card {
+            border-left-color: #dc2626;
+            
+            h4 {
+                color: #dc2626;
+            }
+        }
+    }
+}
+
+// === ACTION SECTIONS ===
+
+// Call to action sections
+.cta-section {
+    padding: 80px 0;
+    color: white;
+    
+    &.course-cta {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    }
+    
+    h2 {
+        margin-bottom: 30px;
+        font-size: 36px;
+        font-weight: 300;
+    }
+    
+    p {
+        margin-bottom: 40px;
+        font-size: 18px;
+        opacity: 0.9;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .contact-note {
+        margin-top: 30px;
+        font-size: 14px;
+        opacity: 0.7;
+        
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}
+
+// Action links sections
+.action-links {
+    padding: 60px 0;
+    border-top: 1px solid #e5e7eb;
+    
+    &.publications-actions {
+        background: #f8fafc;
+    }
+    
+    &.blog-actions {
+        background: #f8fafc;
+    }
+    
+    &.project-actions {
+        background: #f9fafb;
+    }
+    
+    h3 {
+        margin-bottom: 40px;
+        color: #374151;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    
+    .citation-section {
+        display: none;
+        text-align: left;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        
+        h4 {
+            margin-bottom: 20px;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+            i {
+                color: #6b7280;
+            }
+        }
+        
+        .bibtex-code {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+}
+
+// Navigation sections
+.content-navigation {
+    padding: 60px 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #6b7280;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: #374151;
+        }
+    }
+    
+    .primary-nav {
+        background: #f05f40;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background: darken(#f05f40, 10%);
+            color: white;
+        }
+    }
+}
+
+// === BUTTON STYLES ===
+
+// Action buttons for layouts
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &.btn-download {
+        background: #dc2626;
+        color: white;
+        
+        &:hover {
+            background: darken(#dc2626, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-view {
+        background: #0891b2;
+        color: white;
+        
+        &:hover {
+            background: darken(#0891b2, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-cite {
+        background: #ea580c;
+        color: white;
+        
+        &:hover {
+            background: darken(#ea580c, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-bibtex {
+        background: #374151;
+        color: white;
+        border: none;
+        cursor: pointer;
+        
+        &:hover {
+            background: darken(#374151, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-demo {
+        background: #f05f40;
+        color: white;
+        
+        &:hover {
+            background: darken(#f05f40, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-github {
+        background: #374151;
+        color: white;
+        
+        &:hover {
+            background: darken(#374151, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-docs {
+        background: #3b82f6;
+        color: white;
+        
+        &:hover {
+            background: darken(#3b82f6, 10%);
+            color: white;
+        }
+    }
+    
+    &.btn-enroll {
+        background: white;
+        color: #4f46e5;
+        
+        &:hover {
+            background: #f8fafc;
+            color: #4f46e5;
+        }
+    }
+    
+    &.btn-info {
+        background: rgba(255,255,255,0.1);
+        color: white;
+        
+        &:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+    }
+}
+
+// === RESPONSIVE DESIGN ===
+
+@media (max-width: 768px) {
+    .layout-hero {
+        padding: 80px 0 60px 0;
+        margin-top: 60px;
+        
+        .hero-title {
+            font-size: 36px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+        }
+        
+        .hero-meta {
+            gap: 15px;
+            font-size: 14px;
+        }
+    }
+    
+    .course-details .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-box {
+        margin: 40px 0;
+        padding: 20px;
+    }
+    
+    .cta-section {
+        padding: 60px 0;
+        
+        h2 {
+            font-size: 28px;
+        }
+        
+        .cta-buttons {
+            gap: 15px;
+        }
+    }
+    
+    .content-navigation .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .action-buttons {
+        gap: 10px !important;
+    }
+    
+    .action-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .layout-hero .hero-title {
+        font-size: 28px;
+    }
+    
+    .layout-hero .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .info-box {
+        padding: 15px;
+    }
+    
+    .course-details .detail-card {
+        padding: 20px;
+    }
+    
+    .abstract-section .abstract-box {
+        padding: 30px 20px;
+    }
+} 

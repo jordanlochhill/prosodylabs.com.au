@@ -4,7 +4,7 @@
 {% include head.html %}
 
 <body class="page-top">
-    {% include sidebar-nav.html %}
+    {% include nav.html %}
 
     <!-- Course-specific Table of Contents -->
     <div id="courseTOC" class="course-toc-sidebar">
@@ -36,97 +36,59 @@
 
     <article class="course-article">
         <!-- Hero Section -->
-        <header class="course-hero"
-            style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); padding: 120px 0 80px 0; margin-top: 0; position: relative; overflow: hidden;">
-            <!-- Hero Image Container -->
-            <div class="hero-image-container"
-                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;">
-                {% if page.hero_image %}
-                <div class="hero-image"
-                    style="background-image: url('{{ page.hero_image | relative_url }}'); background-size: cover; background-position: center; opacity: 0.2; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-                </div>
-                {% else %}
-                <!-- Default hero pattern -->
-                <div class="hero-pattern"
-                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.1;">
-                    <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="coursePattern" patternUnits="userSpaceOnUse" width="40" height="40">
-                                <circle cx="20" cy="20" r="2" fill="white" opacity="0.3" />
-                                <path d="M10,20 L30,20 M20,10 L20,30" stroke="white" stroke-width="0.5" opacity="0.2" />
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#coursePattern)" />
-                    </svg>
-                </div>
-                {% endif %}
+        <header class="layout-hero course-hero">
+            <div class="hero-bg-image" {% if page.hero_image
+                %}style="background-image: url('{{ page.hero_image | relative_url }}');" {% endif %}></div>
+            {% unless page.hero_image %}
+            <div class="hero-pattern">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="coursePattern" patternUnits="userSpaceOnUse" width="40" height="40">
+                            <circle cx="20" cy="20" r="2" fill="white" opacity="0.3" />
+                            <path d="M10,20 L30,20 M20,10 L20,30" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#coursePattern)" />
+                </svg>
             </div>
+            {% endunless %}
 
-            <!-- Hero Content -->
-            <div class="container" style="position: relative; z-index: 2;">
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <!-- Course Icon -->
-                        <div style="margin-bottom: 30px;">
-                            {% if page.course_icon %}
-                            <div
-                                style="width: 100px; height: 100px; margin: 0 auto; background: rgba(255,255,255,0.15); border-radius: 20px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
-                                <i class="{{ page.course_icon }}" style="font-size: 48px; color: white;"></i>
-                            </div>
-                            {% else %}
-                            <div
-                                style="width: 100px; height: 100px; margin: 0 auto; background: rgba(255,255,255,0.15); border-radius: 20px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px);">
-                                <i class="fa fa-graduation-cap" style="font-size: 48px; color: white;"></i>
-                            </div>
-                            {% endif %}
+                        <div class="course-icon-container">
+                            <i class="{{ page.course_icon | default: 'fa fa-graduation-cap' }}"></i>
                         </div>
 
-                        <!-- Status Badge -->
                         {% if page.status %}
-                        <div style="margin-bottom: 20px;">
-                            <span class="status-badge"
-                                style="background: rgba(255,255,255,0.2); color: white; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; backdrop-filter: blur(10px);">
-                                {{ page.status }}
-                            </span>
+                        <div class="course-category">
+                            <span class="category-badge">{{ page.status }}</span>
                         </div>
                         {% endif %}
 
-                        <!-- Title -->
-                        <h1
-                            style="color: white; font-size: 48px; font-weight: 300; margin-bottom: 20px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
-                            {{ page.title }}
-                        </h1>
+                        <h1 class="hero-title">{{ page.title }}</h1>
 
-                        <!-- Subtitle -->
                         {% if page.subtitle %}
-                        <p
-                            style="color: rgba(255,255,255,0.9); font-size: 24px; font-weight: 300; margin-bottom: 40px; line-height: 1.4; text-shadow: 0 1px 5px rgba(0,0,0,0.3);">
-                            {{ page.subtitle }}
-                        </p>
+                        <p class="hero-subtitle">{{ page.subtitle }}</p>
                         {% endif %}
 
-                        <!-- Course Meta Information -->
-                        <div class="course-meta"
-                            style="display: flex; justify-content: center; align-items: center; gap: 30px; color: rgba(255,255,255,0.8); font-size: 16px; flex-wrap: wrap;">
+                        <div class="course-meta">
                             {% if page.price %}
-                            <div
-                                style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; backdrop-filter: blur(10px);">
-                                <i class="fa fa-dollar" style="opacity: 0.8;"></i>
+                            <div class="meta-item">
+                                <i class="fa fa-dollar"></i>
                                 <span>${{ page.price }} {{ page.currency | default: 'AUD' }} {{ page.price_per |
                                     default: 'per person' }}</span>
                             </div>
                             {% endif %}
                             {% if page.duration %}
-                            <div
-                                style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; backdrop-filter: blur(10px);">
-                                <i class="fa fa-clock-o" style="opacity: 0.8;"></i>
+                            <div class="meta-item">
+                                <i class="fa fa-clock-o"></i>
                                 <span>{{ page.duration }}</span>
                             </div>
                             {% endif %}
                             {% if page.max_participants %}
-                            <div
-                                style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 25px; backdrop-filter: blur(10px);">
-                                <i class="fa fa-users" style="opacity: 0.8;"></i>
+                            <div class="meta-item">
+                                <i class="fa fa-users"></i>
                                 <span>Max {{ page.max_participants }} participants</span>
                             </div>
                             {% endif %}
@@ -137,59 +99,38 @@
         </header>
 
         <!-- Course Details Section -->
-        <section style="padding: 60px 0; background: #f9fafb; border-bottom: 1px solid #e5e7eb;">
+        <section class="course-details">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <div
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                            <!-- Pricing Card -->
-                            <div
-                                style="background: white; padding: 30px; border-radius: 12px; border-left: 4px solid #4f46e5; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h4 style="color: #4f46e5; margin-bottom: 15px; font-size: 18px;">
-                                    <i class="fa fa-dollar" style="margin-right: 8px;"></i>Investment
-                                </h4>
-                                <p style="font-size: 24px; font-weight: 600; color: #1f2937; margin-bottom: 10px;">
-                                    ${{ page.price }} {{ page.currency | default: 'AUD' }}
-                                </p>
-                                <p style="color: #6b7280; margin-bottom: 15px;">{{ page.price_per | default: 'per
-                                    person' }}</p>
+                        <div class="details-grid">
+                            <div class="detail-card pricing-card">
+                                <h4><i class="fa fa-dollar"></i>Investment</h4>
+                                <p class="price">${{ page.price }} {{ page.currency | default: 'AUD' }}</p>
+                                <p class="price-note">{{ page.price_per | default: 'per person' }}</p>
                                 {% if page.payment_required %}
-                                <p style="color: #dc2626; font-size: 14px; font-weight: 500;">
-                                    <i class="fa fa-exclamation-circle" style="margin-right: 4px;"></i>Payment required
-                                    {{ page.payment_required }}
+                                <p class="payment-required">
+                                    <i class="fa fa-exclamation-circle"></i>Payment required {{ page.payment_required }}
                                 </p>
                                 {% endif %}
                             </div>
 
-                            <!-- Course Format Card -->
-                            <div
-                                style="background: white; padding: 30px; border-radius: 12px; border-left: 4px solid #059669; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h4 style="color: #059669; margin-bottom: 15px; font-size: 18px;">
-                                    <i class="fa fa-calendar" style="margin-right: 8px;"></i>Format
-                                </h4>
-                                <p style="margin-bottom: 10px; color: #1f2937;">{{ page.duration }}</p>
+                            <div class="detail-card format-card">
+                                <h4><i class="fa fa-calendar"></i>Format</h4>
+                                <p class="format-details">{{ page.duration }}</p>
                                 {% if page.course_format %}
-                                <p style="color: #6b7280; margin-bottom: 10px;">{{ page.course_format }}</p>
+                                <p class="format-description">{{ page.course_format }}</p>
                                 {% endif %}
                                 {% if page.location %}
-                                <p style="color: #6b7280; font-size: 14px;">
-                                    <i class="fa fa-map-marker" style="margin-right: 4px;"></i>{{ page.location }}
-                                </p>
+                                <p class="location"><i class="fa fa-map-marker"></i>{{ page.location }}</p>
                                 {% endif %}
                             </div>
 
-                            <!-- Participants Card -->
-                            <div
-                                style="background: white; padding: 30px; border-radius: 12px; border-left: 4px solid #dc2626; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <h4 style="color: #dc2626; margin-bottom: 15px; font-size: 18px;">
-                                    <i class="fa fa-users" style="margin-right: 8px;"></i>Class Size
-                                </h4>
-                                <p style="margin-bottom: 10px; color: #1f2937;">
-                                    Min {{ page.min_participants | default: 1 }} - Max {{ page.max_participants |
-                                    default: 20 }} people
-                                </p>
-                                <p style="color: #6b7280; font-size: 14px;">Small cohorts for personalized attention</p>
+                            <div class="detail-card capacity-card">
+                                <h4><i class="fa fa-users"></i>Class Size</h4>
+                                <p class="capacity">Min {{ page.min_participants | default: 1 }} - Max {{
+                                    page.max_participants | default: 20 }} people</p>
+                                <p class="capacity-note">Small cohorts for personalized attention</p>
                             </div>
                         </div>
                     </div>
@@ -198,64 +139,42 @@
         </section>
 
         <!-- Main Content -->
-        <main class="course-content" style="padding: 80px 0; background: white;">
+        <main class="course-content layout-content">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <!-- Article Content -->
-                        <div class="article-body" style="font-size: 18px; line-height: 1.8; color: #374151;">
+                        <div class="article-body">
                             {{ content }}
                         </div>
 
-                        <!-- Learning Outcomes -->
                         {% if page.learning_outcomes %}
-                        <div
-                            style="margin: 60px 0; padding: 30px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #0ea5e9;">
-                            <h3 style="margin-bottom: 20px; color: #0ea5e9; font-size: 20px;">
-                                <i class="fa fa-check-circle" style="margin-right: 8px;"></i>Learning Outcomes
-                            </h3>
-                            <ul style="list-style: none; padding: 0;">
+                        <div class="info-box outcomes-box">
+                            <h3><i class="fa fa-check-circle"></i>Learning Outcomes</h3>
+                            <ul>
                                 {% for outcome in page.learning_outcomes %}
-                                <li style="padding: 8px 0; color: #1e40af; display: flex; align-items: flex-start;">
-                                    <i class="fa fa-check"
-                                        style="margin-right: 12px; margin-top: 4px; color: #10b981;"></i>
-                                    <span>{{ outcome }}</span>
-                                </li>
+                                <li><i class="fa fa-check"></i><span>{{ outcome }}</span></li>
                                 {% endfor %}
                             </ul>
                         </div>
                         {% endif %}
 
-                        <!-- Prerequisites -->
                         {% if page.prerequisites %}
-                        <div
-                            style="margin: 60px 0; padding: 30px; background: #fef3c7; border-radius: 12px; border-left: 4px solid #f59e0b;">
-                            <h3 style="margin-bottom: 20px; color: #d97706; font-size: 20px;">
-                                <i class="fa fa-list-ul" style="margin-right: 8px;"></i>Prerequisites
-                            </h3>
-                            <ul style="list-style: none; padding: 0;">
+                        <div class="info-box prerequisites-box">
+                            <h3><i class="fa fa-list-ul"></i>Prerequisites</h3>
+                            <ul>
                                 {% for prereq in page.prerequisites %}
-                                <li style="padding: 8px 0; color: #92400e; display: flex; align-items: flex-start;">
-                                    <i class="fa fa-arrow-right"
-                                        style="margin-right: 12px; margin-top: 4px; color: #d97706;"></i>
-                                    <span>{{ prereq }}</span>
-                                </li>
+                                <li><i class="fa fa-arrow-right"></i><span>{{ prereq }}</span></li>
                                 {% endfor %}
                             </ul>
                         </div>
                         {% endif %}
 
-                        <!-- Tech Stack -->
                         {% if page.tech_stack %}
-                        <div
-                            style="margin: 60px 0; padding: 30px; background: #f9fafb; border-radius: 12px; border-left: 4px solid #6b7280;">
-                            <h3 style="margin-bottom: 20px; color: #374151; font-size: 20px;">Tools & Technologies</h3>
-                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <div class="info-box tools-box">
+                            <h3>Tools & Technologies</h3>
+                            <div class="tools-list">
                                 {% for tech in page.tech_stack %}
-                                <span
-                                    style="background: white; padding: 8px 16px; border-radius: 20px; font-size: 14px; color: #6b7280; border: 1px solid #e5e7eb; font-weight: 500;">
-                                    {{ tech }}
-                                </span>
+                                <span class="tool-tag">{{ tech }}</span>
                                 {% endfor %}
                             </div>
                         </div>
@@ -265,53 +184,41 @@
             </div>
         </main>
 
-        <!-- Enrollment Section -->
-        <section style="padding: 80px 0; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); color: white;">
+        <!-- Enrollment CTA Section -->
+        <section class="cta-section course-cta">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <h2 style="margin-bottom: 30px; font-size: 36px; font-weight: 300;">Ready to Transform Your
-                            Productivity?</h2>
-                        <p style="margin-bottom: 40px; font-size: 18px; opacity: 0.9;">
-                            Join the next cohort and start leveraging AI tools like a technical professional.
-                        </p>
-                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                            <a href="mailto:info@prosodylabs.com.au?subject=Course Enrollment: {{ page.title }}"
-                                class="cta-primary"
-                                style="display: inline-flex; align-items: center; gap: 10px; background: white; color: #4f46e5; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                                <i class="fa fa-check-circle"></i>
-                                <span>Enroll Now</span>
+                        <h2>Ready to Transform Your Workflow?</h2>
+                        <p>Enroll now to secure your spot and start leveraging AI in your professional work.</p>
+                        <div class="cta-buttons">
+                            {% if page.enrollment_link %}
+                            <a href="{{ page.enrollment_link }}" class="action-btn btn-enroll">
+                                <i class="fa fa-rocket"></i> Enroll Now
                             </a>
-                            <a href="mailto:info@prosodylabs.com.au?subject=Course Interest: {{ page.title }}"
-                                class="cta-secondary"
-                                style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);">
-                                <i class="fa fa-bell"></i>
-                                <span>Register Interest</span>
+                            {% endif %}
+                            <a href="mailto:{{ site.email }}" class="action-btn btn-info">
+                                <i class="fa fa-question-circle"></i> Ask a Question
                             </a>
                         </div>
-                        <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">
-                            Questions? Email us at <a href="mailto:info@prosodylabs.com.au"
-                                style="color: white; text-decoration: underline;">info@prosodylabs.com.au</a>
-                        </p>
+                        <p class="contact-note">For group bookings or custom training, please <a
+                                href="mailto:{{ site.email }}">contact us</a>.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Navigation -->
-        <section style="padding: 60px 0; background: white; border-top: 1px solid #e5e7eb;">
+        <section class="content-navigation">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <div
-                            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-                            <a href="{{ '/courses.html' | relative_url }}"
-                                style="display: inline-flex; align-items: center; gap: 8px; color: #6b7280; text-decoration: none; font-size: 16px; transition: color 0.3s ease;">
+                        <div class="nav-container">
+                            <a href="{{ '/courses.html' | relative_url }}" class="nav-link">
                                 <i class="fa fa-arrow-left"></i>
-                                <span>Back to Courses</span>
+                                Back to Courses
                             </a>
-                            <a href="{{ '/' | relative_url }}"
-                                style="background: #f05f40; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;">
+                            <a href="{{ '/' | relative_url }}" class="primary-nav">
                                 Back to Home
                             </a>
                         </div>
@@ -424,291 +331,6 @@
         });
     </script>
 
-    <style>
-        /* Course TOC Styles */
-        .course-toc-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 350px;
-            height: 100vh;
-            background: white;
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: right 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .course-toc-sidebar.active {
-            right: 0;
-        }
-
-        .toc-header {
-            padding: 20px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f9fafb;
-        }
-
-        .toc-header h4 {
-            margin: 0;
-            color: #374151;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .toc-close-btn {
-            background: none;
-            border: none;
-            color: #6b7280;
-            font-size: 18px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .toc-close-btn:hover {
-            background: #e5e7eb;
-            color: #374151;
-        }
-
-        .toc-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .toc-list li {
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .toc-link {
-            display: block;
-            padding: 12px 20px;
-            color: #6b7280;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 14px;
-            line-height: 1.4;
-            border-left: 3px solid transparent;
-        }
-
-        .toc-link:hover {
-            background: #f9fafb;
-            color: #4f46e5;
-            border-left-color: #e5e7eb;
-        }
-
-        .toc-link.active {
-            background: #f0f9ff;
-            color: #4f46e5;
-            border-left-color: #4f46e5;
-            font-weight: 500;
-        }
-
-        .toc-link[data-level="h1"] {
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .toc-link[data-level="h2"] {
-            padding-left: 30px;
-        }
-
-        .toc-link[data-level="h3"] {
-            padding-left: 40px;
-            font-size: 13px;
-        }
-
-        .toc-link[data-level="h4"] {
-            padding-left: 50px;
-            font-size: 13px;
-            color: #9ca3af;
-        }
-
-        .toc-footer {
-            padding: 20px;
-            border-top: 1px solid #e5e7eb;
-            background: #f9fafb;
-        }
-
-        .toc-back-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #6b7280;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-
-        .toc-back-link:hover {
-            color: #4f46e5;
-        }
-
-        .toc-toggle-btn {
-            position: fixed;
-            top: 120px;
-            right: 20px;
-            background: #4f46e5;
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-            z-index: 999;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
-
-        .toc-toggle-btn:hover {
-            background: #4338ca;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
-        }
-
-        .toc-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .toc-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Hero improvements */
-        .course-hero {
-            position: relative;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .course-toc-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-
-            .toc-toggle-btn {
-                top: 80px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 14px;
-            }
-
-            .course-hero h1 {
-                font-size: 32px !important;
-            }
-
-            .course-hero .course-meta {
-                flex-direction: column !important;
-                gap: 15px !important;
-            }
-
-            .course-hero .course-meta>div {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Article Typography */
-        .article-body h1,
-        .article-body h2,
-        .article-body h3,
-        .article-body h4,
-        .article-body h5,
-        .article-body h6 {
-            color: #111827;
-            font-weight: 600;
-            line-height: 1.3;
-            margin: 40px 0 20px 0;
-        }
-
-        .article-body h1 {
-            font-size: 36px;
-        }
-
-        .article-body h2 {
-            font-size: 30px;
-        }
-
-        .article-body h3 {
-            font-size: 24px;
-        }
-
-        .article-body h4 {
-            font-size: 20px;
-        }
-
-        .article-body p {
-            margin-bottom: 24px;
-            line-height: 1.8;
-        }
-
-        .article-body ul,
-        .article-body ol {
-            margin: 24px 0;
-            padding-left: 30px;
-        }
-
-        .article-body li {
-            margin-bottom: 8px;
-            line-height: 1.7;
-        }
-
-        .article-body blockquote {
-            margin: 30px 0;
-            padding: 20px 30px;
-            background: #f8fafc;
-            border-left: 4px solid #e2e8f0;
-            font-style: italic;
-            color: #4a5568;
-        }
-
-        .article-body code {
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            color: #1e293b;
-        }
-
-        .article-body pre {
-            background: #1e293b;
-            color: #f1f5f9;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 30px 0;
-        }
-
-        .article-body pre code {
-            background: none;
-            padding: 0;
-            color: inherit;
-        }
-    </style>
 </body>
 
 </html>
