@@ -1,6 +1,0 @@
----
-description: Never use inline styles when you can use sass or scss. Always review the scss style sheets before adidng or changing the style on the website
-globs: 
-alwaysApply: false
----
-Editing styles any .html or scss or css files

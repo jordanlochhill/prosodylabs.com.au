@@ -1,227 +1,69 @@
 ---
 layout: collection
-title: "Publications"
-description: "Our research contributions to the field of human-centred AI"
-collection_name: "publications"
+title: "Research Publications"
+subtitle: "Advancing the science of AI in education through rigorous research and open collaboration."
+collection: research
+permalink: /publications/
+redirect_to: /research/
 ---
 
-{% assign sorted_publications = site.publications | sort: 'publication_date' | reverse %}
+{% if site.research and site.research.size > 0 %}
+{% assign sorted_publications = site.research | sort: 'date' | reverse %}
+{% else %}
+{% assign sorted_publications = empty %}
+{% endif %}
 
 {% if sorted_publications.size > 0 %}
-<div class="collection-container">
-    <!-- Initial 4 cards -->
-    <div class="row" id="initial-publications">
-        {% for publication in sorted_publications limit:4 %}
-        <div class="col-lg-12 collection-item">
-            <div class="collection-card publication-card">
-
-                <div class="card-header">
-                    <div class="card-header-top">
-                        <h3 class="card-title">
-                            <a href="{{ publication.url | relative_url }}">{{ publication.title }}</a>
-                        </h3>
-                        {% if publication.status %}
-                        <span class="card-status-label">{{ publication.status }}</span>
-                        {% endif %}
-                    </div>
-
-                    {% if publication.authors %}
-                    <p class="card-meta-info">{{ publication.authors | join: ', ' }}</p>
-                    {% endif %}
-
-                    {% if publication.journal or publication.conference or publication.venue %}
-                    <p class="card-subtitle">
-                        {% if publication.journal %}
-                        <i class="fa fa-book"></i>{{ publication.journal }}
-                        {% elsif publication.conference %}
-                        <i class="fa fa-users"></i>{{ publication.conference }}
-                        {% elsif publication.venue %}
-                        <i class="fa fa-map-marker"></i>{{ publication.venue }}
-                        {% endif %}
-                        {% if publication.publication_date %} • {{ publication.publication_date | date: '%Y' }}{% endif
-                        %}
-                        {% if publication.volume %} • Vol. {{ publication.volume }}{% endif %}
-                    </p>
-                    {% endif %}
-                </div>
-
-                {% if publication.abstract %}
-                <div class="card-abstract">
-                    <h5 class="abstract-title">Abstract</h5>
-                    <p class="abstract-text">{{ publication.abstract | truncatewords: 50 }}</p>
-                </div>
-                {% endif %}
-
-                {% if publication.keywords %}
-                <div class="card-keywords-section">
-                    <h6 class="keywords-title">Keywords</h6>
-                    <div>
-                        {% for keyword in publication.keywords limit:5 %}
-                        <span class="keyword-badge">{{ keyword }}</span>
-                        {% endfor %}
-                        {% if publication.keywords.size > 5 %}
-                        <span class="keyword-badge more">+{{ publication.keywords.size | minus: 5 }} more</span>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-
-                <div class="card-actions">
-                    <a href="{{ publication.url | relative_url }}" class="btn btn-primary">
-                        Read Full Paper <i class="fa fa-arrow-right"></i>
-                    </a>
-                    {% if publication.pdf_url %}
-                    <a href="{{ publication.pdf_url }}" class="btn btn-outline btn-pdf" target="_blank">
-                        <i class="fa fa-file-pdf-o"></i> PDF
-                    </a>
-                    {% endif %}
-                    {% if publication.doi %}
-                    <a href="https://doi.org/{{ publication.doi }}" class="btn btn-outline btn-doi" target="_blank">
-                        <i class="fa fa-external-link"></i> DOI
-                    </a>
-                    {% endif %}
-                </div>
+<div class="research-list">
+    {% for publication in sorted_publications %}
+    <div class="research-item">
+        <div class="research-meta">
+            <div class="research-type">Publication</div>
+            <div class="research-date">{{ publication.date | date: '%b %d, %Y' }}</div>
+        </div>
+        <div class="research-content">
+            <h3 class="research-title">
+                <a href="{{ publication.url | relative_url }}">{{ publication.title }}</a>
+            </h3>
+            <div class="research-summary">
+                {{ publication.summary | default: publication.abstract | strip_html | truncatewords: 40 }}
             </div>
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- Expand button (only show if more than 4 publications) -->
-    {% if sorted_publications.size > 4 %}
-    <div class="row expand-section">
-        <div class="col-lg-12 text-center">
-            <button id="expand-publications-btn" class="btn btn-outline btn-primary btn-lg">
-                <i class="fa fa-chevron-down"></i> Show {{ sorted_publications.size | minus: 4 }} More Publications
-            </button>
-        </div>
-    </div>
-
-    <!-- Additional publications (hidden initially) -->
-    <div id="additional-publications">
-        <div class="scrollable-section">
-            <div class="row">
-                {% for publication in sorted_publications offset:4 %}
-                <div class="col-lg-12 collection-item">
-                    <div class="collection-card publication-card">
-
-                        <div class="card-header">
-                            <div class="card-header-top">
-                                <h3 class="card-title">
-                                    <a href="{{ publication.url | relative_url }}">{{ publication.title }}</a>
-                                </h3>
-                                {% if publication.status %}
-                                <span class="card-status-label">{{ publication.status }}</span>
-                                {% endif %}
-                            </div>
-
-                            {% if publication.authors %}
-                            <p class="card-meta-info">{{ publication.authors | join: ', ' }}</p>
-                            {% endif %}
-
-                            {% if publication.journal or publication.conference or publication.venue %}
-                            <p class="card-subtitle">
-                                {% if publication.journal %}
-                                <i class="fa fa-book"></i>{{ publication.journal }}
-                                {% elsif publication.conference %}
-                                <i class="fa fa-users"></i>{{ publication.conference }}
-                                {% elsif publication.venue %}
-                                <i class="fa fa-map-marker"></i>{{ publication.venue }}
-                                {% endif %}
-                                {% if publication.publication_date %} • {{ publication.publication_date | date: '%Y'
-                                }}{% endif %}
-                                {% if publication.volume %} • Vol. {{ publication.volume }}{% endif %}
-                            </p>
-                            {% endif %}
-                        </div>
-
-                        {% if publication.abstract %}
-                        <div class="card-abstract">
-                            <h5 class="abstract-title">Abstract</h5>
-                            <p class="abstract-text">{{ publication.abstract | truncatewords: 50 }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if publication.keywords %}
-                        <div class="card-keywords-section">
-                            <h6 class="keywords-title">Keywords</h6>
-                            <div>
-                                {% for keyword in publication.keywords limit:5 %}
-                                <span class="keyword-badge">{{ keyword }}</span>
-                                {% endfor %}
-                                {% if publication.keywords.size > 5 %}
-                                <span class="keyword-badge more">+{{ publication.keywords.size | minus: 5 }} more</span>
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% endif %}
-
-                        <div class="card-actions">
-                            <a href="{{ publication.url | relative_url }}" class="btn btn-primary">
-                                Read Full Paper <i class="fa fa-arrow-right"></i>
-                            </a>
-                            {% if publication.pdf_url %}
-                            <a href="{{ publication.pdf_url }}" class="btn btn-outline btn-pdf" target="_blank">
-                                <i class="fa fa-file-pdf-o"></i> PDF
-                            </a>
-                            {% endif %}
-                            {% if publication.doi %}
-                            <a href="https://doi.org/{{ publication.doi }}" class="btn btn-outline btn-doi"
-                                target="_blank">
-                                <i class="fa fa-external-link"></i> DOI
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+            {% if publication.authors %}
+            <div class="research-authors">
+                {% for author in publication.authors limit:3 %}
+                {{ author }}{% unless forloop.last %}, {% endunless %}
                 {% endfor %}
+                {% if publication.authors.size > 3 %}
+                and {{ publication.authors.size | minus: 3 }} others
+                {% endif %}
             </div>
+            {% endif %}
+            {% if publication.venue %}
+            <div class="research-venue">{{ publication.venue }}</div>
+            {% endif %}
         </div>
-
-        <!-- Collapse button -->
-        <div class="row collapse-section">
-            <div class="col-lg-12 text-center">
-                <button id="collapse-publications-btn" class="btn btn-outline btn-secondary">
-                    <i class="fa fa-chevron-up"></i> Show Less
-                </button>
-            </div>
+        <div class="research-actions">
+            {% if publication.pdf_url %}
+            <a href="{{ publication.pdf_url }}" class="research-link" target="_blank">
+                <i class="fa fa-download"></i>
+            </a>
+            {% endif %}
+            {% if publication.doi %}
+            <a href="https://doi.org/{{ publication.doi }}" class="research-link" target="_blank">
+                <i class="fa fa-external-link"></i>
+            </a>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
+    {% endfor %}
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const expandBtn = document.getElementById('expand-publications-btn');
-        const collapseBtn = document.getElementById('collapse-publications-btn');
-        const additionalSection = document.getElementById('additional-publications');
-
-        if (expandBtn) {
-            expandBtn.addEventListener('click', function () {
-                additionalSection.style.display = 'block';
-                this.style.display = 'none';
-                if (collapseBtn) {
-                    collapseBtn.style.display = 'inline-block';
-                }
-            });
-        }
-
-        if (collapseBtn) {
-            collapseBtn.style.display = 'none'; // Initially hide collapse button
-            collapseBtn.addEventListener('click', function () {
-                additionalSection.style.display = 'none';
-                this.style.display = 'none';
-                if (expandBtn) {
-                    expandBtn.style.display = 'inline-block';
-                }
-            });
-        }
-    });
-</script>
-
 {% else %}
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <p>There are no publications yet. Please check back later.</p>
+<div class="research-empty">
+    <div class="empty-content">
+        <h3>Research in Progress</h3>
+        <p>We're developing groundbreaking research in AI education and human-centered technology. Our publications will
+            be available here soon.</p>
     </div>
 </div>
 {% endif %}

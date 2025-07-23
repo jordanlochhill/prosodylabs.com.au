@@ -10,3 +10,4 @@ gem "jekyll-feed", "~> 0.12"
 gem 'csv'
 gem 'base64'
 gem 'bigdecimal'
+gem 'jemoji'

@@ -1,11 +1,18 @@
 ---
 layout: collection
-title: "Blog"
-description: "Insights, discoveries, and thoughts from the Prosody Labs team"
-collection_name: "blog"
+title: "Insights & Analysis"
+subtitle: "Deep dives into the intersection of artificial intelligence and education, from technical guides to policy
+discussions."
+collection: insights
+permalink: /blog/
+redirect_to: /insights/
 ---
 
-{% assign sorted_posts = site.blog | sort: 'date' | reverse %}
+{% if site.insights and site.insights.size > 0 %}
+{% assign sorted_posts = site.insights | sort: 'date' | reverse %}
+{% else %}
+{% assign sorted_posts = empty %}
+{% endif %}
 
 {% if sorted_posts.size > 0 %}
 <div class="collection-container">

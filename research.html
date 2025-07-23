@@ -1,0 +1,67 @@
+---
+layout: collection
+title: "Research Publications"
+subtitle: "Advancing the science of AI in education through rigorous research and open collaboration."
+collection: research
+---
+
+{% if site.research and site.research.size > 0 %}
+{% assign sorted_publications = site.research | sort: 'date' | reverse %}
+{% else %}
+{% assign sorted_publications = empty %}
+{% endif %}
+
+{% if sorted_publications.size > 0 %}
+<div class="research-list">
+    {% for publication in sorted_publications %}
+    <div class="research-item">
+        <div class="research-meta">
+            <div class="research-type">Publication</div>
+            <div class="research-date">{{ publication.date | date: '%b %d, %Y' }}</div>
+        </div>
+        <div class="research-content">
+            <h3 class="research-title">
+                <a href="{{ publication.url | relative_url }}">{{ publication.title }}</a>
+            </h3>
+            <div class="research-summary">
+                {{ publication.summary | default: publication.abstract | strip_html | truncatewords: 40 }}
+            </div>
+            {% if publication.authors %}
+            <div class="research-authors">
+                {% for author in publication.authors limit:3 %}
+                {{ author }}{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+                {% if publication.authors.size > 3 %}
+                and {{ publication.authors.size | minus: 3 }} others
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if publication.venue %}
+            <div class="research-venue">{{ publication.venue }}</div>
+            {% endif %}
+        </div>
+        <div class="research-actions">
+            {% if publication.pdf_url %}
+            <a href="{{ publication.pdf_url }}" class="research-link" target="_blank">
+                <i class="fa fa-download"></i>
+            </a>
+            {% endif %}
+            {% if publication.doi %}
+            <a href="https://doi.org/{{ publication.doi }}" class="research-link" target="_blank">
+                <i class="fa fa-external-link"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="research-empty">
+    <div class="empty-content">
+        <h3>Research in Progress</h3>
+        <p>We're developing groundbreaking research in AI education and human-centered technology. Our publications will
+            be available here soon.</p>
+    </div>
+</div>
+{% endif %}

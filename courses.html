@@ -3,6 +3,7 @@ layout: collection
 title: "Our Courses"
 description: "Professional training programs to enhance your AI productivity skills"
 collection_name: "courses"
+hero_image: "assets/images/courses/hero-image.jpg"
 ---
 
 <!-- Search and Filter Section -->
@@ -55,118 +56,63 @@ collection_name: "courses"
     <!-- Course Cards -->
     <div class="row" id="courses-list">
         {% for course in site.courses %}
-        <div class="col-lg-6 collection-item course-card-container" data-course='{{ course | jsonify | escape }}'
+        <div class="col-lg-6 collection-item" data-course='{{ course | jsonify | escape }}'
             data-tags="{{ course.tech_stack | join: ',' | downcase }}"
             data-category="{{ course.target_audience | downcase }}" data-title="{{ course.title | downcase }}"
             data-description="{{ course.excerpt | strip_html | downcase }}">
-            <div class="collection-card course-card">
-
-                <!-- Course Header -->
+            <div class="collection-card">
+                <div class="item-image">
+                    {% if course.image %}
+                    <img src="{{ course.image | relative_url }}" alt="{{ course.title }}" />
+                    {% else %}
+                    <div class="fallback-image"
+                        style="background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%); height:200px; display:flex; align-items:center; justify-content:center; border-radius:16px;">
+                        <i class="fa fa-graduation-cap" style="font-size:3rem; opacity:0.8; color:white;"></i>
+                    </div>
+                    {% endif %}
+                </div>
                 <div class="card-header">
-                    <div class="card-header-top">
-                        <h3 class="card-title">
-                            <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
-                        </h3>
-                        {% if course.status %}
-                        <span class="card-status-label">{{ course.status }}</span>
-                        {% endif %}
-                    </div>
+                    <h3 class="card-title">
+                        <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
+                    </h3>
 
-                    <!-- Course Meta Info -->
-                    <div class="card-meta-info">
-                        {% if course.price %}
-                        <div class="meta-tag price">
-                            <i class="fa fa-dollar"></i>
-                            <span>${{ course.price }} {{ course.currency | default: 'AUD' }}</span>
-                        </div>
-                        {% endif %}
-                        {% if course.duration %}
-                        <div class="meta-tag duration">
-                            <i class="fa fa-clock-o"></i>
-                            <span>{{ course.duration }}</span>
-                        </div>
-                        {% endif %}
-                        {% if course.max_participants %}
-                        <div class="meta-tag capacity">
-                            <i class="fa fa-users"></i>
-                            <span>Max {{ course.max_participants }} people</span>
-                        </div>
-                        {% endif %}
-                    </div>
+                    {% if course.status %}
+                    <span class="card-status">{{ course.status }}</span>
+                    {% endif %}
 
-                    {% if course.subtitle %}
-                    <p class="card-subtitle">
-                        <i class="fa fa-graduation-cap"></i>{{ course.subtitle }}
+                    <!-- Brief Summary -->
+                    <p class="card-summary">
+                        {{ course.excerpt | strip_html | truncatewords: 15 }}
                     </p>
+                </div>
+
+                <!-- Essential Meta Info Only -->
+                <div class="card-meta">
+                    {% if course.price %}
+                    <div class="meta-item">
+                        <i class="fa fa-dollar-sign"></i>
+                        <span>${{ course.price }} {{ course.currency | default: 'AUD' }}</span>
+                    </div>
+                    {% endif %}
+                    {% if course.duration %}
+                    <div class="meta-item">
+                        <i class="fa fa-clock"></i>
+                        <span>{{ course.duration }}</span>
+                    </div>
+                    {% endif %}
+                    {% if course.max_participants %}
+                    <div class="meta-item">
+                        <i class="fa fa-users"></i>
+                        <span>Max {{ course.max_participants }} people</span>
+                    </div>
                     {% endif %}
                 </div>
 
-                <!-- Course Description -->
-                {% if course.excerpt or course.content %}
-                <div class="card-abstract">
-                    <h5 class="abstract-title">Course Overview</h5>
-                    <p class="abstract-text">
-                        {% if course.excerpt %}
-                        {{ course.excerpt | strip_html | truncatewords: 30 }}
-                        {% else %}
-                        {{ course.content | strip_html | truncatewords: 30 }}
-                        {% endif %}
-                    </p>
-                </div>
-                {% endif %}
-
-                <!-- Learning Outcomes Preview -->
-                {% if course.learning_outcomes %}
-                <div class="card-keywords-section">
-                    <h6 class="keywords-title">Key Learning Outcomes</h6>
-                    <div>
-                        {% for outcome in course.learning_outcomes limit:3 %}
-                        <div class="outcome-item">
-                            <i class="fa fa-check"></i>
-                            <span>{{ outcome }}</span>
-                        </div>
-                        {% endfor %}
-                        {% if course.learning_outcomes.size > 3 %}
-                        <p class="more-items-text">
-                            +{{ course.learning_outcomes.size | minus: 3 }} more learning outcomes
-                        </p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Tech Stack -->
-                {% if course.tech_stack %}
-                <div class="card-keywords-section">
-                    <h6 class="keywords-title">Tools & Technologies</h6>
-                    <div>
-                        {% for tech in course.tech_stack limit:5 %}
-                        <span class="keyword-badge">{{ tech }}</span>
-                        {% endfor %}
-                        {% if course.tech_stack.size > 5 %}
-                        <span class="keyword-badge more">
-                            +{{ course.tech_stack.size | minus: 5 }} more
-                        </span>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-
-                <!-- Action Buttons -->
+                <!-- Single Action Button -->
                 <div class="card-actions">
-                    <a href="{{ course.url | relative_url }}" class="btn-card-action btn-details">
+                    <a href="{{ course.url | relative_url }}" class="btn-primary">
                         View Details <i class="fa fa-arrow-right"></i>
                     </a>
-                    <div class="action-button-group">
-                        <a href="mailto:info@prosodylabs.com.au?subject=Course Enrollment: {{ course.title }}"
-                            class="btn-card-action btn-enroll">
-                            <i class="fa fa-check-circle"></i> Enroll
-                        </a>
-                        <a href="mailto:info@prosodylabs.com.au?subject=Course Interest: {{ course.title }}"
-                            class="btn-card-action btn-interest">
-                            <i class="fa fa-bell"></i> Interest
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -192,10 +138,12 @@ collection_name: "courses"
 <div class="row collection-cta">
     <div class="col-lg-12">
         <div class="cta-content">
-            <h3>Ready to Level Up Your AI Skills?</h3>
+            <h3>Not finding what you're looking for?</h3>
             <p>
-                Our intensive courses are designed for busy professionals who want to master AI productivity tools
-                without extensive technical backgrounds.
+                We can tailor a course to your specific needs. Please <a
+                    href="mailto:{{ site.email }}?subject=Custom Training Inquiry">contact us</a> and we'll do our best
+                to
+                accommodate your needs.
             </p>
             <a href="mailto:{{ site.email }}?subject=Custom Training Inquiry" class="btn btn-xl btn-cta">Request Custom
                 Training</a>
@@ -217,16 +165,23 @@ collection_name: "courses"
         const searchInput = document.getElementById('courseSearch');
         const clearButton = document.getElementById('clearSearch');
         const filterTags = document.querySelectorAll('.filter-tag');
+        const sidebarFilters = document.querySelectorAll('.filter-option');
         const coursesList = document.getElementById('courses-list');
         const allCourses = Array.from(coursesList.querySelectorAll('.collection-item'));
         const noResultsMessage = document.getElementById('noResults');
         const resultCountSpan = document.getElementById('resultCount');
         const showAllButton = document.getElementById('showAllCourses');
 
-        function filterAndSearch() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const activeFilter = document.querySelector('.filter-tag.active').dataset.filter;
+        // Active filters
+        let activeFilters = {
+            search: '',
+            category: 'all',
+            skillLevel: 'all-levels',
+            courseType: 'all-types',
+            priceRange: 'all-prices'
+        };
 
+        function filterAndSearch() {
             let visibleCourses = 0;
 
             allCourses.forEach(course => {
@@ -236,20 +191,41 @@ collection_name: "courses"
                 const tags = course.dataset.tags;
                 const category = course.dataset.category;
 
-                // Filter logic
-                const filterMatch = activeFilter === 'all' ||
-                    (activeFilter === 'ai-tools' && tags.includes('ai')) ||
-                    (activeFilter === 'productivity' && tags.includes('productivity')) ||
-                    (activeFilter === 'technical' && (tags.includes('technical') || category.includes('technical')));
-
                 // Search logic
-                const searchMatch = !searchTerm ||
-                    title.includes(searchTerm) ||
-                    description.includes(searchTerm) ||
-                    tags.includes(searchTerm) ||
-                    category.includes(searchTerm);
+                const searchMatch = !activeFilters.search ||
+                    title.includes(activeFilters.search) ||
+                    description.includes(activeFilters.search) ||
+                    tags.includes(activeFilters.search) ||
+                    category.includes(activeFilters.search);
 
-                if (filterMatch && searchMatch) {
+                // Category filter logic
+                const categoryMatch = activeFilters.category === 'all' ||
+                    (activeFilters.category === 'ai-tools' && tags.includes('ai')) ||
+                    (activeFilters.category === 'productivity' && tags.includes('productivity')) ||
+                    (activeFilters.category === 'technical' && (tags.includes('technical') || category.includes('technical')));
+
+                // Skill level filter logic (based on course data or tags)
+                const skillMatch = activeFilters.skillLevel === 'all-levels' ||
+                    (activeFilters.skillLevel === 'beginner' && (courseData.skill_level === 'beginner' || tags.includes('beginner'))) ||
+                    (activeFilters.skillLevel === 'intermediate' && (courseData.skill_level === 'intermediate' || tags.includes('intermediate'))) ||
+                    (activeFilters.skillLevel === 'advanced' && (courseData.skill_level === 'advanced' || tags.includes('advanced')));
+
+                // Course type filter logic
+                const typeMatch = activeFilters.courseType === 'all-types' ||
+                    (activeFilters.courseType === 'workshop' && (courseData.course_type === 'workshop' || tags.includes('workshop'))) ||
+                    (activeFilters.courseType === 'intensive' && (courseData.course_type === 'intensive' || tags.includes('intensive'))) ||
+                    (activeFilters.courseType === 'masterclass' && (courseData.course_type === 'masterclass' || tags.includes('masterclass')));
+
+                // Price range filter logic
+                let priceMatch = activeFilters.priceRange === 'all-prices';
+                if (!priceMatch && courseData.price) {
+                    const price = parseInt(courseData.price);
+                    if (activeFilters.priceRange === 'under-300' && price < 300) priceMatch = true;
+                    else if (activeFilters.priceRange === '300-600' && price >= 300 && price <= 600) priceMatch = true;
+                    else if (activeFilters.priceRange === 'over-600' && price > 600) priceMatch = true;
+                }
+
+                if (searchMatch && categoryMatch && skillMatch && typeMatch && priceMatch) {
                     course.style.display = 'block';
                     visibleCourses++;
                 } else {
@@ -262,25 +238,74 @@ collection_name: "courses"
             resultCountSpan.textContent = visibleCourses;
         }
 
-        searchInput.addEventListener('input', filterAndSearch);
-
-        clearButton.addEventListener('click', () => {
-            searchInput.value = '';
+        // Search input handler
+        searchInput.addEventListener('input', () => {
+            activeFilters.search = searchInput.value.toLowerCase().trim();
             filterAndSearch();
         });
 
+        // Clear search handler
+        clearButton.addEventListener('click', () => {
+            searchInput.value = '';
+            activeFilters.search = '';
+            filterAndSearch();
+        });
+
+        // Category filter tags handler
         filterTags.forEach(tag => {
             tag.addEventListener('click', () => {
                 filterTags.forEach(t => t.classList.remove('active'));
                 tag.classList.add('active');
+                activeFilters.category = tag.dataset.filter;
                 filterAndSearch();
             });
         });
 
+        // Sidebar filter options handler
+        sidebarFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const filterType = filter.closest('.filter-group').querySelector('.filter-label').textContent.toLowerCase().replace(' ', '');
+                const filterValue = filter.dataset.filter;
+
+                // Remove active from siblings
+                filter.parentElement.querySelectorAll('.filter-option').forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+
+                // Update active filters
+                if (filterType.includes('skill')) {
+                    activeFilters.skillLevel = filterValue;
+                } else if (filterType.includes('course') || filterType.includes('type')) {
+                    activeFilters.courseType = filterValue;
+                } else if (filterType.includes('price')) {
+                    activeFilters.priceRange = filterValue;
+                }
+
+                filterAndSearch();
+            });
+        });
+
+        // Show all courses handler
         showAllButton.addEventListener('click', () => {
             searchInput.value = '';
+            activeFilters = {
+                search: '',
+                category: 'all',
+                skillLevel: 'all-levels',
+                courseType: 'all-types',
+                priceRange: 'all-prices'
+            };
+
+            // Reset UI
             document.querySelector('.filter-tag.active').classList.remove('active');
             document.querySelector('.filter-tag[data-filter="all"]').classList.add('active');
+
+            sidebarFilters.forEach(filter => {
+                filter.classList.remove('active');
+                if (filter.dataset.filter.includes('all')) {
+                    filter.classList.add('active');
+                }
+            });
+
             filterAndSearch();
         });
     });

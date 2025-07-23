@@ -1,72 +1,55 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {% if page.url == "/" %}
-            <a class="navbar-brand page-scroll" href="#page-top">Prosody Labs</a>
-            {% else %}
-            <a class="navbar-brand" href="{{ '/' | relative_url }}">Prosody Labs</a>
-            {% endif %}
+<!-- Minimal Top Navigation -->
+<nav class="minimal-nav" id="minimalNav">
+    <div class="nav-container">
+        <!-- Logo Only -->
+        <div class="nav-brand">
+            <a href="/" class="brand-link">
+                <div class="brand-logo">
+                    <i class="fa fa-flask"></i>
+                </div>
+                <span class="brand-name">Prosody Labs</span>
+            </a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li> -->
-                <li>
-                    {% if page.url == "/" %}
-                    <a class="page-scroll" href="#our-work">Our Work</a>
-                    {% else %}
-                    <a href="{{ '/' | relative_url }}#our-work">Our Work</a>
-                    {% endif %}
-                </li>
-                <li>
-                    {% if page.url == "/" %}
-                    <a class="page-scroll" href="#projects-gallery">Projects</a>
-                    {% else %}
-                    <a href="{{ '/projects.html' | relative_url }}">Projects</a>
-                    {% endif %}
-                </li>
-                <li>
-                    {% if page.url == "/" %}
-                    <a class="page-scroll" href="#courses">Courses</a>
-                    {% else %}
-                    <a href="{{ '/courses.html' | relative_url }}">Courses</a>
-                    {% endif %}
-                </li>
-                <li>
-                    {% if page.url == "/" %}
-                    <a class="page-scroll" href="#publications">Publications</a>
-                    {% else %}
-                    <a href="{{ '/publications.html' | relative_url }}">Publications</a>
-                    {% endif %}
-                </li>
-                <li>
-                    {% if page.url == "/" %}
-                    <a class="page-scroll" href="#blog">Blog</a>
-                    {% else %}
-                    <a href="{{ '/blog.html' | relative_url }}">Blog</a>
-                    {% endif %}
-                </li>
-                <li>
-                    {% if page.url == "/" %}
-                    <a class="page-scroll" href="#contact">Contact</a>
-                    {% else %}
-                    <a href="{{ '/' | relative_url }}#contact">Contact</a>
-                    {% endif %}
-                </li>
-            </ul>
+        <!-- Simple Login Button -->
+        <div class="nav-actions" style="display:flex; align-items:center; gap:16px;">
+
+            <!-- Light/dark theme to be implemented later -->
+            <!-- <button aria-label="Toggle theme" onclick="toggleTheme()"
+                style="background:none; border:none; font-size:18px; cursor:pointer; color:inherit;">
+                <i class="fa fa-adjust"></i>
+            </button> -->
+            <button class="btn-login">
+                <i class="fa fa-sign-in-alt"></i>
+                <span>Log in</span>
+            </button>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const homeLink = document.getElementById('homeLink');
+
+        // Home link functionality
+        if (homeLink) {
+            homeLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Use the global navigation function if available
+                if (window.prosodyNavigation && window.prosodyNavigation.showSection) {
+                    window.prosodyNavigation.showSection('splash-screen');
+                } else {
+                    // Fallback: scroll to top and show splash
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    document.querySelectorAll('.splash-screen, .collage-section, .detail-section').forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    const splashSection = document.getElementById('splash-screen');
+                    if (splashSection) {
+                        splashSection.classList.remove('hidden');
+                    }
+                }
+            });
+        }
+    });
+</script>

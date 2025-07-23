@@ -83,7 +83,7 @@
 }
 
 .contact-item {
-    background: white;
+    background: $openai-gray-100;
     border-radius: 8px;
     padding: 2rem 1.5rem;
     transition: all 0.3s ease;
@@ -125,7 +125,7 @@
 
     i {
         font-size: 2.5rem;
-        color: #6c757d;
+        color: $openai-gray-100;
         transition: all 0.3s ease;
     }
 }
@@ -139,13 +139,13 @@
         transform: scale(1.1);
 
         i {
-            color: $theme-primary;
+            color: $openai-accent;
         }
     }
 }
 
 .contact-title {
-    color: #343a40;
+    color: $openai-gray-100;
     font-weight: 600;
     font-size: 1.25rem;
     margin: 0 0 1rem 0;

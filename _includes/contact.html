@@ -2,106 +2,39 @@
     <div class="contact-container">
         <!-- Header Section -->
         <div class="contact-header">
-            <h2 class="section-heading">Let's Get In Touch!</h2>
-            <hr class="primary">
-            <p class="lead">Ready to innovate together? Whether you're a researcher seeking cutting-edge
-                collaboration, a developer looking to join groundbreaking projects, or an investor interested in
-                transformative
-                opportunities, we'd love to connect.</p>
-            <p class="text-muted">Based in Australia with a global perspective—we partner with visionaries worldwide
-                to turn ambitious ideas into reality.</p>
+            <h2 class="section-heading">Let's Connect</h2>
+            <p class="contact-description">Ready to collaborate on cutting-edge AI research and development?
+                We're always open to new partnerships, innovative projects, and meaningful conversations.</p>
         </div>
 
         <!-- Contact Methods Grid -->
         <div class="contact-grid">
-            <!-- Email Contact -->
-            <div class="contact-item">
+            <!-- Email Contact - Primary CTA -->
+            <div class="contact-card primary-contact">
                 <div class="contact-icon">
-                    <a href="mailto:{{ site.email }}" class="contact-link">
-                        <i class="fa fa-envelope-o"></i>
-                    </a>
+                    <i class="fa fa-envelope-o"></i>
                 </div>
-                <h5 class="contact-title">Email Us</h5>
-                <div class="contact-content">
-                    <p class="contact-text">
-                        <a href="mailto:{{ site.email }}" class="contact-detail">{{ site.email }}</a>
-                    </p>
-                    <small class="text-muted">We respond within 24 hours</small>
-                </div>
+                <h3 class="contact-title">Email Us</h3>
+                <p class="contact-description">Drop us a line for collaborations, projects, or just to say hello.</p>
+                <a href="mailto:info@prosody.com.au" class="contact-link">
+                    info@prosody.com.au
+                </a>
+                <small class="contact-meta">We respond within 24 hours</small>
             </div>
 
             <!-- GitHub -->
-            <div class="contact-item">
+            <div class="contact-card">
                 <div class="contact-icon">
-                    <a href="https://github.com/{{ site.github_username }}" class="contact-link" target="_blank"
-                        rel="noopener">
-                        <i class="fa fa-github"></i>
-                    </a>
+                    <i class="fa fa-github"></i>
                 </div>
-                <h5 class="contact-title">Open Source</h5>
-                <div class="contact-content">
-                    <p class="contact-text">
-                        <a href="https://github.com/{{ site.github_username }}" class="contact-detail" target="_blank"
-                            rel="noopener">
-                            {{ site.github_username }}
-                        </a>
-                    </p>
-                    <small class="text-muted">Check out our repositories</small>
-                </div>
+                <h3 class="contact-title">Open Source</h3>
+                <p class="contact-description">Explore our repositories, contribute to projects, or start a discussion.
+                </p>
+                <a href="https://github.com/prosodylabs" class="contact-link" target="_blank" rel="noopener">
+                    github.com/prosodylabs
+                </a>
+                <small class="contact-meta">Check out our latest work</small>
             </div>
-
-            <!-- Twitter -->
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <a href="https://twitter.com/{{ site.twitter_username }}" class="contact-link" target="_blank"
-                        rel="noopener">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                </div>
-                <h5 class="contact-title">Follow Us</h5>
-                <div class="contact-content">
-                    <p class="contact-text">
-                        <a href="https://twitter.com/{{ site.twitter_username }}" class="contact-detail" target="_blank"
-                            rel="noopener">
-                            @{{ site.twitter_username }}
-                        </a>
-                    </p>
-                    <small class="text-muted">Latest updates & insights</small>
-                </div>
-            </div>
-
-            <!-- LinkedIn -->
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <a href="https://linkedin.com/company/{{ site.linkedin_username | default: 'prosody-labs' }}"
-                        class="contact-link" target="_blank" rel="noopener">
-                        <i class="fa fa-linkedin"></i>
-                    </a>
-                </div>
-                <h5 class="contact-title">Connect</h5>
-                <div class="contact-content">
-                    <p class="contact-text">
-                        <a href="https://linkedin.com/company/{{ site.linkedin_username | default: 'prosody-labs' }}"
-                            class="contact-detail" target="_blank" rel="noopener">
-                            Prosody Labs
-                        </a>
-                    </p>
-                    <small class="text-muted">Professional network</small>
-                </div>
-            </div>
-
-
-            <!-- Call to Action 
-            <div class="contact-cta">
-                <div class="cta-box">
-                    <h4>Ready to Start a Conversation?</h4>
-                    <p>Whether you have a specific project in mind or just want to explore possibilities,
-                        we're here to listen and collaborate.</p>
-                    <a href="mailto:{{ site.email }}?subject=Collaboration Inquiry" class="btn btn-primary btn-lg">
-                        <i class="fa fa-paper-plane"></i>
-                        Start a Conversation
-                    </a>
-                </div>
-            </div> -->
         </div>
+    </div>
 </section>

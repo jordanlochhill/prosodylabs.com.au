@@ -1,0 +1,160 @@
+<!-- Main Content Area -->
+<main class="main-content" id="mainContent">
+    <!-- Hero Splash Screen -->
+    <section class="splash-screen" id="splash-screen">
+        <div class="splash-content">
+            <!-- <div class="splash-badge">
+                <i class="fa fa-flask"></i>
+                <span>Prosody Labs</span>
+            </div> -->
+            <h1 class="splash-title">Hey, </h1>
+            <h1 class="splash-title">we are prosody labs.</h1>
+            <p class="splash-subtitle">
+                We are committed to making frontier AI research and development viable in Australia. 🇦🇺
+            </p>
+            <!-- <div class="splash-actions">
+                <a href="#" class="btn-primary-splash" id="exploreBtn">
+                    <span>Explore Our Work</span>
+                    <i class="fa fa-arrow-down"></i>
+                </a>
+            </div> -->
+            <!-- Scroll indicator positioned at bottom of content -->
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <i class="fa fa-chevron-down"></i>
+            </div>
+            <span class="scroll-text">Scroll to discover</span>
+        </div>
+    </section>
+
+    <!-- Image-First Collage Section -->
+    <section class="collage-section" id="collage-section">
+        <div class="collage-container">
+            <div class="section-intro">
+                <h2>Our Mission</h2>
+                <p>We work at all levels to enable Australian R&D in frontier AI technologies.</p>
+            </div>
+
+            <div class="collage-grid">
+
+
+
+                <!-- Priority 1: Courses -->
+                <div class="tile-1">
+                    <div class="large tile-1 collage-item" data-section="courses">
+                        <div class="item-image">
+                            <img src="{{ '/assets/images/publications/bookshelves.jpg' | relative_url }}"
+                                alt="AI Education Courses" loading="lazy">
+                            <div class="item-badge">Featured</div>
+                        </div>
+                        <div class="item-content">
+                            <h3>AI skills training</h3>
+                            <p>We offer a range of fully-online courses, from introductory to advanced, designed to
+                                support
+                                cross-sector AI adoption in Australia.</p>
+                            <div class="item-meta">
+                                <!-- <span class="meta-item">
+                                <i class="fa fa-users"></i>
+                                {{ site.courses | size }} Course{% if site.courses.size != 1 %}s{% endif %}
+                            </span> -->
+                                <span class="meta-item">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    Professional Development
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority 2: Projects -->
+                <div class="tile-2">
+                    <div class="collage-item medium" data-section="projects">
+                        <div class="item-image">
+                            <img src="{{ '/assets/images/projects/infrastructure.jpg' | relative_url }}"
+                                alt="AI Projects" loading="lazy">
+                        </div>
+                        <div class="item-content">
+                            <h3>Infrastructure & Investment</h3>
+                            <p>We partner with Australian data centres to invest in enabling technologies to build and
+                                maintain Australian-owned AI infrastructure.</p>
+                            <!-- <div class="item-meta">
+                            <span class="meta-item">
+                                <i class="fa fa-code"></i>
+                                {{ site.projects | size }} Active Project{% if site.projects.size != 1 %}s{% endif %}
+                            </span>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="collage-item medium" data-section="insights">
+                        <div class="item-image">
+                            <img src="{{ '/assets/images/general/person-tree-city-sunset.jpg' | relative_url }}"
+                                alt="AI Education Insights" loading="lazy">
+                        </div>
+                        <div class="item-content">
+                            <h3>Insights & Analysis</h3>
+                            <p>We conduct feasibility studies and economic analysis to provide insight into key policy
+                                challenges facing the Australian AI industry.</p>
+                            <!-- <div class="item-meta">
+                        <span class="meta-item">
+                            <i class="fa fa-edit"></i>
+                            {{ site.insights | size }} Article{% if site.insights.size != 1 %}s{% endif %}
+                        </span>
+                    </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile-3">
+                    <div class="collage-item small" data-section="research">
+                        <div class="item-image">
+                            <img src="{{ '/assets/images/research/scientist-blue-liquid-lab.jpg' | relative_url }}"
+                                alt="AI Research" loading="lazy">
+                        </div>
+                        <div class="item-content">
+                            <h3>Research and Development</h3>
+                            <p>We conduct outcome-focused research and development in the open. Building tools to
+                                benefit
+                                humanity.</p>
+                        </div>
+                    </div>
+                    <div class="collage-item small" data-section="about">
+                        <div class="item-image">
+                            <img src="{{ '/assets/images/general/sunset-celebrating.jpg' | relative_url }}"
+                                alt="Our Mission" loading="lazy">
+                        </div>
+                        <div class="item-content">
+                            <h3>Our Mission</h3>
+                            <p>We are focussed on building AI systems that uplift humanity—not diminish it. Learn more
+                                about our
+                                mission and core values here.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info Tiles -->
+
+                <div class="tile-4">
+                    <div class="collage-item small" data-section="contact">
+                        <div class="item-image">
+                            <img src="{{ '/assets/images/blog/hand-catching-rain.jpg' | relative_url }}"
+                                alt="Get in Touch" loading="lazy">
+                        </div>
+                        <div class="item-content">
+                            <h3>Get in Touch</h3>
+                            <p>We are always looking to build stronger industry partnerships. Get in touch to learn
+                                more.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include contact.html %}
+
+
+</main>

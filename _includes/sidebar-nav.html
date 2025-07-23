@@ -43,10 +43,21 @@
                 <a href="{{ '/courses.html' | relative_url }}"
                     class="menu-link {% if page.url contains 'courses' %}active{% endif %}" role="menuitem" {% if
                     page.url contains 'courses' %}aria-current="page" {% endif %}>
-                    <div class="menu-icon" aria-hidden="true">
-                        <i class="fa fa-graduation-cap"></i>
+                    <div class="menu-icon">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                     </div>
                     <span class="menu-text">Courses</span>
+                </a>
+            </li>
+
+            <li class="menu-item" role="none">
+                <a href="{{ '/research.html' | relative_url }}"
+                    class="menu-link {% if page.url contains 'research' %}active{% endif %}" role="menuitem" {% if
+                    page.url contains 'research' %}aria-current="page" {% endif %}>
+                    <div class="menu-icon" aria-hidden="true">
+                        <i class="fa fa-flask"></i>
+                    </div>
+                    <span class="menu-text">Research</span>
                 </a>
             </li>
 

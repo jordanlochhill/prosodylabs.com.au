@@ -2,6 +2,8 @@ html,
 body {
     height: 100%;
     width: 100%;
+    color: $neutral-900;
+    background: $neutral-0;
 }
 
 body {
@@ -12,6 +14,7 @@ hr {
     border-color: $theme-primary;
     border-width: 1rem;
     max-width: 8rem;
+    margin: 1.5rem auto;
 }
 
 hr.light {
@@ -20,7 +23,7 @@ hr.light {
 
 a {
     @include transition-all;
-    color: $theme-primary;
+    color: $primary-600;
 
     &:hover,
     &:focus {
@@ -335,7 +338,6 @@ header {
 
 // Contact
 #contact .fa {
-    color: $theme-dark;
     font-size: 4em;
 }
 
@@ -365,4 +367,8 @@ img::-moz-selection {
 
 body {
     -webkit-tap-highlight-color: $theme-dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $neutral-900;
 }

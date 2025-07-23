@@ -3,270 +3,63 @@ layout: collection
 title: "Our Projects"
 description: "Innovative solutions at the intersection of technology and education"
 collection_name: "projects"
+hero_image: "assets/images/projects/hero-image.jpg"
 ---
 
 {% if site.projects.size > 0 %}
 <div class="collection-container">
-    <!-- Initial 4 cards -->
-    <div class="row" id="initial-projects">
-        {% for project in site.projects limit:4 %}
-        <div class="col-lg-12 collection-item project-card-container">
-            <div class="collection-card project-card">
+    <div class="row" id="projects-list">
+        {% for project in site.projects %}
+        <div class="col-lg-6 collection-item" data-title="{{ project.title | downcase }}"
+            data-description="{{ project.excerpt | strip_html | downcase }}"
+            data-tags="{{ project.tech_stack | join: ',' | downcase }}">
+            <div class="collection-card">
+                <div class="item-image">
+                    {% if project.image %}
+                    <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" />
+                    {% else %}
+                    <div class="fallback-image"
+                        style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); height:200px; display:flex; align-items:center; justify-content:center; border-radius:16px;">
+                        <i class="fa fa-cogs" style="font-size:3rem; opacity:0.8; color:white;"></i>
+                    </div>
+                    {% endif %}
+                </div>
                 <div class="card-header">
-                    <div class="card-header-top">
-                        <h3 class="card-title">
-                            <a href="{{ project.url | relative_url }}">
-                                {{ project.title }}
-                            </a>
-                        </h3>
-                        {% if project.status %}
-                        <span class="card-status-label">
-                            {{ project.status }}
-                        </span>
-                        {% endif %}
-                    </div>
-
-                    {% if project.start_date or project.team %}
-                    <p class="card-meta-info">
-                        {% if project.team %}{{ project.team | join: ', ' }}{% endif %}
-                        {% if project.team and project.start_date %} • {% endif %}
-                        {% if project.start_date %}{{ project.start_date | date: '%Y' }}{% endif %}
-                        {% if project.end_date %} - {{ project.end_date | date: '%Y' }}{% else %}{% if
-                        project.start_date %} - Present{% endif %}{% endif %}
-                    </p>
+                    <h3 class="card-title">
+                        <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+                    </h3>
+                    {% if project.status %}
+                    <span class="card-status">{{ project.status }}</span>
                     {% endif %}
-
-                    {% if project.subtitle %}
-                    <p class="card-subtitle">
-                        <i class="fa fa-lightbulb-o"></i>{{ project.subtitle }}
+                    <p class="card-summary">
+                        {{ project.excerpt | strip_html | truncatewords: 15 }}
                     </p>
+                </div>
+                <div class="card-meta">
+                    {% if project.tech_stack %}
+                    <div class="meta-item">
+                        <i class="fa fa-cogs"></i>
+                        <span>{{ project.tech_stack | join: ', ' }}</span>
+                    </div>
                     {% endif %}
                 </div>
-
-                {% if project.excerpt or project.content %}
-                <div class="card-abstract">
-                    <h5 class="abstract-title">Overview</h5>
-                    <p class="abstract-text">
-                        {% if project.excerpt %}
-                        {{ project.excerpt | strip_html | truncatewords: 50 }}
-                        {% else %}
-                        {{ project.content | strip_html | truncatewords: 50 }}
-                        {% endif %}
-                    </p>
-                </div>
-                {% endif %}
-
-                {% if project.tech_stack %}
-                <div class="card-keywords-section">
-                    <h6 class="keywords-title">Technology Stack</h6>
-                    <div>
-                        {% for tech in project.tech_stack limit:5 %}
-                        <span class="keyword-badge">{{ tech }}</span>
-                        {% endfor %}
-                        {% if project.tech_stack.size > 5 %}
-                        <span class="keyword-badge more">+{{ project.tech_stack.size | minus: 5 }} more</span>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-
                 <div class="card-actions">
-                    <div class="action-button-group">
-                        <a href="{{ project.url | relative_url }}" class="btn-card-action btn-details">
-                            View Project <i class="fa fa-arrow-right"></i>
-                        </a>
-                        {% if project.demo_url %}
-                        <a href="{{ project.demo_url }}" class="btn btn-outline btn-demo" target="_blank">
-                            <i class="fa fa-external-link"></i> Live Demo
-                        </a>
-                        {% endif %}
-                        {% if project.github_url %}
-                        <a href="{{ project.github_url }}" class="btn btn-outline btn-github" target="_blank">
-                            <i class="fa fa-github"></i> Source Code
-                        </a>
-                        {% endif %}
-                    </div>
-                    {% if project.categories %}
-                    <div class="project-tags">
-                        <i class="fa fa-folder-o"></i>
-                        {{ project.categories | slice: 0, 3 | join: ', ' }}
-                        {% if project.categories.size > 3 %}...{% endif %}
-                    </div>
-                    {% endif %}
+                    <a href="{{ project.url | relative_url }}" class="btn-primary">
+                        View Details <i class="fa fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-
-    <!-- Expand button (only show if more than 4 projects) -->
-    {% if site.projects.size > 4 %}
-    <div class="row expand-section">
-        <div class="col-lg-12 text-center">
-            <button id="expand-projects-btn" class="btn btn-outline btn-primary btn-lg">
-                <i class="fa fa-chevron-down"></i> Show {{ site.projects.size | minus: 4 }} More Projects
-            </button>
-        </div>
-    </div>
-
-    <!-- Additional projects (hidden initially) -->
-    <div id="additional-projects">
-        <div class="scrollable-section">
-            <div class="row">
-                {% for project in site.projects offset:4 %}
-                <div class="col-lg-12 collection-item project-card-container">
-                    <div class="collection-card project-card">
-                        <div class="card-header">
-                            <div class="card-header-top">
-                                <h3 class="card-title">
-                                    <a href="{{ project.url | relative_url }}">
-                                        {{ project.title }}
-                                    </a>
-                                </h3>
-                                {% if project.status %}
-                                <span class="card-status-label">
-                                    {{ project.status }}
-                                </span>
-                                {% endif %}
-                            </div>
-
-                            {% if project.start_date or project.team %}
-                            <p class="card-meta-info">
-                                {% if project.team %}{{ project.team | join: ', ' }}{% endif %}
-                                {% if project.team and project.start_date %} • {% endif %}
-                                {% if project.start_date %}{{ project.start_date | date: '%Y' }}{% endif %}
-                                {% if project.end_date %} - {{ project.end_date | date: '%Y' }}{% else %}{% if
-                                project.start_date %} - Present{% endif %}{% endif %}
-                            </p>
-                            {% endif %}
-
-                            {% if project.subtitle %}
-                            <p class="card-subtitle">
-                                <i class="fa fa-lightbulb-o"></i>{{ project.subtitle }}
-                            </p>
-                            {% endif %}
-                        </div>
-
-                        {% if project.excerpt or project.content %}
-                        <div class="card-abstract">
-                            <h5 class="abstract-title">Overview</h5>
-                            <p class="abstract-text">
-                                {% if project.excerpt %}
-                                {{ project.excerpt | strip_html | truncatewords: 50 }}
-                                {% else %}
-                                {{ project.content | strip_html | truncatewords: 50 }}
-                                {% endif %}
-                            </p>
-                        </div>
-                        {% endif %}
-
-                        {% if project.tech_stack %}
-                        <div class="card-keywords-section">
-                            <h6 class="keywords-title">Technology Stack</h6>
-                            <div>
-                                {% for tech in project.tech_stack limit:5 %}
-                                <span class="keyword-badge">{{ tech }}</span>
-                                {% endfor %}
-                                {% if project.tech_stack.size > 5 %}
-                                <span class="keyword-badge more">+{{ project.tech_stack.size | minus: 5 }} more</span>
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% endif %}
-
-                        <div class="card-actions">
-                            <div class="action-button-group">
-                                <a href="{{ project.url | relative_url }}" class="btn-card-action btn-details">
-                                    View Project <i class="fa fa-arrow-right"></i>
-                                </a>
-                                {% if project.demo_url %}
-                                <a href="{{ project.demo_url }}" class="btn btn-outline btn-demo" target="_blank">
-                                    <i class="fa fa-external-link"></i> Live Demo
-                                </a>
-                                {% endif %}
-                                {% if project.github_url %}
-                                <a href="{{ project.github_url }}" class="btn btn-outline btn-github" target="_blank">
-                                    <i class="fa fa-github"></i> Source Code
-                                </a>
-                                {% endif %}
-                            </div>
-                            {% if project.categories %}
-                            <div class="project-tags">
-                                <i class="fa fa-folder-o"></i>
-                                {{ project.categories | slice: 0, 3 | join: ', ' }}
-                                {% if project.categories.size > 3 %}...{% endif %}
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Collapse button -->
-        <div class="row collapse-section">
-            <div class="col-lg-12 text-center">
-                <button id="collapse-projects-btn" class="btn btn-outline btn-secondary">
-                    <i class="fa fa-chevron-up"></i> Show Less
-                </button>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 </div>
-
-<script>
-    // Projects expand/collapse functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        const expandBtn = document.getElementById('expand-projects-btn');
-        const collapseBtn = document.getElementById('collapse-projects-btn');
-        const additionalProjects = document.getElementById('additional-projects');
-
-        if (expandBtn) {
-            expandBtn.addEventListener('click', function () {
-                additionalProjects.style.display = 'block';
-                expandBtn.parentElement.parentElement.style.display = 'none';
-
-                // Smooth scroll to additional content
-                setTimeout(() => {
-                    additionalProjects.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 100);
-            });
-        }
-
-        if (collapseBtn) {
-            collapseBtn.addEventListener('click', function () {
-                additionalProjects.style.display = 'none';
-                expandBtn.parentElement.parentElement.style.display = 'block';
-
-                // Scroll back to the expand button area
-                setTimeout(() => {
-                    document.getElementById('initial-projects').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'end'
-                    });
-                }, 100);
-            });
-        }
-    });
-</script>
 {% else %}
-<div class="collection-container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div id="noResults">
-                <div class="no-results-content">
-                    <div class="icon">
-                        <i class="fa fa-folder-open"></i>
-                    </div>
-                    <h3>No Projects Found</h3>
-                    <p>We haven't published any projects yet. Check back soon for exciting updates!</p>
-                </div>
-            </div>
+<div id="noResults" class="row">
+    <div class="col-lg-12">
+        <div class="no-results-content">
+            <i class="fa fa-folder-open-o icon"></i>
+            <h3>No Projects Yet</h3>
+            <p>We are busy building. Please check back soon!</p>
         </div>
     </div>
 </div>

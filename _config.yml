@@ -37,18 +37,19 @@ collections:
   projects:
     output: true
     permalink: /projects/:name/
-  publications:
+  research:
     output: true
-    permalink: /publications/:name/
-  blog:
+    permalink: /research/:name/
+  insights:
     output: true
-    permalink: /blog/:name/
+    permalink: /insights/:name/
   courses:
     output: true
     permalink: /courses/:name/
 
 plugins:
   - jekyll-feed
+  - jemoji
 
 
 # Exclude from processing.

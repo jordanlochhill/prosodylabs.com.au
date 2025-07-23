@@ -10,15 +10,16 @@
             </div>
         </div>
 
-        {% assign recent_posts = site.blog | sort: 'date' | reverse | limit: 3 %}
+        {% if site.insights and site.insights.size > 0 %}
+        {% assign recent_posts = site.insights | sort: 'date' | reverse | limit: 3 %}
 
-        {% if recent_posts.size > 0 %}
         <div class="row">
             {% for post in recent_posts %}
             <div class="col-lg-4 col-md-6 blog-preview">
                 <div class="blog-card">
-                    {% if post.featured_image %}
-                    <div class="blog-image" style="background-image: url('{{ post.featured_image | relative_url }}');">
+                    {% if post.featured_image or post.image %}
+                    <div class="blog-image"
+                        style="background-image: url('{{ post.featured_image | default: post.image | relative_url }}');">
                     </div>
                     {% else %}
                     <div class="blog-image placeholder">
@@ -33,6 +34,9 @@
                         <p class="blog-meta">
                             {% if post.date %}
                             <i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
+                            {% endif %}
+                            {% if post.author %}
+                            <i class="fa fa-user"></i> {{ post.author }}
                             {% endif %}
                         </p>
                         <p class="blog-subtitle">
@@ -72,11 +76,11 @@
         </div>
         {% endif %}
 
-        <!-- View All Blog Posts Button -->
+        <!-- View All Insights Button -->
         <div class="row">
             <div class="col-lg-12 section-archive-btn">
-                <a href="{{ '/blog.html' | relative_url }}" class="btn btn-primary btn-xl">
-                    View All Posts <i class="fa fa-book"></i>
+                <a href="{{ '/insights/' | relative_url }}" class="btn btn-primary btn-xl">
+                    View All Insights <i class="fa fa-lightbulb"></i>
                 </a>
             </div>
         </div>

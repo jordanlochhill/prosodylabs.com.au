@@ -1,0 +1,132 @@
+<!-- Floating Sidebar -->
+<aside class="floating-sidebar" id="floatingSidebar">
+    <nav class="floating-nav" role="navigation">
+        <ul class="floating-nav-list">
+            <li class="floating-nav-item">
+                <a href="/" class="floating-nav-link" data-page="home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="floating-nav-item">
+                <a href="#collage-section" class="floating-nav-link" data-page="overview">
+                    <span>Overview</span>
+                </a>
+            </li>
+            <li class="floating-nav-item">
+                <a href="/courses/" class="floating-nav-link" data-page="courses">
+                    <span>Courses</span>
+                </a>
+            </li>
+            <li class="floating-nav-item">
+                <a href="/projects/" class="floating-nav-link" data-page="projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="floating-nav-item">
+                <a href="/insights/" class="floating-nav-link" data-page="insights">
+                    <span>Insights &amp; Analysis</span>
+                </a>
+            </li>
+            <li class="floating-nav-item">
+                <a href="/research/" class="floating-nav-link" data-page="research">
+                    <span>Research</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('🚀 Simple page navigation loaded');
+
+        // Simple scroll-to-section functionality for overview link only
+        const overviewLink = document.querySelector('[data-page="overview"]');
+        const exploreBtn = document.getElementById('exploreBtn');
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        const scrollArrow = document.querySelector('.scroll-arrow');
+        const collageItems = document.querySelectorAll('.collage-item[data-section]');
+
+        // Smooth scroll to overview section
+        function scrollToOverview(e) {
+            e.preventDefault();
+            const collageSection = document.getElementById('collage-section');
+            if (collageSection) {
+                collageSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Set up overview scroll handlers
+        if (overviewLink) {
+            overviewLink.addEventListener('click', scrollToOverview);
+        }
+
+        if (exploreBtn) {
+            exploreBtn.addEventListener('click', scrollToOverview);
+        }
+
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', scrollToOverview);
+        }
+
+        if (scrollArrow) {
+            scrollArrow.addEventListener('click', scrollToOverview);
+        }
+
+        // Animate collage items on scroll into view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
+        };
+
+        const collageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('item-animate-in');
+                    }, Math.random() * 300); // Staggered animation
+                }
+            });
+        }, observerOptions);
+
+        // Observe collage items for animation
+        collageItems.forEach(item => {
+            collageObserver.observe(item);
+        });
+
+        // Handle collage item clicks - scroll to corresponding section
+        collageItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const section = this.getAttribute('data-section');
+                console.log('🎨 Collage item clicked:', section);
+
+                // Scroll to the corresponding content section
+                const targetSection = document.getElementById(section + '-section');
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    // If no section exists, navigate to the appropriate page
+                    switch (section) {
+                        case 'about':
+                            window.location.href = '/about/';
+                            break;
+                        case 'contact':
+                            window.location.href = '/contact/';
+                            break;
+                        default:
+                            console.log('Unknown section:', section);
+                    }
+                }
+            });
+        });
+
+        console.log('✅ Page navigation initialized');
+    });
+</script>

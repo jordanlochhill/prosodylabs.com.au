@@ -1,0 +1,29 @@
+// Dark mode overrides
+body.dark-mode {
+  background: $openai-gray-900;
+  color: $neutral-100;
+  
+  a {
+    color: $openai-accent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $neutral-0;
+  }
+
+  .content-section {
+    background: $openai-gray-800;
+  }
+
+  .collection-card .item-content p,
+  .item-meta, .card-summary {
+    color: $neutral-200;
+  }
+
+  .collection-card .item-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+  }
+} 
