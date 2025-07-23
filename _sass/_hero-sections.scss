@@ -599,8 +599,7 @@
         padding: $space-6 $space-4;
     }
 
-
-    background-image: url('/assets/images/prosody/splash.png');
+    // background-image: url('/assets/images/prosody/splash.png'); // Removed for inline style
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
