@@ -584,13 +584,14 @@
 
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    flex-direction: column;
     // background: linear-gradient(135deg, $openai-gray-50 0%, $openai-gray-100 100%);
     position: relative;
     padding: $space-8;
     width: 100%;
     box-sizing: border-box;
+
     
     // Ensure proper stacking
     z-index: 1;
@@ -638,7 +639,7 @@
         width: 50%;
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: flex-start;
         justify-content: space-between;
         position: relative;
         z-index: 1;
