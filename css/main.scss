@@ -261,9 +261,9 @@ html, body {
 body {
   line-height: $leading-normal;
   -webkit-font-smoothing: antialiased;
-  font-family: $font-sans;
+  font-family: $font-mono;
   font-size: $text-base;
-  color: $neutral-700;
+  color: $openai-gray-800;
   background-color: $neutral-0;
 }
 
@@ -285,7 +285,6 @@ h1 {
   font-size: $text-5xl; 
   font-weight: $font-bold; 
   line-height: $leading-tight; 
-  color: $openai-gray-50;
   margin-bottom: $space-6;
   font-family: $font-sans;
 }
@@ -294,7 +293,6 @@ h2 {
   font-size: $text-4xl; 
   font-weight: $font-semibold; 
   line-height: $leading-tight; 
-  color: $openai-gray-50;
   margin-bottom: $space-5;
   font-family: $font-sans;
 }
@@ -303,7 +301,6 @@ h3 {
   font-size: $text-3xl; 
   font-weight: $font-semibold; 
   line-height: $leading-snug; 
-  color: $openai-gray-50;
   margin-bottom: $space-4;
   font-family: $font-sans;
 }
@@ -312,7 +309,6 @@ h4 {
   font-size: $text-2xl; 
   font-weight: $font-medium; 
   line-height: $leading-snug; 
-  color: $openai-gray-50;
   margin-bottom: $space-4;
   font-family: $font-sans;
 }
@@ -321,7 +317,6 @@ h5 {
   font-size: $text-xl; 
   font-weight: $font-medium; 
   line-height: $leading-snug; 
-  color: $openai-gray-50;
   margin-bottom: $space-3;
   font-family: $font-sans;
 }
@@ -330,17 +325,16 @@ h6 {
   font-size: $text-lg; 
   font-weight: $font-medium; 
   line-height: $leading-normal; 
-  color: $openai-gray-50;
   margin-bottom: $space-3;
   font-family: $font-sans;
 }
 
-p {
-  font-size: $text-base;  // Now 18px instead of 16px
-  line-height: $leading-relaxed;
-  margin-bottom: $space-4;
-  color: $openai-gray-50;
-}
+// p {
+//   font-size: $text-base;  // Now 18px instead of 16px
+//   line-height: $leading-relaxed;
+//   margin-bottom: $space-4;
+//   color: $openai-gray-50;
+// }
 
 .lead {
   font-size: $text-xl;  // Now 24px instead of 20px
@@ -357,7 +351,6 @@ a {
   
   &:hover {
     color: $openai-gray-100;
-    font-weight: $font-bold;
     text-decoration: underline;
   }
   
@@ -543,7 +536,7 @@ a {
         }
         
         a {
-            color: $neutral-900;
+        
             text-decoration: none;
             transition: color $duration-300 $ease-out;
             
@@ -555,7 +548,7 @@ a {
     }
     
     .publication-authors {
-        color: $neutral-600;
+    
         font-size: $text-sm;
         font-weight: $font-medium;
         margin-bottom: $space-3;
@@ -624,7 +617,7 @@ a {
         
         .btn-publication-secondary {
             background: transparent;
-            color: $neutral-600;
+        
             border: 1px solid $neutral-300;
             padding: $space-2 $space-4;
             border-radius: $radius-md;
@@ -800,12 +793,6 @@ html {
     }
 }
 
-.page-container {
-    display: flex;
-    min-height: 100vh;
-    position: relative;
-}
-
 // === REFINED NAVIGATION ===
 .minimal-nav {
     position: fixed;
@@ -861,9 +848,12 @@ html {
             .brand-name {
                 font-size: 24px;
                 font-weight: 600;
-                color: $neutral-0;
+                color: $openai-gray-100;
                 letter-spacing: -0.01em;
+                transition: opacity 0.3s ease, transform 0.3s ease;
                 
+                font-family: $font-sans;
+
                 @media (max-width: 480px) {
                     display: none;
                 }
@@ -895,12 +885,6 @@ html {
     }
 }
 
-// Update page container to account for minimal nav
-.page-container {
-    display: flex;
-    min-height: 100vh;
-    position: relative;
-}
 
 // === REFINED MAIN CONTENT ===
 .main-content {
@@ -916,6 +900,8 @@ html {
         width: 100%;
         min-height: 100vh;
         
+}
+
 }
 
 
@@ -960,7 +946,7 @@ html {
             .back-btn {
                 background: none;
                 border: none;
-                color: $openai-gray-600;
+                
                 font-size: 14px;
                 font-weight: 500;
                 display: flex;
@@ -973,7 +959,7 @@ html {
                 border-radius: 6px;
                 
                 &:hover {
-                    color: $openai-gray-900;
+                
                     background: $openai-gray-100;
                     transform: translateX(-2px);
                 }
@@ -1002,7 +988,7 @@ html {
             h1 {
                 font-size: 48px;
                 font-weight: 700;
-                color: $openai-gray-900;
+            
                 margin-bottom: $space-6;
                 line-height: 1.1;
                 letter-spacing: -0.02em;
@@ -1018,7 +1004,7 @@ html {
             
             .detail-description {
                 font-size: 18px;
-                color: $openai-gray-600;
+                
                 line-height: 1.6;
                 max-width: 800px;
                 
@@ -1086,7 +1072,6 @@ html {
             h2 {
                 font-size: 48px;
                 font-weight: 700;
-                color: $openai-gray-900;
                 margin-bottom: $space-6;
                 line-height: 1.1;
                 letter-spacing: -0.02em;
@@ -1102,7 +1087,6 @@ html {
             
             .section-description {
                 font-size: 18px;
-                color: $openai-gray-600;
                 line-height: 1.6;
                 max-width: 800px;
                 margin: 0 auto;
@@ -1233,17 +1217,39 @@ html {
         h3 {
             font-size: 20px;
             font-weight: 600;
-            color: $openai-gray-900;
+        
             margin-bottom: $space-3;
             line-height: 1.3;
             
             @media (max-width: 768px) {
                 font-size: 18px;
             }
+            
+            // Title link styling
+            .title-link {
+                color: inherit;
+                text-decoration: none;
+                transition: text-decoration 0.2s ease;
+                
+                &:hover {
+                    color: inherit;
+                    text-decoration: underline;
+                }
+                
+                &:visited {
+                    color: inherit;
+                    text-decoration: none;
+                }
+                
+                &:active {
+                    color: inherit;
+                    text-decoration: underline;
+                }
+            }
         }
         
         p {
-            color: $openai-gray-600;
+            
             line-height: 1.6;
             margin-bottom: $space-4;
             font-size: 16px;
@@ -1264,7 +1270,7 @@ html {
                 display: flex;
                 align-items: center;
                 gap: $space-2;
-                color: $openai-gray-600;
+                
                 font-size: 14px;
                 font-weight: 500;
                 
@@ -1351,28 +1357,51 @@ html {
     display: block; // override any flex centering
 }
 
+            // Title link styling
+            .title-link {
+                color: inherit;
+                text-decoration: none;
+                transition: text-decoration 0.2s ease;
+                
+                &:hover {
+                    color: inherit;
+                    text-decoration: underline;
+                }
+                
+                &:visited {
+                    color: inherit;
+                    text-decoration: none;
+                }
+                
+                &:active {
+                    color: inherit;
+                    text-decoration: underline;
+                }
+            }
+
 // === TILE STYLE OVERRIDE (no borders/shadows) ===
 .collection-card {
     background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    display: block !important;
+    border: none ;
+    box-shadow: none;
+    border-radius: 0;
+    display: block;
+    color: $openai-gray-100;
 
     .card-header {
-        padding: 0 !important;
+        padding: 1em ;
         border: none !important;
     }
 
     .card-meta {
-        padding-left: 0 !important;
+        padding-left: 1em !important;
         padding-right: 0 !important;
     }
 
     .card-actions {
-        padding: 0 !important;
+        padding: 1em 0 0 0;
         border: none !important;
-        background: transparent !important;
+        background: transparent;
         margin-top: $space-4;
     }
 }
@@ -1396,18 +1425,6 @@ html {
     }
 }
 
-/*=== DARK MODE BASIC OVERRIDES ===*/
-body.dark-mode {
-    background: $openai-gray-900;
-    color: $neutral-100;
-}
-
-body.dark-mode .content-section {
-    color: $neutral-100;
-}
-
-body.dark-mode a { color: $openai-accent; }
-}
 
 // Import component styles - properly organized
-@import "mixins", "base", "buttons", "contact", "hero-sections", "layouts", "collection", "dark-mode";
+@import "mixins", "base", "buttons", "contact", "hero-sections", "layouts", "collection";

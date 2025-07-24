@@ -3,7 +3,7 @@ layout: publication
 title: "Human-Centered AI in Educational Assessment: A Framework for Ethical Implementation"
 authors: ["Dr. Jane Smith", "Prof. Michael Johnson", "Dr. Sarah Wilson"]
 date: 2024-01-15
-hero_image: "/assets/images/publications/ai-education-hero.jpg"
+hero_image: "/assets/images/site/ai-education-hero.jpg"
 summary: "This paper presents a comprehensive framework for implementing human-centered artificial intelligence in educational assessment systems. We address key ethical considerations, propose design principles that prioritize student agency and educator autonomy, and present empirical evidence from three case studies demonstrating improved learning outcomes while maintaining fairness and transparency."
 keywords: ["Artificial Intelligence", "Educational Assessment", "Human-Centered Design", "Ethics in AI", "Learning Analytics"]
 # Optional publication details (de-emphasized)

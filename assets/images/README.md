@@ -141,7 +141,7 @@ To add an image to any collection item (courses, projects, insights, research), 
 ```yaml
 ---
 title: "Your Item Title"
-image: "/assets/images/category/your-image.jpg"
+image: "/assets/images/site/your-image.jpg"
 # ... other fields
 ---
 ```
@@ -185,7 +185,7 @@ Our image strategy emphasizes:
 
 1. Add new images to the appropriate category folder
 2. Use descriptive filenames based on visual content
-3. Update collection item front matter with `image: "/assets/images/category/filename.jpg"`
+3. Update collection item front matter with `image: "/assets/images/site/filename.jpg"`
 4. Test both desktop and mobile layouts
 5. Verify fallback behavior when image is not specified
 

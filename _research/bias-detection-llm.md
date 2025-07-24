@@ -3,7 +3,7 @@ layout: publication
 title: "Automated Bias Detection in Large Language Models: Methods and Metrics"
 authors: ["Dr. Alex Thompson", "Dr. Maria Gonzalez", "Prof. Robert Kim"]
 date: 2024-03-10
-hero_image: "/assets/images/publications/bias-detection-hero.jpg"
+hero_image: "/assets/images/site/bias-detection-hero.jpg"
 summary: "We present novel methods for automatically detecting and quantifying bias in large language models. Our approach combines statistical analysis with interpretability techniques to identify problematic patterns across multiple dimensions of bias, providing actionable insights for model developers and deployers."
 keywords: ["Bias Detection", "Large Language Models", "AI Safety", "Interpretability", "Fairness"]
 # Optional publication details (de-emphasized)

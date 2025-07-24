@@ -2,7 +2,7 @@
 <main class="main-content" id="mainContent">
     <!-- Hero Splash Screen -->
     <section class="splash-screen" id="splash-screen"
-        style="background-image: url('{{ '/assets/images/prosody/splash.png' | relative_url }}');">
+        style="background-image: url('{{ '/assets/images/site/splash.png' | relative_url }}');">
         <div class="splash-content">
             <!-- <div class="splash-badge">
                 <i class="fa fa-flask"></i>
@@ -46,15 +46,18 @@
                 <div class="tile-1">
                     <div class="large tile-1 collage-item" data-section="courses">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/publications/bookshelves.jpg' | relative_url }}"
+                            <img src="{{ '/assets/images/site/bookshelves.jpg' | relative_url }}"
                                 alt="AI Education Courses" loading="lazy">
-                            <div class="item-badge">Featured</div>
+                            <div class="item-badge">In-development</div>
                         </div>
                         <div class="item-content">
                             <h3>AI skills training</h3>
-                            <p>We offer a range of fully-online courses, from introductory to advanced, designed to
-                                support
-                                cross-sector AI adoption in Australia.</p>
+                            <p>
+                                <!-- We offer a range of fully-online courses, from introductory to advanced, designed to
+                                support cross-sector AI adoption in Australia.  -->
+                                We offer customized training and one-on-one
+                                coaching services to suit your business needs. Get in touch to find out more
+                            </p>
                             <div class="item-meta">
                                 <!-- <span class="meta-item">
                                 <i class="fa fa-users"></i>
@@ -74,8 +77,8 @@
                 <div class="tile-2">
                     <div class="collage-item medium" data-section="projects">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/projects/infrastructure.jpg' | relative_url }}"
-                                alt="AI Projects" loading="lazy">
+                            <img src="{{ '/assets/images/site/infrastructure.jpg' | relative_url }}" alt="AI Projects"
+                                loading="lazy">
                         </div>
                         <div class="item-content">
                             <h3>Infrastructure & Investment</h3>
@@ -91,7 +94,7 @@
                     </div>
                     <div class="collage-item medium" data-section="insights">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/general/person-tree-city-sunset.jpg' | relative_url }}"
+                            <img src="{{ '/assets/images/site/person-tree-city-sunset.jpg' | relative_url }}"
                                 alt="AI Education Insights" loading="lazy">
                         </div>
                         <div class="item-content">
@@ -111,7 +114,7 @@
                 <div class="tile-3">
                     <div class="collage-item small" data-section="research">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/research/scientist-blue-liquid-lab.jpg' | relative_url }}"
+                            <img src="{{ '/assets/images/site/scientist-blue-liquid-lab.jpg' | relative_url }}"
                                 alt="AI Research" loading="lazy">
                         </div>
                         <div class="item-content">
@@ -123,12 +126,12 @@
                     </div>
                     <div class="collage-item small" data-section="about">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/general/sunset-celebrating.jpg' | relative_url }}"
+                            <img src="{{ '/assets/images/site/sunset-celebrating.jpg' | relative_url }}"
                                 alt="Our Mission" loading="lazy">
                         </div>
                         <div class="item-content">
                             <h3>Our Mission</h3>
-                            <p>We are focussed on building AI systems that uplift humanity—not diminish it. Learn more
+                            <p>We are focussed on building AI systems that elevate humanity—not diminish it. Learn more
                                 about our
                                 mission and core values here.
                             </p>
@@ -141,7 +144,7 @@
                 <div class="tile-4">
                     <div class="collage-item small" data-section="contact">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/blog/hand-catching-rain.jpg' | relative_url }}"
+                            <img src="{{ '/assets/images/site/hand-catching-rain.jpg' | relative_url }}"
                                 alt="Get in Touch" loading="lazy">
                         </div>
                         <div class="item-content">
@@ -155,6 +158,10 @@
             </div>
         </div>
     </section>
+
+
+
+    {% include articles.html %}
 
     {% include contact.html %}
 

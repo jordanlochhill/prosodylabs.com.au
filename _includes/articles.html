@@ -1,0 +1,73 @@
+<!-- Insights Section -->
+<section class="content-section insights-section" id="insights-section">
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Articles</h2>
+            <p class="section-description">
+                Expert analysis and deep dives into Australia's AI landscape, from infrastructure to policy and emerging
+                tech.
+
+            </p>
+        </div>
+
+        <div class="insights-grid">
+            {% if site.insights and site.insights.size > 0 %}
+            {% assign sorted_insights = site.insights | sort: 'date' | reverse %}
+            {% for insight in sorted_insights limit:3 %}
+            <div class="insight-item {% if forloop.first %}featured{% endif %}">
+                <div class="item-image">
+                    <a href="{{ insight.url }}" class="image-link">
+                        {% if insight.image %}
+                        <img src="{{ insight.image | relative_url }}" alt="{{ insight.title }}">
+                        {% else %}
+                        <div class="fallback-image"
+                            style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center; height: 200px; color: white;">
+                            <i class="fa fa-lightbulb" style="font-size: 3rem; opacity: 0.8;"></i>
+                        </div>
+                        {% endif %}
+                    </a>
+                    {% if forloop.first %}<div class="item-badge">Featured</div>{% endif %}
+                </div>
+                <div class="item-content">
+                    <h3><a href="{{ insight.url }}" class="title-link">{{ insight.title }}</a></h3>
+                    <p>{{ insight.subtitle | default: insight.excerpt | truncate: 120 }}</p>
+                    <div class="item-meta">
+                        {% if insight.date %}
+                        <span class="meta-item">
+                            <i class="fa fa-calendar"></i>
+                            {{ insight.date | date: "%b %Y" }}
+                        </span>
+                        {% endif %}
+                        {% if insight.author %}
+                        <span class="meta-item">
+                            <i class="fa fa-user"></i>
+                            {{ insight.author }}
+                        </span>
+                        {% endif %}
+                        {% if insight.read_time %}
+                        <span class="meta-item">
+                            <i class="fa fa-clock"></i>
+                            {{ insight.read_time }} min read
+                        </span>
+                        {% endif %}
+                    </div>
+                    <a href="{{ insight.url }}" class="btn-insight">Read Article</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <!-- Empty state for insights -->
+            <div class="insights-empty-state">
+                <i class="fa fa-lightbulb"></i>
+                <h4>Insights Coming Soon</h4>
+                <p>We're preparing thoughtful analysis and insights on AI in education. Check back soon for our
+                    latest articles!</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="section-cta">
+            <a href="/insights/" class="btn-section-primary">View All Articles</a>
+        </div>
+    </div>
+</section>

@@ -1,10 +1,10 @@
 ---
 layout: collection
 title: "Insights & Analysis"
-description: "Deep dives into the intersection of artificial intelligence and education, from technical guides to policy
-discussions."
+description: "Expert analysis and deep dives into Australia's AI landscape, from infrastructure to policy and emerging
+tech."
 collection_name: "insights"
-hero_image: "assets/images/insights/hero-image.jpg"
+hero_image: "assets/images/site/splash.png"
 ---
 
 {% if site.insights.size > 0 %}
@@ -12,7 +12,7 @@ hero_image: "assets/images/insights/hero-image.jpg"
     <div class="row" id="insights-list">
         {% assign sorted_insights = site.insights | sort: 'date' | reverse %}
         {% for post in sorted_insights %}
-        <div class="col-lg-6 collection-item" data-title="{{ post.title | downcase }}"
+        <div class="col-lg-10 collection-item" data-title="{{ post.title | downcase }}"
             data-description="{{ post.excerpt | strip_html | downcase }}"
             data-tags="{{ post.categories | join: ',' | downcase }}">
             <div class="collection-card">
@@ -50,11 +50,6 @@ hero_image: "assets/images/insights/hero-image.jpg"
                         <span>{{ post.author }}</span>
                     </div>
                     {% endif %}
-                </div>
-                <div class="card-actions">
-                    <a href="{{ post.url | relative_url }}" class="btn-primary">
-                        Read Article <i class="fa fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
         </div>

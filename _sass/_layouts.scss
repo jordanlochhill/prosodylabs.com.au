@@ -259,7 +259,6 @@
     .article-body {
         font-size: 18px;
         line-height: 1.8;
-        color: #374151;
     }
 }
 
@@ -942,7 +941,7 @@
     }
     
     .action-buttons {
-        gap: 10px !important;
+        gap: 10px ;
     }
     
     .action-btn {
@@ -997,7 +996,7 @@
         position: relative;
         width: 100%;
         min-height: 100vh;
-        // display: block !important; // Always visible
+        // display: block ; // Always visible
     }
 }
 

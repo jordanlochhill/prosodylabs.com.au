@@ -1,7 +1,7 @@
 // Hero Sections (Our Work, Publications, Blog)
 
 // .our-work-bg {
-//     background-image: url('/img/portfolio/6.jpg') !important;
+//     background-image: url('/img/portfolio/6.jpg') ;
 // }
 
 #our-work {
@@ -127,13 +127,13 @@
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
-    display: flex !important;
+    display: flex ;
     align-items: center;
     justify-content: center;
     pointer-events: auto;
     will-change: transform, left, top;
-    opacity: 0.85 !important;
-    visibility: visible !important;
+    opacity: 0.85 ;
+    visibility: visible ;
     z-index: 2;
 
     min-width: 60px;
@@ -146,7 +146,7 @@
         z-index: 8;
         transform: scale(1.2);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-        opacity: 1 !important;
+        opacity: 1 ;
     }
 
     &:focus {
@@ -155,51 +155,51 @@
         outline: 3px solid rgba(255, 255, 255, 0.5);
         outline-offset: 3px;
         z-index: 8;
-        opacity: 1 !important;
+        opacity: 1 ;
     }
 
     &.grad-1 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) ;
         
         &:hover {
-            background: linear-gradient(135deg, #7c8df1 0%, #8b5fbf 100%) !important;
+            background: linear-gradient(135deg, #7c8df1 0%, #8b5fbf 100%) ;
         }
     }
 
     &.grad-2 {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) ;
         
         &:hover {
-            background: linear-gradient(135deg, #f2a5fc 0%, #f76b7e 100%) !important;
+            background: linear-gradient(135deg, #f2a5fc 0%, #f76b7e 100%) ;
         }
     }
 
     &.grad-3 {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) ;
         
         &:hover {
-            background: linear-gradient(135deg, #66b7fe 0%, #33f4fe 100%) !important;
+            background: linear-gradient(135deg, #66b7fe 0%, #33f4fe 100%) ;
         }
     }
 
     &.grad-4 {
-        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) !important;
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) ;
         
         &:hover {
-            background: linear-gradient(135deg, #b5f0ed 0%, #fedbea 100%) !important;
+            background: linear-gradient(135deg, #b5f0ed 0%, #fedbea 100%) ;
         }
     }
 
     &.grad-5 {
-        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) ;
         
         &:hover {
-            background: linear-gradient(135deg, #ffefdb 0%, #fdcab8 100%) !important;
+            background: linear-gradient(135deg, #ffefdb 0%, #fdcab8 100%) ;
         }
     }
 
     i {
-        color: white !important;
+   
         font-size: 32px;
         transition: all 0.3s ease;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -524,31 +524,31 @@
 // Responsive Design
 @media (max-width: 768px) {
     #our-work {
-        min-height: 50vh !important;
+        min-height: 50vh ;
 
         .section-heading {
-            font-size: 36px !important;
+            font-size: 36px ;
         }
 
         .text-faded {
-            font-size: 18px !important;
+            font-size: 18px ;
         }
     }
 
     .thermo-bubble {
         // Reduce size range on mobile
-        min-width: 60px !important;
-        max-width: 100px !important;
-        min-height: 60px !important;
-        max-height: 100px !important;
+        min-width: 60px ;
+        max-width: 100px ;
+        min-height: 60px ;
+        max-height: 100px ;
 
         i {
-            font-size: 20px !important;
+            font-size: 20px ;
         }
 
         &:hover {
-            transform: scale(1.1) !important;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+            transform: scale(1.1) ;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) ;
         }
     }
 
@@ -559,18 +559,18 @@
 
 @media (max-width: 480px) {
     .thermo-bubble {
-        min-width: 50px !important;
-        max-width: 80px !important;
-        min-height: 50px !important;
-        max-height: 80px !important;
+        min-width: 50px ;
+        max-width: 80px ;
+        min-height: 50px ;
+        max-height: 80px ;
 
         i {
-            font-size: 16px !important;
+            font-size: 16px ;
         }
     }
 
     #our-work {
-        min-height: 40vh !important;
+        min-height: 40vh ;
     }
 }
 
@@ -600,7 +600,7 @@
         padding: $space-6 $space-4;
     }
 
-    // background-image: url('/assets/images/prosody/splash.png'); // Removed for inline style
+    // background-image: url('/assets/images/site/ Removed for inline style
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -800,7 +800,7 @@
         animation: slideInFromTop 7s ease-out 0.8s forwards;
     
         &:hover {
-            opacity: 1 !important;
+            opacity: 1 ;
         }
         
         .scroll-arrow {
@@ -852,7 +852,7 @@
 
 // === COLLAGE SECTION ===
 .collage-section {
-    min-height: 100vh;
+    min-height: 80vh;
     padding: 2em $space-8;
     margin-top: 10em;
     // background: white;
@@ -884,7 +884,7 @@
 
         .section-intro {
             text-align: center;
-            margin-bottom: 10em;
+            margin-bottom: 2.5em;
             
             @media (max-width: 768px) {
                 margin-bottom: $space-12;
@@ -893,7 +893,7 @@
             h2 {
                 font-size: 56px;
                 font-weight: 700;
-                // color: $openai-gray-900;
+                // ;
                 margin-bottom: $space-6;
                 line-height: 1.1;
                 letter-spacing: -0.02em;
@@ -1200,7 +1200,7 @@
             position: absolute;
             top: 12px;
             left: 12px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             color: $openai-gray-900;
             padding: 6px 12px;
             border-radius: 20px;

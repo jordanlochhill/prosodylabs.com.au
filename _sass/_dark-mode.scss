@@ -1,8 +1,22 @@
 // Dark mode overrides
 body.dark-mode {
-  background: $openai-gray-900;
+  background: $splash-700;
   color: $neutral-100;
   
+  .layout-content {
+    color: $neutral-100;
+    background: $splash-700;
+  }
+  .article-body {
+    color: $openai-gray-200;
+    background: $splash-700;
+  }
+
+  .minimal-nav .nav-brand .brand-link .brand-name {
+    color: $openai-gray-50;
+  }
+
+
   a {
     color: $openai-accent;
   }
@@ -12,7 +26,7 @@ body.dark-mode {
   }
 
   .content-section {
-    background: $openai-gray-800;
+    background: $splash-700;
   }
 
   .collection-card .item-content p,

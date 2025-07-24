@@ -4,7 +4,7 @@ layout: project
 subtitle: AI-Powered Learning Assessment Platform
 status: Active
 date: 2024-01-15
-image: "/assets/images/projects/data-landscape-3d-visualization.jpg"  # Project thumbnail
+image: "/assets/images/site/data-landscape-3d-visualization.jpg"  # Project thumbnail
 tech_stack:
   - Python
   - Anthropic API

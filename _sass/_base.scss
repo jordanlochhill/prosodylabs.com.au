@@ -2,8 +2,7 @@ html,
 body {
     height: 100%;
     width: 100%;
-    color: $neutral-900;
-    background: $neutral-0;
+    background: $splash-700;
 }
 
 body {
@@ -82,7 +81,6 @@ aside {
             >a,
             >a:focus {
                 text-transform: uppercase;
-                font-weight: 700;
                 color: $theme-dark;
 
                 &:hover {
@@ -94,7 +92,6 @@ aside {
 
                 >a,
                 >a:focus {
-                    color: $theme-primary !important;
                     background-color: transparent;
 
                     &:hover {
@@ -304,8 +301,4 @@ img::-moz-selection {
 
 body {
     -webkit-tap-highlight-color: $theme-dark;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: $neutral-900;
 }

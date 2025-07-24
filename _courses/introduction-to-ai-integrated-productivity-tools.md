@@ -4,8 +4,8 @@ title: "Introduction to AI Integrated Productivity Tools"
 subtitle: "Master AI-powered productivity tools like a technical professional"
 status: "ENROLLING NOW"
 course_icon: "fa fa-robot"
-image: "/assets/images/courses/books-standing-row.jpg"  # Course thumbnail image
-# hero_image: "/assets/images/courses/ai-productivity-hero.jpg"  # Uncomment when you have a hero image
+image: "/assets/images/site/books-standing-row.jpg"  # Course thumbnail image
+# hero_image: "/assets/images/site/ai-productivity-hero.jpg"  # Uncomment when you have a hero image
 
 # Course Details
 price: 500

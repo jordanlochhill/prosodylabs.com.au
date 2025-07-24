@@ -7,7 +7,7 @@
                 <div class="brand-logo">
                     <i class="fa fa-flask"></i>
                 </div>
-                <span class="brand-name">Prosody Labs</span>
+                <span class="brand-name" id="brandName">Prosody Labs</span>
             </a>
         </div>
 
@@ -30,6 +30,33 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const homeLink = document.getElementById('homeLink');
+        const brandName = document.getElementById('brandName');
+        let lastScrollTop = 0;
+        const scrollThreshold = 100; // Hide brand name after scrolling 100px
+
+        // Scroll handler to hide/show brand name
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > scrollThreshold) {
+                // Scrolled down - hide brand name
+                if (brandName) {
+                    brandName.style.opacity = '0';
+                    brandName.style.transform = 'translateX(-10px)';
+                }
+            } else {
+                // Scrolled back to top - show brand name
+                if (brandName) {
+                    brandName.style.opacity = '1';
+                    brandName.style.transform = 'translateX(0)';
+                }
+            }
+
+            lastScrollTop = scrollTop;
+        }
+
+        // Add scroll event listener
+        window.addEventListener('scroll', handleScroll);
 
         // Home link functionality
         if (homeLink) {

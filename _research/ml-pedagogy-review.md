@@ -3,7 +3,7 @@ layout: publication
 title: "Machine Learning Pedagogies in Higher Education: A Systematic Review"
 authors: ["Dr. Sarah Chen", "Prof. David Kumar", "Dr. Lisa Rodriguez"]
 date: 2024-02-20
-hero_image: "/assets/images/publications/ml-pedagogy-hero.jpg"
+hero_image: "/assets/images/site/ml-pedagogy-hero.jpg"
 summary: "A comprehensive systematic review examining the integration of machine learning concepts in higher education curricula. We analyzed 127 studies across 15 countries to identify effective pedagogical approaches, common challenges, and emerging best practices for teaching ML to diverse student populations."
 keywords: ["Machine Learning Education", "Pedagogy", "Higher Education", "Curriculum Design", "Systematic Review"]
 # Optional publication details (de-emphasized)
