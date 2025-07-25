@@ -264,7 +264,7 @@ body {
   font-family: $font-mono;
   font-size: $text-base;
   color: $openai-gray-800;
-  background-color: $neutral-0;
+//   background-color: $neutral-0;
 }
 
 img, picture, video, canvas, svg {
@@ -769,6 +769,13 @@ html {
     &.openai-page {
         background: $splash-700;
     }
+    &.blog-page {
+        background: $splash-700; // linear-gradient(135deg, #059669 0%, #047857 100%); // not working
+    }
+    
+    // body.blog-page {
+    //     background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    // }
 }
 
 .openai-layout {
