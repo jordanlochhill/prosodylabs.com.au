@@ -1426,5 +1426,186 @@ html {
 }
 
 
+/*======================================================
+// SOCIAL SHARING COMPONENT
+//======================================================*/
+
+.social-sharing {
+    background: $openai-gray-50;
+    border-radius: $radius-xl;
+    padding: $space-8;
+    margin: $space-12 0;
+    border: 1px solid $openai-gray-200;
+    
+    @media (max-width: 768px) {
+        padding: $space-6;
+        margin: $space-8 0;
+    }
+    
+    h3 {
+        font-size: $text-xl;
+        font-weight: $font-semibold;
+        color: $openai-gray-800;
+        margin-bottom: $space-6;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-3;
+        
+        @media (max-width: 768px) {
+            font-size: $text-lg;
+            margin-bottom: $space-5;
+        }
+        
+        i {
+            color: $openai-gray-600;
+            font-size: $text-lg;
+        }
+    }
+    
+    .sharing-buttons {
+        display: flex;
+        justify-content: center;
+        gap: $space-4;
+        flex-wrap: wrap;
+        
+        @media (max-width: 768px) {
+            gap: $space-3;
+        }
+        
+        @media (max-width: 480px) {
+            justify-content: stretch;
+            flex-direction: column;
+            gap: $space-3;
+        }
+    }
+    
+    .share-btn {
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+        padding: $space-3 $space-5;
+        border-radius: $radius-lg;
+        font-size: $text-sm;
+        font-weight: $font-semibold;
+        text-decoration: none;
+        transition: all $duration-300 $ease-out;
+        border: none;
+        cursor: pointer;
+        min-width: 120px;
+        justify-content: center;
+        
+        @media (max-width: 768px) {
+            padding: $space-3 $space-4;
+            font-size: $text-xs;
+            min-width: 100px;
+        }
+        
+        @media (max-width: 480px) {
+            min-width: auto;
+            justify-content: center;
+        }
+        
+        i {
+            font-size: $text-base;
+            
+            @media (max-width: 768px) {
+                font-size: $text-sm;
+            }
+        }
+        
+        &:hover {
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+        }
+        
+        // Twitter styling
+        &.twitter-btn {
+            background: #1da1f2;
+            color: white;
+            
+            &:hover {
+                background: #0d8bd9;
+                color: white;
+            }
+        }
+        
+        // LinkedIn styling
+        &.linkedin-btn {
+            background: #0077b5;
+            color: white;
+            
+            &:hover {
+                background: #005582;
+                color: white;
+            }
+        }
+        
+        // Facebook styling
+        &.facebook-btn {
+            background: #1877f2;
+            color: white;
+            
+            &:hover {
+                background: #0c5aa6;
+                color: white;
+            }
+        }
+        
+        // Email styling
+        &.email-btn {
+            background: $openai-gray-600;
+            color: white;
+            
+            &:hover {
+                background: $openai-gray-700;
+                color: white;
+            }
+        }
+        
+        // Copy link styling
+        &.copy-btn {
+            background: $openai-gray-200;
+            color: $openai-gray-800;
+            
+            &:hover {
+                background: $openai-gray-300;
+                color: $openai-gray-900;
+            }
+            
+            &.copied {
+                background: $success-500;
+                color: white;
+                
+                &:hover {
+                    background: $success-600;
+                }
+            }
+        }
+    }
+}
+
+// === RESPONSIVE ADJUSTMENTS ===
+@media (max-width: 480px) {
+    .social-sharing {
+        .sharing-buttons {
+            .share-btn {
+                span {
+                    display: none;
+                }
+                
+                i {
+                    font-size: $text-lg;
+                }
+                
+                min-width: 50px;
+                padding: $space-3;
+            }
+        }
+    }
+}
+
 // Import component styles - properly organized
 @import "mixins", "base", "buttons", "contact", "hero-sections", "layouts", "collection";

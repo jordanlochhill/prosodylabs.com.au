@@ -82,34 +82,58 @@
                         </div>
                     </div>
                     {% endif %}
+
+                    <!-- Social Sharing -->
+                    <div class="social-sharing">
+                        <h3>
+                            <i class="fa fa-share-alt"></i>
+                            Share this article
+                        </h3>
+                        <div class="sharing-buttons">
+                            <!-- Twitter -->
+                            <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ page.url | url_encode }}"
+                                target="_blank" rel="noopener noreferrer" class="share-btn twitter-btn"
+                                title="Share on Twitter">
+                                <i class="fa fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url | url_encode }}"
+                                target="_blank" rel="noopener noreferrer" class="share-btn linkedin-btn"
+                                title="Share on LinkedIn">
+                                <i class="fa fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+
+                            <!-- Facebook -->
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url | url_encode }}"
+                                target="_blank" rel="noopener noreferrer" class="share-btn facebook-btn"
+                                title="Share on Facebook">
+                                <i class="fa fa-facebook"></i>
+                                <span>Facebook</span>
+                            </a>
+
+                            <!-- Email -->
+                            <a href="mailto:?subject={{ page.title | url_encode }}&body=I thought you might find this article interesting: {{ site.url }}{{ page.url | url_encode }}"
+                                class="share-btn email-btn" title="Share via Email">
+                                <i class="fa fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+
+                            <!-- Copy Link -->
+                            <button onclick="copyToClipboard('{{ site.url }}{{ page.url }}')" class="share-btn copy-btn"
+                                title="Copy Link">
+                                <i class="fa fa-link"></i>
+                                <span>Copy Link</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Action Links -->
-    <section class="action-links blog-actions">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h3>Related Content</h3>
-                    <div class="action-buttons">
-                        <a href="{{ '/blog.html' | relative_url }}" class="action-btn btn-view">
-                            <i class="fa fa-list"></i>
-                            All Blog Posts
-                        </a>
-
-                        {% if page.project_url %}
-                        <a href="{{ page.project_url | relative_url }}" class="action-btn btn-demo">
-                            <i class="fa fa-external-link"></i>
-                            Related Project
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Navigation -->
     <section class="content-navigation">
@@ -117,9 +141,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="nav-container">
-                        <a href="{{ '/blog.html' | relative_url }}" class="nav-link">
+                        <a href="{{ '/insights.html' | relative_url }}" class="nav-link">
                             <i class="fa fa-arrow-left"></i>
-                            Back to Blog
+                            Back to Articles
                         </a>
 
                         <a href="{{ '/' | relative_url }}" class="primary-nav">
@@ -133,6 +157,42 @@
     </section>
 
     {% include scripts.html %}
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function () {
+                // Show success feedback
+                const button = event.target.closest('.copy-btn');
+                const originalContent = button.innerHTML;
+                button.innerHTML = '<i class="fa fa-check"></i><span>Copied!</span>';
+                button.classList.add('copied');
+
+                setTimeout(function () {
+                    button.innerHTML = originalContent;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(function (err) {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                const button = event.target.closest('.copy-btn');
+                const originalContent = button.innerHTML;
+                button.innerHTML = '<i class="fa fa-check"></i><span>Copied!</span>';
+                button.classList.add('copied');
+
+                setTimeout(function () {
+                    button.innerHTML = originalContent;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 
 </html>
