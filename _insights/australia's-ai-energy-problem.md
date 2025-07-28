@@ -21,6 +21,9 @@ tags:
 read_time: 10
 ---
 
+>**TLDR:** GB300 NVL72 systems are now setting the new standard for AI infrastructure, representing a significant leap beyond even the impressive GB200 deployments. From hyperscale cloud providers to specialized AI infrastructure companies, the scale and sophistication required for commercial competitiveness is becoming clear. Australia must ensure it can supercharge these systems without breaking the bank—competitive energy prices, sensible policy, and interstate cooperation (or competition) might determine if Australia can power the next generation of AI right here on home soil, or if those big black NVIDIA racks end up humming somewhere else in the world instead. The window for establishing Australia as a viable AI infrastructure hub is narrowing as companies worldwide rapidly scale their deployments in more cost-effective regions. Once these investments are made offshore it is unlikely it will make economic sense to move them back in the next decade.
+
+
 **NVIDIA's next tranche of AI chips, the GB300, has arrived and it is both more efficient and more powerful than the GB200.** In a groundbreaking announcement this month, [Dell and CoreWeave have delivered the first NVIDIA GB300 NVL72 rack](https://www.servethehome.com/dell-and-coreweave-show-off-first-nvidia-gb300-nvl72-rack/). An iteration upon the GB200 chip, the NVL72 configuration packs 36 Grace CPUs and 72 Blackwell GPUs into a single rack. The switch to GB300 series chips pushes the performance density of these rack-scale compute units even further. Hyperscalers and researchers at the major AI research labs are clamboring to place orders as these systems become the gold standard for AI research and inference. Access to this kind of compute efficiency will power new kinds of agentic and real-time services that will make the capabilities supported by tools like **ChatGPT** and **Copilot** currently look modest by comparison.
 
 This latest iteration redefines the key metrics related to AI compute—it is no longer about how fast the compute density is or how much memory per chip NVIDIA has managed to pack in: **It's all about energy.**
@@ -131,7 +134,7 @@ Australia has a golden opportunity to become a major player in the AI revolution
 
 **Western Australia’s model of leveraging local resources and pro-investment policy gives it an edge** today. Yet, nationwide, Australia needs to hasten its transition to an affordable clean energy system to not miss out on the AI gold rush. A future where *“Made in Australia” AI* runs on **low-cost, green Australian electrons** is within reach—and that would be a win-win for both the tech industry and Australians at large, delivering innovation, jobs, and lower emissions.
 
-**Bottom line:** The GB300 NVL72 systems are now setting the new standard for AI infrastructure, representing a significant leap beyond even the impressive GB200 deployments. From hyperscale cloud providers to specialized AI infrastructure companies, the scale and sophistication required for commercial competitiveness is becoming clear. Australia must ensure it can supercharge these systems without breaking the bank—competitive energy prices, sensible policy, and interstate cooperation (or competition!) will determine if Australia can power the next generation of AI right here on home soil, or if those big black NVIDIA racks end up humming somewhere else in the world instead. The window for establishing Australia as a viable AI infrastructure hub is narrowing as companies worldwide rapidly scale their deployments in more cost-effective regions.
+
 
 ## Sources
 ---
