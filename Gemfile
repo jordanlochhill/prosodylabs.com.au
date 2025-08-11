@@ -13,3 +13,8 @@ gem 'csv'
 gem 'base64'
 gem 'bigdecimal'
 gem 'jemoji'
+
+group :development do
+  gem 'html-proofer', '~> 5.0'
+  gem 'nokogiri', '~> 1.16'
+end
