@@ -1,53 +1,92 @@
 ---
 layout: collection
 title: "Insights & Analysis"
-description: "Expert analysis and deep dives into Australia's AI landscape, from infrastructure to policy and emerging
-tech."
-collection_name: "insights"
-hero_image: "assets/images/site/splash.png"
+subtitle: "Deep dives into the intersection of artificial intelligence and education, from technical guides to policy
+discussions."
+collection: insights
+permalink: /insights/
 ---
 
-{% if site.insights.size > 0 %}
+{% if site.insights and site.insights.size > 0 %}
+{% assign sorted_posts = site.insights | sort: 'date' | reverse %}
+{% else %}
+{% assign sorted_posts = empty %}
+{% endif %}
+
+{% if sorted_posts.size > 0 %}
 <div class="collection-container">
-    <div class="row" id="insights-list">
-        {% assign sorted_insights = site.insights | sort: 'date' | reverse %}
-        {% for post in sorted_insights %}
-        <div class="col-lg-10 collection-item" data-title="{{ post.title | downcase }}"
-            data-description="{{ post.excerpt | strip_html | downcase }}"
-            data-tags="{{ post.categories | join: ',' | downcase }}">
-            <div class="collection-card">
-                <div class="item-image">
-                    {% if post.image %}
-                    <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
-                    {% else %}
-                    <div class="fallback-image"
-                        style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); height: 200px; display:flex; align-items:center; justify-content:center; border-radius: 16px;">
-                        <i class="fa fa-lightbulb" style="font-size: 3rem; opacity:0.8; color:white;"></i>
+    <!-- Initial 4 cards -->
+    <div class="row" id="initial-blog">
+        {% for post in sorted_posts limit:4 %}
+        <div class="col-lg-12 collection-item">
+            <div class="collection-card blog-card">
+                <div class="card-header">
+                    <div class="card-header-top">
+                        <h3 class="card-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h3>
+                        {% if post.featured %}
+                        <span class="card-status-label">Featured</span>
+                        {% endif %}
                     </div>
+
+                    {% if post.author or post.date %}
+                    <p class="card-meta-info">
+                        {% if post.author %}{{ post.author }}{% endif %}
+                        {% if post.author and post.date %} • {% endif %}
+                        {% if post.date %}{{ post.date | date: '%B %d, %Y' }}{% endif %}
+                        {% if post.read_time %} • {{ post.read_time }} min read{% endif %}
+                    </p>
+                    {% endif %}
+
+                    {% if post.subtitle %}
+                    <p class="card-subtitle">
+                        <i class="fa fa-quote-left"></i>{{ post.subtitle }}
+                    </p>
                     {% endif %}
                 </div>
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                    </h3>
-                    {% if post.read_time %}
-                    <span class="card-status">{{ post.read_time }} min read</span>
-                    {% endif %}
-                    <p class="card-summary">
-                        {{ post.subtitle | default: post.excerpt | strip_html | truncatewords: 15 }}
+
+                {% if post.excerpt or post.content %}
+                <div class="card-abstract">
+                    <h5 class="abstract-title">Summary</h5>
+                    <p class="abstract-text">
+                        {% if post.excerpt %}
+                        {{ post.excerpt | strip_html | truncatewords: 50 }}
+                        {% else %}
+                        {{ post.content | strip_html | truncatewords: 50 }}
+                        {% endif %}
                     </p>
                 </div>
-                <div class="card-meta">
-                    {% if post.date %}
-                    <div class="meta-item">
-                        <i class="fa fa-calendar"></i>
-                        <span>{{ post.date | date: "%B %d, %Y" }}</span>
+                {% endif %}
+
+                {% if post.categories %}
+                <div class="card-keywords-section">
+                    <h6 class="keywords-title">Categories</h6>
+                    <div>
+                        {% for category in post.categories limit:5 %}
+                        <span class="keyword-badge">{{ category }}</span>
+                        {% endfor %}
+                        {% if post.categories.size > 5 %}
+                        <span class="keyword-badge more">+{{ post.categories.size | minus: 5 }} more</span>
+                        {% endif %}
                     </div>
+                </div>
+                {% endif %}
+
+                <div class="card-actions">
+                    <a href="{{ post.url | relative_url }}" class="btn btn-primary">
+                        Read Full Post <i class="fa fa-arrow-right"></i>
+                    </a>
+                    {% if post.external_url %}
+                    <a href="{{ post.external_url }}" class="btn btn-outline" target="_blank">
+                        <i class="fa fa-external-link"></i> External Link
+                    </a>
                     {% endif %}
-                    {% if post.author %}
-                    <div class="meta-item">
-                        <i class="fa fa-user"></i>
-                        <span>{{ post.author }}</span>
+                    {% if post.tags %}
+                    <div class="post-tags">
+                        <i class="fa fa-tags"></i>
+                        {{ post.tags | slice: 0, 3 | join: ', ' }}
+                        {% if post.tags.size > 3 %}...{% endif %}
                     </div>
                     {% endif %}
                 </div>
@@ -55,15 +94,147 @@ hero_image: "assets/images/site/splash.png"
         </div>
         {% endfor %}
     </div>
-</div>
-{% else %}
-<div id="noResults" class="row">
-    <div class="col-lg-12">
-        <div class="no-results-content">
-            <i class="fa fa-lightbulb-o icon"></i>
-            <h3>No Insights Yet</h3>
-            <p>We're working on new content. Please check back soon!</p>
+
+    <!-- Expand button (only show if more than 4 posts) -->
+    {% if sorted_posts.size > 4 %}
+    <div class="row expand-section">
+        <div class="col-lg-12 text-center">
+            <button id="expand-blog-btn" class="btn">
+                <i class="fa fa-chevron-down"></i> Show {{ sorted_posts.size | minus: 4 }} More Posts
+            </button>
         </div>
+    </div>
+
+    <!-- Additional posts (hidden initially) -->
+    <div id="additional-blog">
+        <div class="scrollable-section">
+            <div class="row">
+                {% for post in sorted_posts offset:4 %}
+                <div class="col-lg-12 collection-item">
+                    <div class="collection-card blog-card">
+
+                        <div class="card-header">
+                            <div class="card-header-top">
+                                <h3 class="card-title">
+                                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                                </h3>
+                                {% if post.featured %}
+                                <span class="card-status-label">Featured</span>
+                                {% endif %}
+                            </div>
+
+                            {% if post.author or post.date %}
+                            <p class="card-meta-info">
+                                {% if post.author %}{{ post.author }}{% endif %}
+                                {% if post.author and post.date %} • {% endif %}
+                                {% if post.date %}{{ post.date | date: '%B %d, %Y' }}{% endif %}
+                                {% if post.read_time %} • {{ post.read_time }} min read{% endif %}
+                            </p>
+                            {% endif %}
+
+                            {% if post.subtitle %}
+                            <p class="card-subtitle">
+                                <i class="fa fa-quote-left"></i>{{ post.subtitle }}
+                            </p>
+                            {% endif %}
+                        </div>
+
+                        {% if post.excerpt or post.content %}
+                        <div class="card-abstract">
+                            <h5 class="abstract-title">Summary</h5>
+                            <p class="abstract-text">
+                                {% if post.excerpt %}
+                                {{ post.excerpt | strip_html | truncatewords: 50 }}
+                                {% else %}
+                                {{ post.content | strip_html | truncatewords: 50 }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        {% endif %}
+
+                        {% if post.categories %}
+                        <div class="card-keywords-section">
+                            <h6 class="keywords-title">Categories</h6>
+                            <div>
+                                {% for category in post.categories limit:5 %}
+                                <span class="keyword-badge">{{ category }}</span>
+                                {% endfor %}
+                                {% if post.categories.size > 5 %}
+                                <span class="keyword-badge more">+{{ post.categories.size | minus: 5 }} more</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="card-actions">
+                            <a href="{{ post.url | relative_url }}" class="btn btn-primary">
+                                Read Full Post <i class="fa fa-arrow-right"></i>
+                            </a>
+                            {% if post.external_url %}
+                            <a href="{{ post.external_url }}" class="btn btn-outline" target="_blank">
+                                <i class="fa fa-external-link"></i> External Link
+                            </a>
+                            {% endif %}
+                            {% if post.tags %}
+                            <div class="post-tags">
+                                <i class="fa fa-tags"></i>
+                                {{ post.tags | slice: 0, 3 | join: ', ' }}
+                                {% if post.tags.size > 3 %}...{% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Collapse button -->
+        <div class="row collapse-section">
+            <div class="col-lg-12 text-center">
+                <button id="collapse-blog-btn" class="btn">
+                    <i class="fa fa-chevron-up"></i> Show Less
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const expandBtn = document.getElementById('expand-blog-btn');
+        const collapseBtn = document.getElementById('collapse-blog-btn');
+        const additionalSection = document.getElementById('additional-blog');
+
+        if (expandBtn) {
+            expandBtn.addEventListener('click', function () {
+                additionalSection.style.display = 'block';
+                this.style.display = 'none';
+                if (collapseBtn) {
+                    collapseBtn.style.display = 'inline-block';
+                }
+            });
+        }
+
+        if (collapseBtn) {
+            collapseBtn.style.display = 'none'; // Initially hide collapse button
+            collapseBtn.addEventListener('click', function () {
+                additionalSection.style.display = 'none';
+                this.style.display = 'none';
+                if (expandBtn) {
+                    expandBtn.style.display = 'inline-block';
+                }
+            });
+        }
+    });
+</script>
+{% else %}
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <p>There are no blog posts yet. Stay tuned!</p>
     </div>
 </div>
 {% endif %}
+
+{% include scripts.html %}

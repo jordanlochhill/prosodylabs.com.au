@@ -1,0 +1,13 @@
+/blog/index.html
+/courses/index.html
+/courses/introduction-to-ai-integrated-productivity-tools/index.html
+/projects/index.html
+/projects/vetgrader/index.html
+/publications/index.html
+/research/ai-bias-detection/index.html
+/research/ai-ethics-framework/index.html
+/research/bias-detection-llm/index.html
+/research/index.html
+/research/machine-learning-education/index.html
+/research/ml-pedagogy-review/index.html
+/research/sample-ai-education-paper/index.html

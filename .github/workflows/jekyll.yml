@@ -39,7 +39,7 @@ jobs:
         with:
           ruby-version: '3.4.1' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          cache-version: 3 # Incremented due to new gems for SEO (jekyll-seo-tag, jekyll-sitemap)
+          cache-version: 5 # Incremented due to adding Nokogiri for local analysis
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

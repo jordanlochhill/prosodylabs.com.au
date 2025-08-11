@@ -8,8 +8,6 @@ volume: 6
 issue: 3
 pages: "234-251"
 status: "In Press"
-doi: "10.1038/s42256-024-0089-2"
-pdf_url: "/assets/papers/llm-bias-detection-2024.pdf"
 preprint_url: "https://arxiv.org/abs/2024.02.0234"
 keywords: ["Large Language Models", "Bias Detection", "Fairness", "NLP", "AI Safety"]
 abstract: "We present novel automated methods for detecting and quantifying bias in large language models. Our approach combines statistical analysis with interpretable machine learning techniques to identify problematic patterns in model outputs across demographic groups."

@@ -115,7 +115,7 @@
                             </a>
 
                             <!-- Email -->
-                            <a href="mailto:?subject={{ page.title | url_encode }}&body=I thought you might find this article interesting: {{ site.url }}{{ page.url | url_encode }}"
+                            <a href="mailto:{{ site.email }}?subject={{ page.title | url_encode }}&body=I thought you might find this article interesting: {{ site.url }}{{ page.url | url_encode }}"
                                 class="share-btn email-btn" title="Share via Email">
                                 <i class="fa fa-envelope"></i>
                                 <span>Email</span>

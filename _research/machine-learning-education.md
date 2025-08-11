@@ -6,8 +6,6 @@ conference: "International Conference on Educational Technology"
 publication_date: 2024-01-20
 pages: "112-127"
 status: "Published"
-doi: "10.1234/icet.2024.0120"
-pdf_url: "/assets/papers/ml-education-review-2024.pdf"
 keywords: ["Machine Learning", "Education", "Pedagogy", "Higher Education", "Teaching Methods"]
 abstract: "This systematic review examines current approaches to teaching machine learning in higher education institutions. We analyze 150 published studies to identify effective pedagogical strategies, common challenges, and best practices for ML curriculum design."
 ---

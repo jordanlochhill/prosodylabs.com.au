@@ -9,8 +9,6 @@ keywords: ["Bias Detection", "Large Language Models", "AI Safety", "Interpretabi
 # Optional publication details (de-emphasized)
 venue: "Nature Machine Intelligence (In Press)"
 publication_date: 2024-03-10
-doi: "10.1038/s42256-024-00XXX"
-pdf_url: "/assets/papers/bias-detection-llm-2024.pdf"
 preprint_url: "https://arxiv.org/abs/2024.bias.001"
 ---
 

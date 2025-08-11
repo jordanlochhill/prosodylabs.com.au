@@ -10,8 +10,6 @@ keywords: ["Artificial Intelligence", "Educational Assessment", "Human-Centered 
 venue: "Journal of Educational Technology Research"
 publication_date: 2024-01-15
 volume: 42
-doi: "10.1234/jetr.2024.001"
-pdf_url: "/assets/papers/ai-education-framework-2024.pdf"
 ---
 
 # Abstract

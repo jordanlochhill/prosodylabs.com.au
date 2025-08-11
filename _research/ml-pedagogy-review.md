@@ -10,8 +10,6 @@ keywords: ["Machine Learning Education", "Pedagogy", "Higher Education", "Curric
 venue: "International Conference on AI Education (ICAIE 2024)"
 publication_date: 2024-02-20
 pages: "45-62"
-doi: "10.1145/icaie.2024.789"
-pdf_url: "/assets/papers/ml-pedagogy-review-2024.pdf"
 ---
 
 # Abstract

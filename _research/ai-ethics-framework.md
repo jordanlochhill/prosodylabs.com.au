@@ -8,8 +8,6 @@ volume: 8
 issue: 2
 pages: "45-62"
 status: "Published"
-doi: "10.1234/jmai.2024.0315"
-pdf_url: "/assets/papers/ai-ethics-healthcare-2024.pdf"
 keywords: ["AI Ethics", "Healthcare", "Medical AI", "Patient Privacy", "Algorithmic Fairness"]
 abstract: "This paper presents a comprehensive ethical framework for the deployment of artificial intelligence systems in healthcare settings. We address key challenges including patient privacy, algorithmic bias, transparency in decision-making, and the need for human oversight in AI-assisted medical diagnostics."
 ---
