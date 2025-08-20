@@ -19,10 +19,12 @@
                 style="background:none; border:none; font-size:18px; cursor:pointer; color:inherit;">
                 <i class="fa fa-adjust"></i>
             </button> -->
+            {% if page.url == '/' %}
             <button class="btn-login">
                 <i class="fa fa-sign-in-alt"></i>
                 <span>Log in</span>
             </button>
+            {% endif %}
         </div>
     </div>
 </nav>
