@@ -60,7 +60,7 @@ For Australia to attract commercially-viable AI investment, it needs to demonstr
 At Australia's average electricity price of $0.27/kWh, this translates to **$4.3-5.9 million per year** in electricity costs. The same deployment in Texas or other low-cost US regions at $0.08/kWh would cost just **$1.3-1.8 million annually**—a difference of **$3-4 million per year**. Over a typical 5-year infrastructure lifecycle, this represents **$15-20 million in additional operating costs** that Australian operators must somehow absorb or pass on to customers. Put simply, every cent per kWh difference adds roughly **$175,000-220,000 per year** to operating costs for a 10-rack deployment.
 
 
- ## Its not all bad news: Homegrown cooling innovators 
+## Its not all bad news: Homegrown cooling innovators 
 
 Interestingly, Australia does have some advantages in advanced cooling technologies. [**DUG Technology**](https://dug.com/), based in Western Australia, has developed sophisticated **immersion cooling solutions** that can dramatically reduce cooling power overhead compared to traditional liquid cooling systems. DUG's immersion cooling technology, originally developed for their own high-performance computing operations in Perth, could potentially offer a more energy-efficient path for AI infrastructure deployment in Australia's challenging climate conditions.
 
