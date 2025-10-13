@@ -24,8 +24,16 @@ description: >-
   Prosody Labs advances frontier AI R&D in Western Australia, building safe, scalable systems and translating breakthroughs into real-world impact.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://prosodylabs.com.au" # the base hostname & protocol for your site, e.g. http://example.com
+timezone: Australia/Perth
 twitter_username: prosodylabs
 github_username:  prosodylabs
+
+yarn:
+  name: Yarn
+  tagline: Australian-run conversational AI
+  blurb: "Yarn is a conversational AI platform built and hosted in Australia. Your data stays here."
+  waitlist_action: netlify
+  formspree_endpoint: ""
 
 # Build settings
 # theme: minima

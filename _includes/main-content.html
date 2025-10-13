@@ -4,29 +4,68 @@
     <section class="splash-screen" id="splash-screen"
         style="background-image: url('{{ '/assets/images/site/splash.png' | relative_url }}');">
         <div class="splash-content">
-            <!-- <div class="splash-badge">
-                <i class="fa fa-flask"></i>
-                <span>Prosody Labs</span>
-            </div> -->
-            <h1 class="splash-title">Hey, </h1>
-            <h1 class="splash-title">we are prosody labs.</h1>
+            <div class="splash-badge">
+                <i class="fa fa-star"></i>
+                <span>Private preview</span>
+            </div>
+            <h1 class="splash-title">Have a Yarn.</h1>
             <p class="splash-subtitle">
-                We are committed to making frontier AI R&D a viable industry in Western Australia.
-                🇦🇺
+                Yarn is our sovereign AI inference platform. It is built and hosted in Australia so the teams we work with can keep
+                sensitive conversations, data, and compute close to home.
             </p>
-            <!-- <div class="splash-actions">
-                <a href="#" class="btn-primary-splash" id="exploreBtn">
-                    <span>Explore Our Work</span>
+            <div class="splash-actions">
+                <a href="#yarn-section" class="btn-primary-splash" id="exploreBtn">
+                    <span>Request early access</span>
                     <i class="fa fa-arrow-down"></i>
                 </a>
-            </div> -->
-            <!-- Scroll indicator positioned at bottom of content -->
+            </div>
         </div>
         <div class="scroll-indicator">
             <div class="scroll-arrow">
                 <i class="fa fa-chevron-down"></i>
             </div>
-            <span class="scroll-text">Scroll to discover</span>
+            <span class="scroll-text">Learn about Yarn</span>
+        </div>
+    </section>
+
+    <section class="detail-section yarn-section" id="yarn-section">
+        <div class="detail-container">
+            <div class="yarn-intro">
+                <span class="yarn-badge">Yarn private preview</span>
+                <h2>Conversational AI with Australian residency guarantees</h2>
+                <p class="detail-description">
+                    Yarn combines Prosody Labs' research into applied AI with infrastructure partnerships across Australia. We deliver
+                    fast, reliable inference endpoints and a collaborative chat surface that keeps every token processed within the
+                    country.
+                </p>
+                <ul class="yarn-points">
+                    <li><i class="fa fa-shield"></i><span>Hosted in Australian facilities with strict residency controls.</span></li>
+                    <li><i class="fa fa-users"></i><span>Designed for government, research, and critical industry teams.</span></li>
+                    <li><i class="fa fa-code"></i><span>API and workspace experiences so you can prototype and deploy quickly.</span></li>
+                </ul>
+                <div class="yarn-highlights">
+                    <div class="highlight-card">
+                        <h3>Flexible deployment</h3>
+                        <p>Preview serverless endpoints, managed chat, or bespoke deployments in your preferred Australian region.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Partner support</h3>
+                        <p>Work directly with our team to map requirements, compliance needs, and integration milestones.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Insightful telemetry</h3>
+                        <p>Gain visibility into performance and usage, aligned with Australian privacy expectations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="yarn-form-wrapper">
+                <div class="waitlist-card">
+                    <h3>Join the Yarn waitlist</h3>
+                    <p>We’re inviting a small cohort of Australian organisations to explore Yarn first. Leave your details and
+                        we’ll coordinate a guided preview.</p>
+                    {% include waitlist-form.html %}
+                </div>
+            </div>
         </div>
     </section>
 
@@ -34,38 +73,32 @@
     <section class="collage-section" id="collage-section">
         <div class="collage-container">
             <div class="section-intro">
-                <h2>Our Mission</h2>
-                <p>We work at all levels to enable Australian R&D in frontier AI technologies.</p>
+                <h2>Building the ecosystem around Yarn</h2>
+                <p>Prosody Labs invests in capability that helps Australian teams explore, govern, and productise advanced AI.</p>
             </div>
 
             <div class="collage-grid">
 
 
 
-                <!-- Priority 1: Courses -->
+                <!-- Priority 1: Yarn preview -->
                 <div class="tile-1">
-                    <div class="large tile-1 collage-item" data-section="courses">
+                    <div class="large tile-1 collage-item" data-section="yarn">
                         <div class="item-image">
-                            <img src="{{ '/assets/images/site/bookshelves.jpg' | relative_url }}"
-                                alt="AI Education Courses" loading="lazy">
-                            <div class="item-badge">In-development</div>
+                            <img src="{{ '/assets/images/site/datacentre-storage.jpg' | relative_url }}"
+                                alt="Yarn infrastructure" loading="lazy">
+                            <div class="item-badge">Private preview</div>
                         </div>
                         <div class="item-content">
-                            <h3>AI skills training</h3>
+                            <h3>Yarn sovereign inference</h3>
                             <p>
-                                <!-- We offer a range of fully-online courses, from introductory to advanced, designed to
-                                support cross-sector AI adoption in Australia.  -->
-                                We offer customized training and one-on-one
-                                coaching services to suit your business needs. Get in touch to find out more
+                                Bring conversational AI into production with Australian-hosted models, detailed telemetry, and a support
+                                team that understands regulated environments.
                             </p>
                             <div class="item-meta">
-                                <!-- <span class="meta-item">
-                                <i class="fa fa-users"></i>
-                                {{ site.courses | size }} Course{% if site.courses.size != 1 %}s{% endif %}
-                            </span> -->
                                 <span class="meta-item">
-                                    <i class="fa fa-graduation-cap"></i>
-                                    Professional Development
+                                    <i class="fa fa-comment"></i>
+                                    Sovereign conversational AI
                                 </span>
                             </div>
 
@@ -81,15 +114,9 @@
                                 loading="lazy">
                         </div>
                         <div class="item-content">
-                            <h3>Infrastructure & Investment</h3>
-                            <p>We partner with Australian data centres to invest in enabling technologies to build and
-                                maintain Australian-owned AI infrastructure.</p>
-                            <!-- <div class="item-meta">
-                            <span class="meta-item">
-                                <i class="fa fa-code"></i>
-                                {{ site.projects | size }} Active Project{% if site.projects.size != 1 %}s{% endif %}
-                            </span>
-                        </div> -->
+                            <h3>Infrastructure &amp; investment</h3>
+                            <p>We co-design resilient AI infrastructure footprints in Australia to keep Yarn performant and
+                                compliant.</p>
                         </div>
                     </div>
                     <div class="collage-item medium" data-section="insights">
@@ -98,15 +125,9 @@
                                 alt="AI Education Insights" loading="lazy">
                         </div>
                         <div class="item-content">
-                            <h3>Insights & Analysis</h3>
-                            <p>We conduct feasibility studies and economic analysis to provide insight into key policy
-                                challenges facing the Australian AI industry.</p>
-                            <!-- <div class="item-meta">
-                        <span class="meta-item">
-                            <i class="fa fa-edit"></i>
-                            {{ site.insights | size }} Article{% if site.insights.size != 1 %}s{% endif %}
-                        </span>
-                    </div> -->
+                            <h3>Insights &amp; analysis</h3>
+                            <p>From feasibility studies to policy briefings, we share what sovereign AI requires in the Australian
+                                context.</p>
                         </div>
                     </div>
                 </div>
@@ -118,10 +139,8 @@
                                 alt="AI Research" loading="lazy">
                         </div>
                         <div class="item-content">
-                            <h3>Research and Development</h3>
-                            <p>We conduct outcome-focused research and development in the open. Building tools to
-                                benefit
-                                humanity.</p>
+                            <h3>Research &amp; development</h3>
+                            <p>Open research programs that inform Yarn’s model choices, evaluation frameworks, and safety guardrails.</p>
                         </div>
                     </div>
                     <div class="collage-item small" data-section="about">
@@ -130,11 +149,9 @@
                                 alt="Our Mission" loading="lazy">
                         </div>
                         <div class="item-content">
-                            <h3>Our Mission</h3>
-                            <p>We are focussed on building AI systems that elevate humanity—not diminish it. Learn more
-                                about our
-                                mission and core values here.
-                            </p>
+                            <h3>Our mission</h3>
+                            <p>Prosody Labs exists to build AI systems that elevate Australian capability and respect community
+                                expectations.</p>
                         </div>
                     </div>
                 </div>
@@ -148,10 +165,8 @@
                                 alt="Get in Touch" loading="lazy">
                         </div>
                         <div class="item-content">
-                            <h3>Get in Touch</h3>
-                            <p>We are always looking to build stronger industry partnerships. Get in touch to learn
-                                more.
-                            </p>
+                            <h3>Talk to us</h3>
+                            <p>Partner with us on Yarn, bespoke deployments, or supporting capability-building programs.</p>
                         </div>
                     </div>
                 </div>

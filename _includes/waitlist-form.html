@@ -1,0 +1,51 @@
+{% if site.yarn.waitlist_action == 'netlify' %}
+<form name="yarn-waitlist" method="POST" action="/yarn/thanks/" data-netlify="true" netlify-honeypot="bot-field" class="yarn-form">
+  <input type="hidden" name="form-name" value="yarn-waitlist">
+  <div class="hidden" aria-hidden="true">
+    <label>Don’t fill this out: <input name="bot-field"></label>
+  </div>
+{% elsif site.yarn.waitlist_action == 'formspree' and site.yarn.formspree_endpoint %}
+<form action="{{ site.yarn.formspree_endpoint }}" method="POST" class="yarn-form">
+{% else %}
+<form method="POST" class="yarn-form">
+{% endif %}
+  <div class="yarn-form-grid">
+    <div class="yarn-field">
+      <label for="yarn-name">Name</label>
+      <input id="yarn-name" type="text" name="name" required>
+    </div>
+
+    <div class="yarn-field">
+      <label for="yarn-email">Work email</label>
+      <input id="yarn-email" type="email" name="email" required>
+    </div>
+
+    <div class="yarn-field">
+      <label for="yarn-organisation">Organisation (optional)</label>
+      <input id="yarn-organisation" type="text" name="organisation">
+    </div>
+
+    <div class="yarn-field">
+      <label for="yarn-role">Role (optional)</label>
+      <select id="yarn-role" name="role">
+        <option value="">Select</option>
+        <option>Government</option>
+        <option>Startup</option>
+        <option>Research</option>
+        <option>Business</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="yarn-field yarn-field--full">
+      <label for="yarn-message">Message (optional)</label>
+      <textarea id="yarn-message" name="message" rows="4"></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn-primary-splash yarn-submit">
+    <span>Join the waitlist</span>
+    <i class="fa fa-send"></i>
+  </button>
+  <p class="yarn-form-note">We’ll only use this to contact you about Yarn.</p>
+</form>

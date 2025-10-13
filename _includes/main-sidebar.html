@@ -8,6 +8,11 @@
                 </a>
             </li>
             <li class="floating-nav-item">
+                <a href="#yarn-section" class="floating-nav-link" data-page="yarn">
+                    <span>Yarn preview</span>
+                </a>
+            </li>
+            <li class="floating-nav-item">
                 <a href="#collage-section" class="floating-nav-link" data-page="overview">
                     <span>Overview</span>
                 </a>
@@ -40,43 +45,53 @@
     document.addEventListener('DOMContentLoaded', function () {
         console.log('🚀 Simple page navigation loaded');
 
-        // Simple scroll-to-section functionality for overview link only
         const overviewLink = document.querySelector('[data-page="overview"]');
+        const yarnLinks = document.querySelectorAll('[data-page="yarn"]');
         const exploreBtn = document.getElementById('exploreBtn');
         const scrollIndicator = document.querySelector('.scroll-indicator');
         const scrollArrow = document.querySelector('.scroll-arrow');
         const collageItems = document.querySelectorAll('.collage-item[data-section]');
 
-        // Smooth scroll to overview section
-        function scrollToOverview(e) {
-            e.preventDefault();
-            const collageSection = document.getElementById('collage-section');
-            if (collageSection) {
-                collageSection.scrollIntoView({
+        function scrollToSection(targetId) {
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             }
         }
 
-        // Set up overview scroll handlers
+        function scrollToOverview(e) {
+            e.preventDefault();
+            scrollToSection('collage-section');
+        }
+
+        function scrollToYarn(e) {
+            if (e) {
+                e.preventDefault();
+            }
+            scrollToSection('yarn-section');
+        }
+
         if (overviewLink) {
             overviewLink.addEventListener('click', scrollToOverview);
         }
 
+        yarnLinks.forEach(link => link.addEventListener('click', scrollToYarn));
+
         if (exploreBtn) {
-            exploreBtn.addEventListener('click', scrollToOverview);
+            exploreBtn.addEventListener('click', scrollToYarn);
         }
 
         if (scrollIndicator) {
-            scrollIndicator.addEventListener('click', scrollToOverview);
+            scrollIndicator.addEventListener('click', scrollToYarn);
         }
 
         if (scrollArrow) {
-            scrollArrow.addEventListener('click', scrollToOverview);
+            scrollArrow.addEventListener('click', scrollToYarn);
         }
 
-        // Animate collage items on scroll into view
         const observerOptions = {
             root: null,
             rootMargin: '0px 0px -100px 0px',
@@ -88,23 +103,20 @@
                 if (entry.isIntersecting) {
                     setTimeout(() => {
                         entry.target.classList.add('item-animate-in');
-                    }, Math.random() * 300); // Staggered animation
+                    }, Math.random() * 300);
                 }
             });
         }, observerOptions);
 
-        // Observe collage items for animation
         collageItems.forEach(item => {
             collageObserver.observe(item);
         });
 
-        // Handle collage item clicks - scroll to corresponding section
         collageItems.forEach(item => {
             item.addEventListener('click', function () {
                 const section = this.getAttribute('data-section');
                 console.log('🎨 Collage item clicked:', section);
 
-                // Scroll to the corresponding content section
                 const targetSection = document.getElementById(section + '-section');
                 if (targetSection) {
                     targetSection.scrollIntoView({
@@ -112,7 +124,6 @@
                         block: 'start'
                     });
                 } else {
-                    // If no section exists, navigate to the appropriate page
                     switch (section) {
                         case 'about':
                             window.location.href = '/about/';
