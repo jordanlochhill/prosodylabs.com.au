@@ -160,13 +160,14 @@
             ].filter(Boolean).join('\n');
             const body = encodeURIComponent(details);
 
-            window.location.href = `mailto:info@prosody.com.au?subject=${subject}&body=${body}`;
+            const waitlistEmail = '{{ site.email | default: "info@prosodylabs.com.au" }}';
+            const mailtoUrl = `mailto:${waitlistEmail}?subject=${subject}&body=${body}`;
+
+            window.location.href = mailtoUrl;
 
             if (feedback) {
-                feedback.textContent = 'Thanks for reaching out. We\'ll be in touch shortly.';
+                feedback.textContent = `We\'ve opened a draft email to ${waitlistEmail}. Please review and send it to complete your waitlist request.`;
             }
-
-            waitlistForm.reset();
         });
     });
 </script>
