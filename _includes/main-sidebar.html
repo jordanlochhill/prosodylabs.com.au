@@ -13,23 +13,18 @@
                 </a>
             </li>
             <li class="floating-nav-item">
-                <a href="/courses/" class="floating-nav-link" data-page="courses">
-                    <span>Courses</span>
+                <a href="#yarn-section" class="floating-nav-link" data-page="yarn">
+                    <span>Yarn inference platform</span>
                 </a>
             </li>
             <li class="floating-nav-item">
-                <a href="/projects/" class="floating-nav-link" data-page="projects">
-                    <span>Projects</span>
+                <a href="#partners-section" class="floating-nav-link" data-page="partners">
+                    <span>Partners</span>
                 </a>
             </li>
             <li class="floating-nav-item">
-                <a href="/insights/" class="floating-nav-link" data-page="insights">
-                    <span>Insights &amp; Analysis</span>
-                </a>
-            </li>
-            <li class="floating-nav-item">
-                <a href="/research/" class="floating-nav-link" data-page="research">
-                    <span>Research</span>
+                <a href="#mission-section" class="floating-nav-link" data-page="mission">
+                    <span>Our focus</span>
                 </a>
             </li>
         </ul>
@@ -104,25 +99,16 @@
                 const section = this.getAttribute('data-section');
                 console.log('🎨 Collage item clicked:', section);
 
-                // Scroll to the corresponding content section
-                const targetSection = document.getElementById(section + '-section');
+                const sectionId = section === 'contact' ? 'contact' : `${section}-section`;
+                const targetSection = document.getElementById(sectionId);
+
                 if (targetSection) {
                     targetSection.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
                 } else {
-                    // If no section exists, navigate to the appropriate page
-                    switch (section) {
-                        case 'about':
-                            window.location.href = '/about/';
-                            break;
-                        case 'contact':
-                            window.location.href = '/contact/';
-                            break;
-                        default:
-                            console.log('Unknown section:', section);
-                    }
+                    console.log('Unknown section:', section);
                 }
             });
         });

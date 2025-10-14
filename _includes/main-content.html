@@ -1,169 +1,186 @@
-<!-- Main Content Area -->
 <main class="main-content" id="mainContent">
-    <!-- Hero Splash Screen -->
-    <section class="splash-screen" id="splash-screen"
-        style="background-image: url('{{ '/assets/images/site/splash.png' | relative_url }}');">
-        <div class="splash-content">
-            <!-- <div class="splash-badge">
-                <i class="fa fa-flask"></i>
-                <span>Prosody Labs</span>
-            </div> -->
-            <h1 class="splash-title">Hey, </h1>
-            <h1 class="splash-title">we are prosody labs.</h1>
-            <p class="splash-subtitle">
-                We are committed to making frontier AI R&D a viable industry in Western Australia.
-                🇦🇺
-            </p>
-            <!-- <div class="splash-actions">
-                <a href="#" class="btn-primary-splash" id="exploreBtn">
-                    <span>Explore Our Work</span>
-                    <i class="fa fa-arrow-down"></i>
-                </a>
-            </div> -->
-            <!-- Scroll indicator positioned at bottom of content -->
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow">
-                <i class="fa fa-chevron-down"></i>
+    <section class="hero" id="top">
+        <div class="hero-shell">
+            <div class="hero-content">
+                <p class="hero-kicker">Sovereign AI by Prosody Labs</p>
+                <h1 class="hero-title">Meet Yarn, Australia's dedicated inference fabric</h1>
+                <p class="hero-summary">Yarn keeps critical language, vision, and multimodal models operating onshore with dependable throughput, auditable privacy, and the cultural nuance Australian teams need.</p>
+                <ul class="hero-highlights">
+                    <li>Onshore GPU capacity with clear compliance guardrails.</li>
+                    <li>Managed inference endpoints tailored to regulated industries.</li>
+                    <li>Operations crafted for privacy, sovereignty, and resilience.</li>
+                </ul>
+                <div class="hero-actions">
+                    <a class="button primary" href="#waitlist">Join the waitlist</a>
+                    <a class="button ghost" href="#articles">Explore our insights</a>
+                </div>
             </div>
-            <span class="scroll-text">Scroll to discover</span>
+            <aside class="hero-aside" aria-label="Yarn launch details">
+                <div class="hero-card card">
+                    <div class="hero-emblem" aria-hidden="true">
+                        <svg viewBox="0 0 160 160" role="img" focusable="false">
+                            <defs>
+                                <linearGradient id="heroBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#a75a1b" />
+                                    <stop offset="55%" stop-color="#c07022" />
+                                    <stop offset="100%" stop-color="#e1963c" />
+                                </linearGradient>
+                                <radialGradient id="heroGlow" cx="74%" cy="34%" r="32%">
+                                    <stop offset="0%" stop-color="#ffbe64" stop-opacity="1" />
+                                    <stop offset="70%" stop-color="#ffbe64" stop-opacity="0.18" />
+                                    <stop offset="100%" stop-color="#ffbe64" stop-opacity="0" />
+                                </radialGradient>
+                            </defs>
+                            <rect x="0" y="0" width="160" height="160" rx="50" fill="url(#heroBackground)" />
+                            <rect x="0" y="0" width="160" height="160" rx="50" fill="url(#heroGlow)" />
+                            <path d="M18 108c14-20 28-30 42-30s28 10 42 10 28-10 42-30" stroke="#f7ebd5" stroke-width="10" stroke-linecap="round" fill="none" />
+                            <circle cx="112" cy="54" r="12" fill="#ffd48c" />
+                        </svg>
+                    </div>
+                    <p class="hero-card-title">Early access is in flight</p>
+                    <p class="hero-card-copy">We are onboarding partners in energy, critical infrastructure, and public services to harden Yarn before wider release.</p>
+                    <p class="hero-card-note">Tell us about your workload to help shape the roadmap.</p>
+                </div>
+            </aside>
         </div>
     </section>
 
-    <!-- Image-First Collage Section -->
-    <section class="collage-section" id="collage-section">
-        <div class="collage-container">
-            <div class="section-intro">
-                <h2>Our Mission</h2>
-                <p>We work at all levels to enable Australian R&D in frontier AI technologies.</p>
-            </div>
-
-            <div class="collage-grid">
-
-
-
-                <!-- Priority 1: Courses -->
-                <div class="tile-1">
-                    <div class="large tile-1 collage-item" data-section="courses">
-                        <div class="item-image">
-                            <img src="{{ '/assets/images/site/bookshelves.jpg' | relative_url }}"
-                                alt="AI Education Courses" loading="lazy">
-                            <div class="item-badge">In-development</div>
-                        </div>
-                        <div class="item-content">
-                            <h3>AI skills training</h3>
-                            <p>
-                                <!-- We offer a range of fully-online courses, from introductory to advanced, designed to
-                                support cross-sector AI adoption in Australia.  -->
-                                We offer customized training and one-on-one
-                                coaching services to suit your business needs. Get in touch to find out more
-                            </p>
-                            <div class="item-meta">
-                                <!-- <span class="meta-item">
-                                <i class="fa fa-users"></i>
-                                {{ site.courses | size }} Course{% if site.courses.size != 1 %}s{% endif %}
-                            </span> -->
-                                <span class="meta-item">
-                                    <i class="fa fa-graduation-cap"></i>
-                                    Professional Development
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Priority 2: Projects -->
-                <div class="tile-2">
-                    <div class="collage-item medium" data-section="projects">
-                        <div class="item-image">
-                            <img src="{{ '/assets/images/site/infrastructure.jpg' | relative_url }}" alt="AI Projects"
-                                loading="lazy">
-                        </div>
-                        <div class="item-content">
-                            <h3>Infrastructure & Investment</h3>
-                            <p>We partner with Australian data centres to invest in enabling technologies to build and
-                                maintain Australian-owned AI infrastructure.</p>
-                            <!-- <div class="item-meta">
-                            <span class="meta-item">
-                                <i class="fa fa-code"></i>
-                                {{ site.projects | size }} Active Project{% if site.projects.size != 1 %}s{% endif %}
-                            </span>
-                        </div> -->
-                        </div>
-                    </div>
-                    <div class="collage-item medium" data-section="insights">
-                        <div class="item-image">
-                            <img src="{{ '/assets/images/site/person-tree-city-sunset.jpg' | relative_url }}"
-                                alt="AI Education Insights" loading="lazy">
-                        </div>
-                        <div class="item-content">
-                            <h3>Insights & Analysis</h3>
-                            <p>We conduct feasibility studies and economic analysis to provide insight into key policy
-                                challenges facing the Australian AI industry.</p>
-                            <!-- <div class="item-meta">
-                        <span class="meta-item">
-                            <i class="fa fa-edit"></i>
-                            {{ site.insights | size }} Article{% if site.insights.size != 1 %}s{% endif %}
-                        </span>
-                    </div> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tile-3">
-                    <div class="collage-item small" data-section="research">
-                        <div class="item-image">
-                            <img src="{{ '/assets/images/site/scientist-blue-liquid-lab.jpg' | relative_url }}"
-                                alt="AI Research" loading="lazy">
-                        </div>
-                        <div class="item-content">
-                            <h3>Research and Development</h3>
-                            <p>We conduct outcome-focused research and development in the open. Building tools to
-                                benefit
-                                humanity.</p>
-                        </div>
-                    </div>
-                    <div class="collage-item small" data-section="about">
-                        <div class="item-image">
-                            <img src="{{ '/assets/images/site/sunset-celebrating.jpg' | relative_url }}"
-                                alt="Our Mission" loading="lazy">
-                        </div>
-                        <div class="item-content">
-                            <h3>Our Mission</h3>
-                            <p>We are focussed on building AI systems that elevate humanity—not diminish it. Learn more
-                                about our
-                                mission and core values here.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Additional Info Tiles -->
-
-                <div class="tile-4">
-                    <div class="collage-item small" data-section="contact">
-                        <div class="item-image">
-                            <img src="{{ '/assets/images/site/hand-catching-rain.jpg' | relative_url }}"
-                                alt="Get in Touch" loading="lazy">
-                        </div>
-                        <div class="item-content">
-                            <h3>Get in Touch</h3>
-                            <p>We are always looking to build stronger industry partnerships. Get in touch to learn
-                                more.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <section class="pillars" aria-labelledby="pillars-title">
+        <div class="section-shell">
+            <header class="section-header">
+                <h2 id="pillars-title">Why Yarn gives Australian teams confidence</h2>
+                <p>We are building Yarn for the organisations that need predictable outcomes, data sovereignty, and human accountability.</p>
+            </header>
+            <div class="pillars-grid">
+                <article class="card pillar-card">
+                    <h3>Trusted &amp; local</h3>
+                    <p>Yarn is engineered, deployed, and supported entirely in Australia so data residency, cultural nuance, and service coverage stay onshore.</p>
+                </article>
+                <article class="card pillar-card">
+                    <h3>Focused on security</h3>
+                    <p>Strong safeguards, structured access controls, and auditable logging keep sensitive information protected without slowing teams down.</p>
+                </article>
+                <article class="card pillar-card">
+                    <h3>Committed to sovereignty</h3>
+                    <p>From datacentre selection to model governance, Yarn honours Australian regulation, community expectations, and Indigenous data sovereignty principles.</p>
+                </article>
             </div>
         </div>
     </section>
 
+    <section class="story" aria-labelledby="story-title">
+        <div class="section-shell story-shell">
+            <div class="story-copy">
+                <h2 id="story-title">A sovereign stack tuned for production realities</h2>
+                <p>Prosody Labs blends infrastructure engineering and applied AI research from Western Australia. Our team has scaled GPU platforms, protected regulated datasets, and shipped safety-critical systems. Yarn is the result of that experience.</p>
+                <p>Launching Yarn in stages lets us prove throughput, resiliency, and governance with real workloads before opening broader access. We share the learnings transparently through our insights and waitlist updates.</p>
+            </div>
+            <div class="card story-highlight">
+                <h3>What to expect next</h3>
+                <ul>
+                    <li>Managed GPU inference fabric with transparent capacity planning.</li>
+                    <li>Support for leading open-weight and licensed models tuned for Australian needs.</li>
+                    <li>Private deployments, integration support, and compliance reporting out of the box.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
+    <section class="signals" aria-labelledby="signals-title">
+        <div class="section-shell signals-shell">
+            <header class="section-header">
+                <h2 id="signals-title">Signals we&rsquo;re tracking as Yarn evolves</h2>
+                <p>We prioritise transparency so future customers can see how Yarn is taking shape.</p>
+            </header>
+            <div class="signals-grid">
+                <article class="card signal-card">
+                    <h3>Performance notes</h3>
+                    <p>We benchmark every release for latency stability, GPU utilisation, and energy efficiency to ensure Yarn can back real products.</p>
+                </article>
+                <article class="card signal-card">
+                    <h3>Responsible deployment</h3>
+                    <p>Model and dataset governance reviews inform each rollout. We document mitigations for bias, safety, and provenance before launch.</p>
+                </article>
+                <article class="card signal-card">
+                    <h3>Partner feedback</h3>
+                    <p>Input from critical infrastructure partners helps set our roadmap across observability, SLAs, and integration tooling.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
+        <div class="section-shell waitlist-shell">
+            <div class="waitlist-copy">
+                <h2 id="waitlist-title">Join the Yarn waitlist</h2>
+                <p>Share the workloads you&rsquo;re preparing and we&rsquo;ll prioritise early access conversations as capacity comes online. Everything you submit stays within Prosody Labs.</p>
+            </div>
+            <form id="waitlist-form" class="card waitlist-form">
+                <label for="waitlist-name">Name</label>
+                <input id="waitlist-name" name="name" type="text" required placeholder="Your name" autocomplete="name">
+
+                <label for="waitlist-email">Work email</label>
+                <input id="waitlist-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
+
+                <label for="waitlist-notes">How can Yarn help?</label>
+                <textarea id="waitlist-notes" name="notes" rows="4" placeholder="Share the workloads or integrations you have in mind"></textarea>
+
+                <button type="submit" class="button primary">Request early access</button>
+                <p id="waitlist-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
 
     {% include articles.html %}
 
     {% include contact.html %}
-
-
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const waitlistForm = document.getElementById('waitlist-form');
+        const feedback = document.getElementById('waitlist-feedback');
+        const waitlistRecipient = '{{ site.email | escape }}';
+
+        if (!waitlistForm) {
+            return;
+        }
+
+        waitlistForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('waitlist-name').value.trim();
+            const email = document.getElementById('waitlist-email').value.trim();
+            const notes = document.getElementById('waitlist-notes').value.trim();
+
+            const subject = encodeURIComponent('Yarn waitlist enquiry');
+            const details = [
+                name ? `Name: ${name}` : null,
+                email ? `Email: ${email}` : null,
+                notes ? `Context: ${notes}` : null
+            ].filter(Boolean).join('\n');
+            const body = encodeURIComponent(details);
+
+            const mailtoLink = `mailto:${waitlistRecipient}?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+
+            if (feedback) {
+                feedback.innerHTML = '';
+
+                const message = document.createElement('p');
+                message.textContent = `We've drafted an email to ${waitlistRecipient}. Please send it from your email client to complete your waitlist request.`;
+                feedback.appendChild(message);
+
+                const prompt = document.createElement('p');
+                prompt.textContent = 'If your email client did not open automatically, you can click here:';
+                feedback.appendChild(prompt);
+
+                const manualLink = document.createElement('a');
+                manualLink.href = mailtoLink;
+                manualLink.textContent = waitlistRecipient;
+                manualLink.classList.add('waitlist-feedback-link');
+                feedback.appendChild(manualLink);
+            }
+        });
+    });
+</script>
