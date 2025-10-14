@@ -615,12 +615,33 @@ a:focus-visible {
   gap: 0;
 }
 
+
+.insight-progress {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+  height: 4px;
+  background: rgba(34, 19, 9, 0.08);
+  overflow: hidden;
+}
+
+.insight-progress-bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(var(--progress, 0));
+  background: linear-gradient(90deg, #d87b21 0%, #f1b567 100%);
+  transition: transform 180ms ease-out;
+}
+
 .insight-hero {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 12%, rgba(255, 206, 143, 0.4), transparent 60%),
-    linear-gradient(140deg, #4a2108 0%, #7d3c11 52%, #bb6d24 100%);
+    radial-gradient(circle at 18% 18%, rgba(255, 244, 230, 0.85), transparent 55%),
+    radial-gradient(circle at 86% 8%, rgba(255, 211, 164, 0.65), transparent 55%),
+    linear-gradient(140deg, #2f1608 0%, #6c3710 45%, #c87720 100%);
   color: var(--color-contrast);
   padding-bottom: clamp(3rem, 7vw, 5rem);
 }
@@ -629,7 +650,8 @@ a:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(19, 8, 3, 0.5) 0%, rgba(180, 102, 33, 0.2) 100%);
+  background: linear-gradient(180deg, rgba(18, 8, 3, 0.45) 0%, rgba(180, 102, 33, 0.25) 65%, rgba(255, 236, 216, 0.25) 100%);
+  mix-blend-mode: soft-light;
   z-index: 0;
 }
 
@@ -646,7 +668,25 @@ a:focus-visible {
 }
 
 .insight-hero-copy {
-  max-width: 620px;
+  max-width: 640px;
+  position: relative;
+  z-index: 2;
+}
+
+.insight-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: rgba(255, 247, 235, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.insight-breadcrumb:hover,
+.insight-breadcrumb:focus-visible {
+  color: #fff0dc;
+  text-decoration: none;
 }
 
 .insight-kicker {
@@ -669,12 +709,50 @@ a:focus-visible {
   color: rgba(255, 248, 235, 0.92);
 }
 
+
 .insight-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 600;
   color: rgba(255, 245, 231, 0.9);
+}
+
+.insight-meta-item {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  background: rgba(20, 9, 2, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.insight-meta-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255, 239, 222, 0.7);
+}
+
+.insight-meta-value {
+  font-size: 0.98rem;
+}
+
+.insight-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.insight-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 224, 194, 0.18);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
 }
 
 .insight-meta time {
@@ -697,6 +775,7 @@ a:focus-visible {
   margin-top: clamp(-4rem, -6vw, -3rem);
 }
 
+
 .insight-article-shell {
   width: min(100%, calc(var(--shell-max) + 140px));
   margin: 0 auto;
@@ -710,12 +789,166 @@ a:focus-visible {
   align-items: start;
 }
 
+
 .insight-body {
-  padding: clamp(2.25rem, 4vw, 3rem);
+  padding: clamp(2.5rem, 4vw, 3.25rem);
   border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, rgba(255, 250, 242, 0.98) 0%, rgba(248, 231, 206, 0.9) 100%);
-  border: 1px solid rgba(255, 237, 213, 0.85);
+  background: linear-gradient(165deg, rgba(255, 252, 245, 0.95) 0%, rgba(249, 235, 213, 0.92) 40%, rgba(243, 217, 184, 0.9) 100%);
+  border: 1px solid rgba(255, 233, 204, 0.85);
   box-shadow: var(--shadow-medium);
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1.85;
+  letter-spacing: -0.005em;
+}
+
+.insight-body > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: clamp(3.4rem, 6vw, 4rem);
+  float: left;
+  line-height: 0.88;
+  padding-right: 0.4rem;
+  margin-top: 0.35rem;
+  font-weight: 600;
+  color: var(--color-accent-dark);
+}
+
+.insight-body p,
+.insight-body li {
+  color: rgba(49, 28, 13, 0.92);
+}
+
+.insight-body h2,
+.insight-body h3,
+.insight-body h4 {
+  color: var(--color-text);
+  margin: clamp(2.5rem, 6vw, 3.5rem) 0 1rem;
+  line-height: 1.2;
+}
+
+.insight-body h2 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+}
+
+.insight-body h3 {
+  font-size: clamp(1.45rem, 3vw, 1.75rem);
+}
+
+.insight-body h4 {
+  font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+  letter-spacing: 0.02em;
+}
+
+.insight-body blockquote {
+  margin: 2.5rem 0;
+  padding: 1.75rem 2rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 238, 216, 0.85);
+  border-inline-start: 5px solid rgba(216, 123, 33, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+
+.insight-body blockquote p:last-child {
+  margin: 0;
+}
+
+.insight-body blockquote:first-of-type {
+  background: rgba(255, 240, 226, 0.95);
+  border-color: rgba(190, 86, 20, 0.6);
+}
+
+.insight-body a {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(200, 123, 43, 0.5);
+}
+
+.insight-body a:hover,
+.insight-body a:focus-visible {
+  text-decoration-color: rgba(200, 123, 43, 0.85);
+}
+
+.insight-body ul,
+.insight-body ol {
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.insight-body li::marker {
+  color: rgba(190, 86, 20, 0.7);
+}
+
+.insight-body figure {
+  margin: clamp(2.5rem, 6vw, 3.5rem) 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 22px 40px rgba(40, 22, 10, 0.18);
+}
+
+.insight-body figure img {
+  width: 100%;
+  display: block;
+}
+
+.insight-body figcaption {
+  padding: 1rem 1.5rem;
+  background: rgba(255, 252, 245, 0.9);
+  font-size: 0.95rem;
+  color: rgba(49, 28, 13, 0.7);
+}
+
+.insight-body hr {
+  margin: clamp(3rem, 6vw, 4rem) auto;
+  width: min(160px, 40%);
+  border: none;
+  border-top: 2px solid rgba(214, 140, 55, 0.4);
+}
+
+.insight-body code {
+  font-family: var(--font-mono);
+  background: rgba(255, 240, 222, 0.8);
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+}
+
+.insight-body pre {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: rgba(33, 19, 9, 0.85);
+  color: var(--color-contrast);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.insight-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  box-shadow: 0 18px 28px rgba(32, 18, 8, 0.12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.insight-body table thead {
+  background: rgba(210, 135, 55, 0.15);
+}
+
+.insight-body th,
+.insight-body td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(226, 190, 150, 0.45);
+}
+
+.insight-body tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .insight-body > *:last-child {
@@ -731,6 +964,8 @@ a:focus-visible {
   padding: clamp(1.75rem, 3.5vw, 2.5rem);
   display: grid;
   gap: 1.25rem;
+  background: linear-gradient(160deg, rgba(255, 248, 235, 0.92) 0%, rgba(250, 228, 197, 0.9) 100%);
+  border: 1px solid rgba(255, 228, 196, 0.9);
 }
 
 .insight-side-card h2 {
@@ -748,6 +983,11 @@ a:focus-visible {
 
 .insight-side-card p {
   margin: 0;
+}
+
+.insight-side-card strong {
+  font-weight: 700;
+  color: var(--color-accent-dark);
 }
 
 .insight-list {
@@ -775,6 +1015,12 @@ a:focus-visible {
   color: var(--color-text);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+.insight-side-actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .insight-cta {
@@ -880,6 +1126,10 @@ a:focus-visible {
  * Media queries
  * -------------------------------------------------- */
 @media (max-width: 720px) {
+  .insight-progress {
+    position: sticky;
+  }
+
   .nav-inner {
     padding: 1rem var(--space-inline);
   }
@@ -911,6 +1161,23 @@ a:focus-visible {
 
   .insight-aside {
     position: static;
+  }
+
+  .insight-meta {
+    margin-top: 1.75rem;
+  }
+
+  .insight-meta-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .insight-meta-label {
+    font-size: 0.78rem;
+  }
+
+  .insight-meta-value {
+    font-size: 0.92rem;
   }
 
   .insight-cta-shell {

@@ -7,21 +7,48 @@
     <a class="skip-link" href="#mainContent">Skip to main content</a>
     {% include nav.html %}
 
+    <div class="insight-progress" aria-hidden="true">
+        <span class="insight-progress-bar"></span>
+    </div>
+
     <main class="insight-main" id="mainContent">
         <section class="insight-hero" aria-labelledby="insight-title">
             <div class="insight-hero-shell">
                 <div class="insight-hero-copy">
+                    <a class="insight-breadcrumb" href="{{ '/' | relative_url }}#articles">← Back to insights</a>
                     <p class="insight-kicker">Prosody Labs Insights</p>
                     <h1 id="insight-title" class="insight-title">{{ page.title }}</h1>
                     {% if page.subtitle %}
                     <p class="insight-subtitle">{{ page.subtitle }}</p>
                     {% endif %}
-                    <div class="insight-meta">
+                    <div class="insight-meta" role="list">
+                        {% if page.author %}
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Author</span>
+                            <span class="insight-meta-value">{{ page.author }}</span>
+                        </div>
+                        {% endif %}
                         {% if page.date %}
-                        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Published</span>
+                            <time class="insight-meta-value" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+                        </div>
                         {% endif %}
                         {% if page.read_time %}
-                        <span>{{ page.read_time }} minute read</span>
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Read time</span>
+                            <span class="insight-meta-value">{{ page.read_time }} minute{% if page.read_time != 1 %}s{% endif %}</span>
+                        </div>
+                        {% endif %}
+                        {% if page.categories %}
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Topics</span>
+                            <span class="insight-meta-value insight-meta-pills">
+                                {% for category in page.categories %}
+                                <span class="insight-pill">{{ category }}</span>
+                                {% endfor %}
+                            </span>
+                        </div>
                         {% endif %}
                     </div>
                 </div>
@@ -68,6 +95,10 @@
                                 </ul>
                             </div>
                             {% endif %}
+                            <div class="insight-side-actions">
+                                <a class="button primary" href="mailto:{{ site.email }}">Talk with us</a>
+                                <a class="button ghost" href="{{ '/' | relative_url }}#articles">Explore more insights</a>
+                            </div>
                         </div>
                     </aside>
                 </div>
@@ -97,6 +128,26 @@
     </footer>
 
     {% include scripts.html %}
+    <script>
+        (function () {
+            const progressBar = document.querySelector('.insight-progress-bar');
+            const article = document.querySelector('.insight-article');
+            if (!progressBar || !article) return;
+
+            const calculate = () => {
+                const scrollTop = window.scrollY || window.pageYOffset;
+                const start = article.offsetTop;
+                const end = start + article.offsetHeight - window.innerHeight;
+                const progress = Math.min(Math.max((scrollTop - start) / Math.max(end - start, 1), 0), 1);
+                progressBar.style.setProperty('--progress', progress);
+                progressBar.style.transform = `scaleX(${progress})`;
+            };
+
+            calculate();
+            window.addEventListener('scroll', calculate, { passive: true });
+            window.addEventListener('resize', calculate);
+        })();
+    </script>
 </body>
 
 </html>
