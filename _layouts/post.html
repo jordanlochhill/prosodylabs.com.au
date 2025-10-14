@@ -1,42 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="openai-page">
 
 {% include head.html %}
 
-<body class="page-top">
+<body class="openai-layout insight-layout">
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
     {% include nav.html %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <article class="post">
-                    <header class="post-header text-center">
-                        <h1 class="post-title">{{ page.title }}</h1>
-                        <p class="post-meta text-muted">{{ page.date | date_to_string }}</p>
-                        <hr class="primary">
-                    </header>
+    <div class="insight-progress" aria-hidden="true">
+        <span class="insight-progress-bar"></span>
+    </div>
 
-                    <div class="post-content">
+    <main class="insight-main" id="mainContent">
+        <section class="insight-hero" aria-labelledby="insight-title">
+            <div class="insight-hero-shell">
+                <div class="insight-hero-copy">
+                    <a class="insight-breadcrumb" href="{{ '/' | relative_url }}#articles">← Back to insights</a>
+                    <p class="insight-kicker">Prosody Labs Insights</p>
+                    <h1 id="insight-title" class="insight-title">{{ page.title }}</h1>
+                    {% if page.subtitle %}
+                    <p class="insight-subtitle">{{ page.subtitle }}</p>
+                    {% endif %}
+                    <div class="insight-meta" role="list">
+                        {% if page.author %}
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Author</span>
+                            <span class="insight-meta-value">{{ page.author }}</span>
+                        </div>
+                        {% endif %}
+                        {% if page.date %}
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Published</span>
+                            <time class="insight-meta-value" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+                        </div>
+                        {% endif %}
+                        {% if page.read_time %}
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Read time</span>
+                            <span class="insight-meta-value">{{ page.read_time }} minute{% if page.read_time != 1 %}s{% endif %}</span>
+                        </div>
+                        {% endif %}
+                        {% if page.categories %}
+                        <div class="insight-meta-item" role="listitem">
+                            <span class="insight-meta-label">Topics</span>
+                            <span class="insight-meta-value insight-meta-pills">
+                                {% for category in page.categories %}
+                                <span class="insight-pill">{{ category }}</span>
+                                {% endfor %}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if page.image %}
+                <figure class="insight-hero-figure">
+                    <img src="{{ page.image | relative_url }}" alt="Illustration for {{ page.title }}">
+                </figure>
+                {% endif %}
+            </div>
+        </section>
+
+        <article class="insight-article" aria-labelledby="insight-title">
+            <div class="insight-article-shell">
+                <div class="insight-article-grid">
+                    <div class="insight-body">
                         {{ content }}
                     </div>
-                </article>
-
-                <div class="text-center post-navigation">
-                    <a href="/" class="btn btn-primary btn-xl">Back to Home</a>
+                    <aside class="insight-aside" aria-labelledby="insight-details-title">
+                        <div class="insight-side-card card">
+                            <h2 id="insight-details-title">Article details</h2>
+                            {% if page.date %}
+                            <p><strong>Published:</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time></p>
+                            {% endif %}
+                            {% if page.read_time %}
+                            <p><strong>Read time:</strong> {{ page.read_time }} minute{% if page.read_time != 1 %}s{% endif %}</p>
+                            {% endif %}
+                            {% if page.categories %}
+                            <div>
+                                <h3>Categories</h3>
+                                <ul class="insight-list">
+                                    {% for category in page.categories %}
+                                    <li>{{ category }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                            {% if page.tags %}
+                            <div>
+                                <h3>Tags</h3>
+                                <ul class="insight-tags">
+                                    {% for tag in page.tags %}
+                                    <li>{{ tag }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+                            <div class="insight-side-actions">
+                                <a class="button primary" href="mailto:{{ site.email }}">Talk with us</a>
+                                <a class="button ghost" href="{{ '/' | relative_url }}#articles">Explore more insights</a>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
-        </div>
-    </div>
+        </article>
 
-    <div class="footer text-center site-footer">
-        <div class="container">
-            <p class="text-muted">
-                <a href="https://prosodylabs.com.au">Prosody Labs</a>
-            </p>
+        <section class="insight-cta" aria-labelledby="insight-cta-title">
+            <div class="insight-cta-shell">
+                <div>
+                    <h2 id="insight-cta-title">Continue the conversation</h2>
+                    <p>Have an energy challenge we should know about? Let&rsquo;s explore how Yarn can help.</p>
+                </div>
+                <div class="insight-cta-actions">
+                    <a class="button primary" href="mailto:{{ site.email }}">Email {{ site.email }}</a>
+                    <a class="button ghost" href="{{ '/' | relative_url }}#articles">Back to insights</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include contact.html %}
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="section-shell">
+            <p>&copy; {{ site.time | date: '%Y' }} Prosody Labs. All rights reserved.</p>
         </div>
-    </div>
+    </footer>
 
     {% include scripts.html %}
+    <script>
+        (function () {
+            const progressBar = document.querySelector('.insight-progress-bar');
+            const article = document.querySelector('.insight-article');
+            if (!progressBar || !article) return;
+
+            const calculate = () => {
+                const scrollTop = window.scrollY || window.pageYOffset;
+                const start = article.offsetTop;
+                const end = start + article.offsetHeight - window.innerHeight;
+                const progress = Math.min(Math.max((scrollTop - start) / Math.max(end - start, 1), 0), 1);
+                progressBar.style.setProperty('--progress', progress);
+                progressBar.style.transform = `scaleX(${progress})`;
+            };
+
+            calculate();
+            window.addEventListener('scroll', calculate, { passive: true });
+            window.addEventListener('resize', calculate);
+        })();
+    </script>
 </body>
 
 </html>
