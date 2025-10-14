@@ -1,84 +1,31 @@
-<!-- Minimal Top Navigation -->
-<nav class="minimal-nav" id="minimalNav">
-    <div class="nav-container">
-        <!-- Logo Only -->
-        <div class="nav-brand">
-            <a href="/" class="brand-link">
-                <div class="brand-logo">
-                    <i class="fa fa-flask"></i>
-                </div>
-                <span class="brand-name" id="brandName">Prosody Labs</span>
-            </a>
-        </div>
-
-        <!-- Simple Login Button -->
-        <div class="nav-actions" style="display:flex; align-items:center; gap:16px;">
-
-            <!-- Light/dark theme to be implemented later -->
-            <!-- <button aria-label="Toggle theme" onclick="toggleTheme()"
-                style="background:none; border:none; font-size:18px; cursor:pointer; color:inherit;">
-                <i class="fa fa-adjust"></i>
-            </button> -->
-            {% if page.url == '/' %}
-            <button class="btn-login">
-                <i class="fa fa-sign-in-alt"></i>
-                <span>Log in</span>
-            </button>
-            {% endif %}
+<nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+        <a class="nav-brand" href="{{ '/' | relative_url }}" aria-label="Prosody Labs home">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img" focusable="false">
+                    <defs>
+                        <linearGradient id="brandBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#b36a24" />
+                            <stop offset="60%" stop-color="#c87c2c" />
+                            <stop offset="100%" stop-color="#e4a54e" />
+                        </linearGradient>
+                        <radialGradient id="brandGlow" cx="78%" cy="42%" r="28%">
+                            <stop offset="0%" stop-color="#ffb15c" stop-opacity="0.95" />
+                            <stop offset="65%" stop-color="#ffb15c" stop-opacity="0.2" />
+                            <stop offset="100%" stop-color="#ffb15c" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#brandBackground)" />
+                    <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#brandGlow)" />
+                    <path d="M8 36c6-8 12-12 18-12s12 4 18 4 12-4 18-12" stroke="#f5e9d6" stroke-width="4" stroke-linecap="round" fill="none" />
+                    <circle cx="46" cy="22" r="5" fill="#ffcf78" />
+                </svg>
+            </span>
+            <span class="brand-text">Prosody Labs</span>
+        </a>
+        <div class="nav-actions">
+            <a class="nav-link" href="#articles">Articles</a>
+            <a class="nav-button" href="#waitlist">Join the Yarn waitlist</a>
         </div>
     </div>
 </nav>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const homeLink = document.getElementById('homeLink');
-        const brandName = document.getElementById('brandName');
-        let lastScrollTop = 0;
-        const scrollThreshold = 100; // Hide brand name after scrolling 100px
-
-        // Scroll handler to hide/show brand name
-        function handleScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > scrollThreshold) {
-                // Scrolled down - hide brand name
-                if (brandName) {
-                    brandName.style.opacity = '0';
-                    brandName.style.transform = 'translateX(-10px)';
-                }
-            } else {
-                // Scrolled back to top - show brand name
-                if (brandName) {
-                    brandName.style.opacity = '1';
-                    brandName.style.transform = 'translateX(0)';
-                }
-            }
-
-            lastScrollTop = scrollTop;
-        }
-
-        // Add scroll event listener
-        window.addEventListener('scroll', handleScroll);
-
-        // Home link functionality
-        if (homeLink) {
-            homeLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Use the global navigation function if available
-                if (window.prosodyNavigation && window.prosodyNavigation.showSection) {
-                    window.prosodyNavigation.showSection('splash-screen');
-                } else {
-                    // Fallback: scroll to top and show splash
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    document.querySelectorAll('.splash-screen, .collage-section, .detail-section').forEach(section => {
-                        section.classList.add('hidden');
-                    });
-                    const splashSection = document.getElementById('splash-screen');
-                    if (splashSection) {
-                        splashSection.classList.remove('hidden');
-                    }
-                }
-            });
-        }
-    });
-</script>

@@ -21,7 +21,7 @@
 title: Prosody Labs
 email: info@prosodylabs.com.au
 description: >-
-  Prosody Labs advances frontier AI R&D in Western Australia, building safe, scalable systems and translating breakthroughs into real-world impact.
+  Prosody Labs is building Yarn, Australia's sovereign AI inference platform that keeps sensitive workloads onshore with transparent performance, privacy by design, and a human-centred approach.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://prosodylabs.com.au" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: prosodylabs
@@ -32,18 +32,9 @@ github_username:  prosodylabs
 
 # Collections
 collections:
-  projects:
-    output: true
-    permalink: /projects/:name/
-  research:
-    output: true
-    permalink: /research/:name/
   insights:
     output: true
     permalink: /insights/:name/
-  courses:
-    output: true
-    permalink: /courses/:name/
 
 plugins:
   - jekyll-feed
