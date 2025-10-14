@@ -75,9 +75,13 @@ So where does **Australia** fit in?  Unfortunately, Australian electricity isn't
 
 This stark gap in energy costs is causing prospective investors to ask: *what is Australia doing to rein in energy prices, and is relief in sight?*
 
+
+
 ## The State-by-State Power Price Reality in Australia
 
 One complicating factor is that **Australia’s energy costs aren’t uniform nationwide**. State policies, resources, and grid setups vary, leading to notable differences in electricity prices across the country. For example, **Victoria and South Australia**—states that have rapidly expanded wind and solar generation—have recently seen **significantly lower wholesale electricity prices** than the coal-dependent states. In Q4 2024, Victoria’s average wholesale price plunged to just **A\$45/MWh**, about half the national average, thanks to lots of renewable energy pushing prices down. South Australia (SA), with its high renewables mix, similarly enjoyed low prices, even frequently dropping to negative prices during windy, sunny periods. **Tasmania**, powered largely by hydro, also tends to have moderate wholesale prices. Meanwhile, the **northern [NEM](https://aemo.com.au/energy-systems/electricity/national-electricity-market-nem) states (New South Wales and Queensland)** were hit with prices of **A\$127–143/MWh** in the same quarter—roughly triple Victoria’s rate—due to heavy reliance on **aging coal plants and expensive gas**. Those coal stations not only face higher fuel costs but also more frequent outages, driving up “cap payments” (price spikes) for reliability.
+
+![image]({{"/assets/images/content/average-wholesale-price-data.png" | relative_url}})
 
 *Average wholesale electricity spot prices by region in Australia (Q4 2023 vs Q3 2024 vs Q4 2024). States with higher renewable generation (VIC, SA, TAS) saw substantially lower prices by late 2024, whereas NSW and QLD experienced price spikes due to reliance on high-cost coal power, which averaged over $120/MWh on the National Energy Market in 2024 according to the [Australian Energy Regulator report](https://www.aer.gov.au/system/files/2025-01/Q4%202024%20Wholesale%20markets%20quarterly%20report.pdf).*
 
