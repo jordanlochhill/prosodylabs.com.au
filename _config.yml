@@ -32,9 +32,9 @@ github_username:  prosodylabs
 
 # Collections
 collections:
-  insights:
+  articles:
     output: true
-    permalink: /insights/:name/
+    permalink: /articles/:name/
 
 plugins:
   - jekyll-feed
