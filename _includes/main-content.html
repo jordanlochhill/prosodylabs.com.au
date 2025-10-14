@@ -140,6 +140,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const waitlistForm = document.getElementById('waitlist-form');
         const feedback = document.getElementById('waitlist-feedback');
+        const waitlistRecipient = '{{ site.email | escape }}';
 
         if (!waitlistForm) {
             return;
@@ -160,13 +161,25 @@
             ].filter(Boolean).join('\n');
             const body = encodeURIComponent(details);
 
-            const waitlistEmail = '{{ site.email | default: "info@prosodylabs.com.au" }}';
-            const mailtoUrl = `mailto:${waitlistEmail}?subject=${subject}&body=${body}`;
-
-            window.location.href = mailtoUrl;
+            const mailtoLink = `mailto:${waitlistRecipient}?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
 
             if (feedback) {
-                feedback.textContent = `We\'ve opened a draft email to ${waitlistEmail}. Please review and send it to complete your waitlist request.`;
+                feedback.innerHTML = '';
+
+                const message = document.createElement('p');
+                message.textContent = `We've drafted an email to ${waitlistRecipient}. Please send it from your email client to complete your waitlist request.`;
+                feedback.appendChild(message);
+
+                const prompt = document.createElement('p');
+                prompt.textContent = 'If your email client did not open automatically, you can click here:';
+                feedback.appendChild(prompt);
+
+                const manualLink = document.createElement('a');
+                manualLink.href = mailtoLink;
+                manualLink.textContent = waitlistRecipient;
+                manualLink.classList.add('waitlist-feedback-link');
+                feedback.appendChild(manualLink);
             }
         });
     });
