@@ -1,6 +1,6 @@
 ---
 title: "Australia's dark horse in AI Infrastructure"
-layout: blog
+layout: article
 author: "Jordan Hill"
 date: 2025-07-24
 # subtitle: "...in a nationally uncompetitive field."
