@@ -51,12 +51,12 @@
   box-sizing: border-box;
 }
 
-html.openai-page {
+html.page {
   background: var(--color-background);
   scroll-behavior: smooth;
 }
 
-body.openai-layout {
+body.layout {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-sans);
