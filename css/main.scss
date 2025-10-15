@@ -29,6 +29,26 @@
   --color-border: rgba(154, 96, 33, 0.28);
   --color-shadow: rgba(70, 41, 14, 0.18);
 
+  /* Buttons */
+  --button-solid-start: #8d4f17;
+  --button-solid-end: #d07d27;
+  --button-solid-hover-start: #a25e1d;
+  --button-solid-hover-end: #e09439;
+  --button-solid-text: #fffaf3;
+  --button-solid-shadow: 0 18px 32px rgba(114, 64, 18, 0.35);
+
+  --button-outline-text: #3c1d09;
+  --button-outline-border: rgba(156, 95, 32, 0.5);
+  --button-outline-bg: rgba(255, 246, 236, 0.32);
+  --button-outline-hover-border: rgba(176, 111, 44, 0.8);
+  --button-outline-hover-bg: rgba(255, 246, 236, 0.6);
+
+  --button-outline-text-on-dark: var(--color-contrast);
+  --button-outline-border-on-dark: rgba(255, 240, 221, 0.75);
+  --button-outline-bg-on-dark: rgba(35, 18, 6, 0.42);
+  --button-outline-hover-border-on-dark: rgba(255, 236, 214, 0.9);
+  --button-outline-hover-bg-on-dark: rgba(35, 18, 6, 0.62);
+
   /* Layout */
   --shell-max: 1080px;
   --space-section: clamp(2.75rem, 8vw, 5.5rem);
@@ -179,11 +199,14 @@ a:focus-visible {
   border-radius: var(--radius-pill);
   font-weight: 600;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, #c6761c 0%, #e39a45 100%);
-  color: var(--color-contrast);
+  background: linear-gradient(135deg, var(--button-solid-start) 0%, var(--button-solid-end) 100%);
+  color: var(--button-solid-text);
   cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
   white-space: nowrap;
+  box-shadow: var(--button-solid-shadow);
+  text-shadow: 0 1px 0 rgba(32, 16, 7, 0.32);
+  text-decoration: none;
 }
 
 .button:hover,
@@ -191,20 +214,45 @@ a:focus-visible {
 .nav-button:hover,
 .nav-button:focus-visible {
   transform: translateY(-1px);
-  box-shadow: 0 18px 32px rgba(156, 95, 32, 0.25);
+  box-shadow: 0 20px 36px rgba(98, 55, 16, 0.32);
+  background: linear-gradient(135deg, var(--button-solid-hover-start) 0%, var(--button-solid-hover-end) 100%);
+  text-decoration: none;
+  color: var(--button-solid-text);
+}
+
+.button:focus-visible,
+.nav-button:focus-visible {
+  outline: 2px solid rgba(255, 245, 229, 0.85);
+  outline-offset: 3px;
 }
 
 .button.ghost {
-  background: transparent;
-  border-color: rgba(255, 242, 224, 0.6);
-  color: var(--color-text);
+  background: var(--button-outline-bg);
+  border-color: var(--button-outline-border);
+  color: var(--button-outline-text);
   box-shadow: none;
+  text-shadow: none;
 }
 
 .button.ghost:hover,
 .button.ghost:focus-visible {
-  border-color: rgba(227, 150, 64, 0.8);
-  color: var(--color-accent);
+  border-color: var(--button-outline-hover-border);
+  background: var(--button-outline-hover-bg);
+  color: var(--button-outline-text);
+}
+
+.hero .button.ghost {
+  color: var(--button-outline-text-on-dark);
+  border-color: var(--button-outline-border-on-dark);
+  background: var(--button-outline-bg-on-dark);
+  box-shadow: none;
+}
+
+.hero .button.ghost:hover,
+.hero .button.ghost:focus-visible {
+  color: var(--button-outline-text-on-dark);
+  border-color: var(--button-outline-hover-border-on-dark);
+  background: var(--button-outline-hover-bg-on-dark);
 }
 
 .card {
@@ -711,8 +759,8 @@ a:focus-visible {
 }
 
 .article {
-  max-width: 780px;
-  margin: 0 auto;
+  max-width: 70rem;
+  margin: 0em auto;
   background: var(--color-contrast);
   border-radius: var(--radius-lg);
   box-shadow: 0 28px 44px rgba(102, 61, 24, 0.22);
