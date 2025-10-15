@@ -87,7 +87,9 @@ When someone submits the waitlist form:
 1. **Data is stored** in `backend/data/waitlist-submissions.json`
 2. **Console notification** shows the submission details immediately
 3. **Individual email files** are created in `backend/data/` for easy copying
-4. **Email is sent automatically** (if SMTP is configured) OR saved to files only
+4. **Two emails are sent automatically** (if SendGrid is configured) OR saved to files only:
+   - **Team notification email** to Prosody Labs team with submission details
+   - **User confirmation email** to the person who submitted the form
 
 ## API Endpoints
 

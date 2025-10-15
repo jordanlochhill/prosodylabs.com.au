@@ -154,11 +154,76 @@ IP: ${submission.ip}`;
                 sgMail
                     .send(msg)
                     .then(() => {
-                        console.log('📧 Email sent successfully via SendGrid');
+                        console.log('📧 Team notification email sent successfully via SendGrid');
                     })
                     .catch((error) => {
-                        console.error('❌ Failed to send email via SendGrid:', error.message);
+                        console.error('❌ Failed to send team notification email via SendGrid:', error.message);
                         console.log('📁 Email content saved to file instead');
+                    });
+            });
+
+            // Send confirmation email to user (non-blocking)
+            setImmediate(() => {
+                console.log('📧 Sending confirmation email to user...');
+
+                // Create confirmation email content
+                const confirmationText = `Hi ${submission.name},
+
+Thank you for joining the Yarn waitlist!
+
+We've received your request and will be in touch soon with updates about Yarn's availability and early access opportunities.
+
+Your submission details:
+- Name: ${submission.name}
+- Email: ${submission.email}
+${submission.notes ? `- Notes: ${submission.notes}` : ''}
+
+Best regards,
+The Prosody Labs Team
+
+---
+This email was sent from the Prosody Labs website waitlist form.
+Submitted: ${submission.timestamp}`;
+
+                const confirmationHtml = `
+                    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                        <div style="background: #fdf6ec; padding: 30px; border-radius: 8px; border-left: 4px solid #c2721c;">
+                            <h2 style="color: #c2721c; margin-top: 0;">Welcome to the Yarn Waitlist!</h2>
+                            <p style="font-size: 16px; margin-bottom: 20px;">Hi ${submission.name},</p>
+                            <p style="font-size: 16px; margin-bottom: 20px;">Thank you for joining the Yarn waitlist!</p>
+                            <p style="font-size: 16px; margin-bottom: 20px;">We've received your request and will be in touch soon with updates about Yarn's availability and early access opportunities.</p>
+                            
+                            <div style="background: #fff; padding: 15px; border-radius: 4px; margin: 20px 0;">
+                                <h3 style="margin-top: 0; color: #c2721c;">Your submission details:</h3>
+                                <p><strong>Name:</strong> ${submission.name}</p>
+                                <p><strong>Email:</strong> ${submission.email}</p>
+                                ${submission.notes ? `<p><strong>Notes:</strong> ${submission.notes}</p>` : ''}
+                            </div>
+                            
+                            <p style="font-size: 16px; margin-top: 30px;">Best regards,<br><strong>The Prosody Labs Team</strong></p>
+                        </div>
+                        <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
+                            <p>This email was sent from the Prosody Labs website waitlist form.</p>
+                            <p>Submitted: ${submission.timestamp}</p>
+                        </div>
+                    </div>
+                `;
+
+                const confirmationMsg = {
+                    to: submission.email,
+                    from: process.env.EMAIL_FROM || 'noreply@prosodylabs.com.au',
+                    subject: 'Welcome to the Yarn Waitlist - Prosody Labs',
+                    text: confirmationText,
+                    html: confirmationHtml
+                };
+
+                sgMail
+                    .send(confirmationMsg)
+                    .then(() => {
+                        console.log('📧 Confirmation email sent successfully to user');
+                    })
+                    .catch((error) => {
+                        console.error('❌ Failed to send confirmation email to user:', error.message);
                     });
             });
         } else {
