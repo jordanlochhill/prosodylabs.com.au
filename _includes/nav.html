@@ -24,7 +24,17 @@
             </span>
             <span class="brand-text">Prosody Labs</span>
         </a>
-        <div class="nav-actions">
+
+        <!-- Mobile menu button -->
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+            <span class="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </span>
+        </button>
+
+        <div class="nav-actions" id="nav-menu">
             <!-- <a class="nav-link" href="{{ '/' | relative_url }}#story">Research</a> -->
             <a class="nav-link" href="{{ '/articles/' | relative_url }}">Articles</a>
             <a class="nav-link" href="{{ '/' | relative_url }}#contact">Contact</a>
