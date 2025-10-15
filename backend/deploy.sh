@@ -28,7 +28,8 @@ if [ "$IS_UPDATE" = true ]; then
     # Reset any local changes and pull latest
     echo "🔄 Resetting to clean state..."
     git reset --hard HEAD
-    git clean -fd
+    # Clean untracked files, ignoring permission errors
+    git clean -fd || true
     echo "✅ Local changes discarded"
     
     # Pull latest changes
