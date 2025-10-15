@@ -24,6 +24,11 @@ cd $DEPLOY_DIR/backend
 # Install dependencies
 npm ci --only=production
 
+# Create and configure data directory with proper permissions
+sudo mkdir -p $DEPLOY_DIR/backend/data
+sudo chown -R www-data:www-data $DEPLOY_DIR/backend/data
+sudo chmod -R 755 $DEPLOY_DIR/backend/data
+
 # Setup environment
 if [ ! -f .env ]; then
     cp env.example .env
