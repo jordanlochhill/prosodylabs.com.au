@@ -298,18 +298,13 @@ sudo ln -sf /etc/nginx/sites-available/api.prosodylabs.com.au /etc/nginx/sites-e
 sudo nginx -t
 sudo systemctl reload nginx
 
-# Obtain SSL certificate
-sudo certbot certonly --webroot \
-    -w /var/www/certbot \
+# Obtain SSL certificate and auto-configure nginx
+sudo certbot --nginx \
     -d api.prosodylabs.com.au \
     --email info@prosodylabs.com.au \
     --agree-tos \
-    --no-eff-email
-
-# Copy full nginx config with SSL
-sudo cp nginx/nginx.conf /etc/nginx/sites-available/api.prosodylabs.com.au
-sudo nginx -t
-sudo systemctl reload nginx
+    --no-eff-email \
+    --redirect
 
 # Setup auto-renewal
 sudo systemctl enable certbot.timer
