@@ -24,6 +24,14 @@ sudo chown $USER:$USER $DEPLOY_DIR
 if [ "$IS_UPDATE" = true ]; then
     cd $DEPLOY_DIR
     echo "📥 Pulling latest changes..."
+    
+    # Reset any local changes and pull latest
+    echo "🔄 Resetting to clean state..."
+    git reset --hard HEAD
+    git clean -fd
+    echo "✅ Local changes discarded"
+    
+    # Pull latest changes
     git pull origin main
     echo "✅ Repository updated"
 else
