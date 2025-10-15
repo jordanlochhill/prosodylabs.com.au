@@ -2,7 +2,7 @@
 set -e
 
 DEPLOY_DIR="/opt/prosodylabs/backend"
-REPO_URL="ssh://github-personal/prosodylabs/prosodylabs.git"
+REPO_URL="ssh://github-personal/prosodylabs/prosodylabs.com.au.git"
 
 echo "Deploying Prosody Labs Waitlist API..."
 

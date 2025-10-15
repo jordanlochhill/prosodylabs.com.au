@@ -230,7 +230,7 @@ services:
 
 1. **Clone and Deploy**
    ```bash
-   git clone https://github.com/prosodylabs/prosodylabs.git
+   git clone ssh://github-personal/prosodylabs/prosodylabs.com.au.git
    cd prosodylabs/prosodylabs.com.au/backend
    ./deploy.sh
    ```
@@ -271,7 +271,7 @@ sudo apt-get install -y nginx certbot python3-certbot-nginx nodejs npm git
 sudo mkdir -p /opt/prosodylabs/backend
 sudo chown $USER:$USER /opt/prosodylabs/backend
 cd /opt/prosodylabs/backend
-git clone https://github.com/prosodylabs/prosodylabs.git .
+git clone ssh://github-personal/prosodylabs/prosodylabs.com.au.git .
 cd prosodylabs.com.au/backend
 npm ci --only=production
 ```
