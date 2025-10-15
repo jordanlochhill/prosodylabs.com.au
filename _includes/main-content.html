@@ -146,6 +146,27 @@
                 </div>
 
                 <div class="form-field">
+                    <label for="waitlist-role">Your role <span class="required" aria-label="required">*</span></label>
+                    <select id="waitlist-role" name="role" required aria-describedby="role-error">
+                        <option value="">Select your role</option>
+                        <option value="researcher">Researcher</option>
+                        <option value="founder">Founder</option>
+                        <option value="software-developer">Software Developer</option>
+                        <option value="data-scientist">Data Scientist</option>
+                        <option value="ml-engineer">ML Engineer</option>
+                        <option value="product-manager">Product Manager</option>
+                        <option value="cto">CTO</option>
+                        <option value="enterprise-architect">Enterprise Architect</option>
+                        <option value="devops-engineer">DevOps Engineer</option>
+                        <option value="academic">Academic</option>
+                        <option value="government">Government</option>
+                        <option value="consultant">Consultant</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div id="role-error" class="field-error" role="alert" aria-live="polite"></div>
+                </div>
+
+                <div class="form-field">
                     <label for="waitlist-notes">How can Yarn help?</label>
                     <textarea id="waitlist-notes" name="notes" rows="4"
                         placeholder="Share the workloads or integrations you have in mind"

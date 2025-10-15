@@ -34,10 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Real-time validation
-    const fields = waitlistForm.querySelectorAll('input, textarea');
+    const fields = waitlistForm.querySelectorAll('input, textarea, select');
     fields.forEach(field => {
         field.addEventListener('blur', () => validateField(field));
         field.addEventListener('input', () => {
+            if (field.getAttribute('aria-invalid') === 'true') {
+                validateField(field);
+            }
+        });
+        field.addEventListener('change', () => {
             if (field.getAttribute('aria-invalid') === 'true') {
                 validateField(field);
             }
@@ -79,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = {
             name: document.getElementById('waitlist-name').value.trim(),
             email: document.getElementById('waitlist-email').value.trim(),
+            role: document.getElementById('waitlist-role').value,
             notes: document.getElementById('waitlist-notes').value.trim()
         };
 

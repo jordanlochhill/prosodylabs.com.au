@@ -677,7 +677,8 @@ a:focus-visible {
 }
 
 .waitlist-form input,
-.waitlist-form textarea {
+.waitlist-form textarea,
+.waitlist-form select {
   width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 14px;
@@ -689,14 +690,16 @@ a:focus-visible {
 }
 
 .waitlist-form input:focus-visible,
-.waitlist-form textarea:focus-visible {
+.waitlist-form textarea:focus-visible,
+.waitlist-form select:focus-visible {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 4px rgba(200, 119, 47, 0.18);
   outline: none;
 }
 
 .waitlist-form input:invalid:not(:focus):not(:placeholder-shown),
-.waitlist-form textarea:invalid:not(:focus):not(:placeholder-shown) {
+.waitlist-form textarea:invalid:not(:focus):not(:placeholder-shown),
+.waitlist-form select:invalid:not(:focus) {
   border-color: #dc2626;
 }
 

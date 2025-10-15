@@ -42,12 +42,12 @@ if (emailEnabled) {
 // Waitlist endpoint
 app.post('/api/waitlist', async (req, res) => {
     try {
-        const { name, email, notes } = req.body;
+        const { name, email, role, notes } = req.body;
 
         // Validate required fields
-        if (!name || !email) {
+        if (!name || !email || !role) {
             return res.status(400).json({
-                error: 'Name and email are required'
+                error: 'Name, email, and role are required'
             });
         }
 
@@ -65,6 +65,7 @@ app.post('/api/waitlist', async (req, res) => {
             timestamp: new Date().toISOString(),
             name: name.trim(),
             email: email.trim(),
+            role: role,
             notes: notes ? notes.trim() : '',
             ip: req.ip || req.connection.remoteAddress,
             userAgent: req.get('User-Agent')
@@ -95,6 +96,7 @@ app.post('/api/waitlist', async (req, res) => {
         console.log('\n🎉 NEW WAITLIST SUBMISSION:');
         console.log(`Name: ${submission.name}`);
         console.log(`Email: ${submission.email}`);
+        console.log(`Role: ${submission.role}`);
         console.log(`Notes: ${submission.notes || 'None'}`);
         console.log(`Time: ${submission.timestamp}`);
         console.log('---\n');
@@ -108,6 +110,7 @@ Hello Prosody Labs team,
 
 I would like to join the Yarn waitlist.
 
+Role: ${submission.role}
 ${submission.notes ? `Additional information: ${submission.notes}` : ''}
 
 Best regards,
@@ -123,7 +126,10 @@ IP: ${submission.ip}`;
         <div style="background: #fdf6ec; padding: 30px; border-radius: 8px; border-left: 4px solid #c2721c;">
           <p style="font-size: 16px; margin-bottom: 20px;">Hello Prosody Labs team,</p>
           <p style="font-size: 16px; margin-bottom: 20px;">I would like to join the Yarn waitlist.</p>
-          ${submission.notes ? `<div style="background: #fff; padding: 15px; border-radius: 4px; margin: 20px 0;"><strong>Additional information:</strong><br>${submission.notes}</div>` : ''}
+          <div style="background: #fff; padding: 15px; border-radius: 4px; margin: 20px 0;">
+            <p style="margin: 0 0 10px 0;"><strong>Role:</strong> ${submission.role}</p>
+            ${submission.notes ? `<p style="margin: 0;"><strong>Additional information:</strong><br>${submission.notes}</p>` : ''}
+          </div>
           <p style="font-size: 16px; margin-top: 30px;">Best regards,<br><strong>${submission.name}</strong><br>${submission.email}</p>
         </div>
         <div style="margin-top: 20px; font-size: 12px; color: #666; text-align: center;">
@@ -176,6 +182,7 @@ We've received your request and will be in touch soon with updates about Yarn's 
 Your submission details:
 - Name: ${submission.name}
 - Email: ${submission.email}
+- Role: ${submission.role}
 ${submission.notes ? `- Notes: ${submission.notes}` : ''}
 
 Best regards,
@@ -197,6 +204,7 @@ Submitted: ${submission.timestamp}`;
                                 <h3 style="margin-top: 0; color: #c2721c;">Your submission details:</h3>
                                 <p><strong>Name:</strong> ${submission.name}</p>
                                 <p><strong>Email:</strong> ${submission.email}</p>
+                                <p><strong>Role:</strong> ${submission.role}</p>
                                 ${submission.notes ? `<p><strong>Notes:</strong> ${submission.notes}</p>` : ''}
                             </div>
                             
