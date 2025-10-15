@@ -20,6 +20,19 @@ fi
 sudo mkdir -p $DEPLOY_DIR
 sudo chown $USER:$USER $DEPLOY_DIR
 
+# Stop service if it's running (for updates)
+if [ "$IS_UPDATE" = true ] && systemctl is-active --quiet $SERVICE_NAME; then
+    echo "⏸️  Stopping service for update..."
+    sudo systemctl stop $SERVICE_NAME
+fi
+
+# Fix ownership of backend files (in case they're owned by www-data)
+if [ "$IS_UPDATE" = true ]; then
+    echo "🔧 Fixing file ownership..."
+    sudo chown -R $USER:$USER $DEPLOY_DIR/backend
+    echo "✅ File ownership fixed"
+fi
+
 # Clone or update repository
 if [ "$IS_UPDATE" = true ]; then
     cd $DEPLOY_DIR
@@ -41,21 +54,8 @@ else
     echo "✅ Repository cloned"
 fi
 
-# Stop service if it's running (for updates)
-if [ "$IS_UPDATE" = true ] && systemctl is-active --quiet $SERVICE_NAME; then
-    echo "⏸️  Stopping service for update..."
-    sudo systemctl stop $SERVICE_NAME
-fi
-
 # Navigate to backend directory
 cd $DEPLOY_DIR/backend
-
-# Fix ownership of backend files (in case they're owned by www-data)
-if [ "$IS_UPDATE" = true ]; then
-    echo "🔧 Fixing file ownership..."
-    sudo chown -R $USER:$USER $DEPLOY_DIR/backend
-    echo "✅ File ownership fixed"
-fi
 
 # Install/update dependencies
 echo "📦 Installing dependencies..."
