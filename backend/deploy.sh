@@ -16,7 +16,7 @@ if [ -d "$DEPLOY_DIR/.git" ]; then
     git pull origin main
 else
     git clone $REPO_URL $DEPLOY_DIR
-    cd $DEPLOY_DIR/prosodylabs.com.au/backend
+    cd $DEPLOY_DIR/backend
 fi
 
 # Install dependencies
