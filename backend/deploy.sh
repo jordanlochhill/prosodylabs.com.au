@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DEPLOY_DIR="/opt/prosodylabs.com.au/"
+DEPLOY_DIR="/opt/prosodylabs.com.au"
 REPO_URL="ssh://github-personal/prosodylabs/prosodylabs.com.au.git"
 
 echo "Deploying Prosody Labs Waitlist API..."
@@ -16,8 +16,10 @@ if [ -d "$DEPLOY_DIR/.git" ]; then
     git pull origin main
 else
     git clone $REPO_URL $DEPLOY_DIR
-    cd $DEPLOY_DIR/backend
 fi
+
+# Navigate to backend directory
+cd $DEPLOY_DIR/backend
 
 # Install dependencies
 npm ci --only=production
