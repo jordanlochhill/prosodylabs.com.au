@@ -158,7 +158,8 @@
                     <span class="button-text">Request early access</span>
                     <span class="button-loading" aria-hidden="true">Sending...</span>
                 </button>
-                <div id="submit-help" class="field-help">We'll draft an email for you to send from your email client.
+                <div id="submit-help" class="field-help">We'll send your request directly to our team and you'll receive
+                    a confirmation email.
                 </div>
                 <p id="waitlist-feedback" class="form-feedback" role="status" aria-live="polite"></p>
             </form>
@@ -170,4 +171,13 @@
     {% include contact.html %}
 </main>
 
+<script>
+    // Inject Jekyll config for JavaScript
+    window.siteConfig = {
+        api: {
+            baseUrl: "{{ site.api.base_url }}",
+            waitlistEndpoint: "{{ site.api.waitlist_endpoint }}"
+        }
+    };
+</script>
 <script src="{{ '/assets/js/waitlist-form.js' | relative_url }}"></script>

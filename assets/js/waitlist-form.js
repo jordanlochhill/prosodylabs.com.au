@@ -75,49 +75,94 @@ document.addEventListener('DOMContentLoaded', function () {
             submitButton.disabled = true;
         }
 
-        // Simulate processing delay for better UX
-        setTimeout(() => {
-            const name = document.getElementById('waitlist-name').value.trim();
-            const email = document.getElementById('waitlist-email').value.trim();
-            const notes = document.getElementById('waitlist-notes').value.trim();
+        // Prepare form data
+        const formData = {
+            name: document.getElementById('waitlist-name').value.trim(),
+            email: document.getElementById('waitlist-email').value.trim(),
+            notes: document.getElementById('waitlist-notes').value.trim()
+        };
 
-            const subject = encodeURIComponent('Yarn waitlist enquiry');
-            const details = [
-                name ? `Name: ${name}` : null,
-                email ? `Email: ${email}` : null,
-                notes ? `Context: ${notes}` : null
-            ].filter(Boolean).join('\n');
-            const body = encodeURIComponent(details);
+        // Send email using configured backend server
+        const apiUrl = window.siteConfig.api.baseUrl + window.siteConfig.api.waitlistEndpoint;
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    if (feedback) {
+                        feedback.innerHTML = '';
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'form-success';
+                        successMessage.innerHTML = `
+                        <p><strong>Thank you for joining the Yarn waitlist!</strong></p>
+                        <p>We've received your request and will be in touch soon with updates about Yarn's availability.</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--color-text-muted);">
+                            You should receive a confirmation email shortly.
+                        </p>
+                    `;
+                        feedback.appendChild(successMessage);
+                    }
 
-            const mailtoLink = `mailto:${waitlistRecipient}?subject=${subject}&body=${body}`;
+                    // Clear form
+                    waitlistForm.reset();
 
-            // Try to open email client
-            window.open(mailtoLink, '_self');
+                    // Remove validation states
+                    fields.forEach(field => {
+                        field.removeAttribute('aria-invalid');
+                        const errorElement = document.getElementById(field.id + '-error');
+                        if (errorElement) {
+                            errorElement.textContent = '';
+                        }
+                    });
+                } else {
+                    throw new Error(data.error || 'Failed to submit form');
+                }
+            })
+            .catch(error => {
+                console.error('Waitlist submission error:', error);
 
-            if (feedback) {
-                feedback.innerHTML = '';
+                // Show error message with fallback option
+                if (feedback) {
+                    feedback.innerHTML = '';
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'form-error';
 
-                const message = document.createElement('p');
-                message.textContent = `We've drafted an email to ${waitlistRecipient}. Please send it from your email client to complete your waitlist request.`;
-                feedback.appendChild(message);
+                    const subject = encodeURIComponent('Yarn Waitlist Request - ' + formData.name);
+                    const body = encodeURIComponent(
+                        `New waitlist request:\n\n` +
+                        `Name: ${formData.name}\n` +
+                        `Email: ${formData.email}\n` +
+                        (formData.notes ? `Notes: ${formData.notes}\n` : '') +
+                        `\nTimestamp: ${new Date().toLocaleString()}\n` +
+                        `Source: Website waitlist form`
+                    );
+                    const mailtoLink = `mailto:${waitlistRecipient}?subject=${subject}&body=${body}`;
 
-                const prompt = document.createElement('p');
-                prompt.textContent = 'If your email client did not open automatically, you can click here:';
-                feedback.appendChild(prompt);
-
-                const manualLink = document.createElement('a');
-                manualLink.href = mailtoLink;
-                manualLink.textContent = waitlistRecipient;
-                manualLink.classList.add('waitlist-feedback-link');
-                feedback.appendChild(manualLink);
-            }
-
-            // Reset form state
-            if (submitButton) {
-                submitButton.classList.remove('loading');
-                submitButton.disabled = false;
-            }
-        }, 500);
+                    errorMessage.innerHTML = `
+                    <p><strong>Sorry, there was an issue submitting your request.</strong></p>
+                    <p>Please try sending us an email directly:</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="${mailtoLink}" class="button primary" style="display: inline-block; text-decoration: none;">
+                            Send Email to ${waitlistRecipient}
+                        </a>
+                    </p>
+                `;
+                    feedback.appendChild(errorMessage);
+                }
+            })
+            .finally(() => {
+                // Reset button state
+                if (submitButton) {
+                    submitButton.classList.remove('loading');
+                    submitButton.disabled = false;
+                }
+            });
     });
 });
 
